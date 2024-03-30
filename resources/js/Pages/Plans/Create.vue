@@ -164,7 +164,7 @@ import { Link, Head, useForm } from '@inertiajs/vue3';
             errors:Object,
         },
         setup() {
-            const plan = useForm()
+            const plan = useForm({})
 
             const preview_1 = ref(null)
             const preview_2 = ref(null)
@@ -183,18 +183,42 @@ import { Link, Head, useForm } from '@inertiajs/vue3';
             const image_7 = ref(null)
 
             const selectFile = (pos) => {
-
-            }
-
-            const imagePreview = (file, pos) => {
                 switch (pos) {
                     case 1:
-                        preview_1.value.click()
+                        image_1.value.click()
+                        break
+                    case 2:
+                        image_2.value.click()
+                        break
+                    case 3:
+                        image_3.value.click()
+                        break
+                    case 4:
+                        image_4.value.click()
+                        break
+                    case 5:
+                        image_5.value.click()
+                        break
+                    case 6:
+                        image_6.value.click()
+                        break
+                    case 7:
+                        image_7.value.click()
                         break
                 }
             }
+
+            const imagePreview = (file, pos) => {
+            }
             return {
-                selectFile, imagePreview
+                selectFile, imagePreview,
+                image_1,
+                image_2,
+                image_3,
+                image_4,
+                image_5,
+                image_6,
+                image_7,
             }
         }
     }
