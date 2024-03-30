@@ -17,8 +17,8 @@
                         <th class="border-b border-gray-200 px-2 py-1 text-left">Name</th>
                         <th class="border-b border-gray-200 px-2 py-1 text-left">Level</th>
                         <th class="border-b border-gray-200 px-2 py-1 text-left">Style</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Price</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Status</th>
+                        <th class="border-b border-gray-200 px-2 py-1 text-right">Price</th>
+                        <th class="border-b border-gray-200 px-2 py-1 text-right">Status</th>
                         <th class="border-b border-gray-200 px-2 py-1 text-right">Action</th>
                     </tr>
                 </thead>
@@ -28,10 +28,10 @@
                             <i class="fa-solid fa-home"></i>
                         </td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.name }}</td>
-                        <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.levels }}</td>
+                        <td class="border-b border-gray-200 px-2 py-1 text-center">{{ plan.levels }}</td>
                         <td class="border-b border-gray-200 px-2 py-3">{{ plan.style }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</td>
-                        <td class="border-b border-gray-200 px-2 py-3"><span class="bg-teal-500 px-2 rounded-md text-white">{{ plan.area }}</span></td>
+                        <td class="border-b border-gray-200 px-2 py-3 text-right">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</td>
+                        <td class="border-b border-gray-200 px-2 py-3 text-right"><span class="bg-teal-500 px-2 rounded-md text-white">{{ plan.area }}</span></td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right">
                             <Link :href="route('plans.edit', plan.id)" class="p-2 text-sky-500">
                                 <i class="fa-solid fa-edit"></i>
