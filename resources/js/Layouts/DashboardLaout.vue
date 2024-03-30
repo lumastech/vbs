@@ -23,11 +23,11 @@
                         <i class="fa-solid fa-file-invoice-dollar w-7 mr-4"></i>
                         ORDERS
                     </a>
-                    <a href="/insurance" class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
+                    <a href="/plans" class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                         <i class="fa-solid fa-ticket w-7 mr-3"></i>
                         PLANS
                     </a>
-                    <a href="/station" class="flex line-clamp-1 place-items-cent~er overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
+                    <a href="/planadd" class="flex line-clamp-1 place-items-cent~er overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                         <i class="fa-solid fa-plus-circle w-7 mr-3"></i>
                         ADD PLAN
                     </a>

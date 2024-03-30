@@ -1,11 +1,11 @@
 <template>
-    <Head title="Users" />
+    <Head title="Plans" />
     <div class="max-w-7xl mx-auto px-2">
         <div class="flex justify-between gap-4 mb-4 place-items-center">
-            <h2>STAFFS</h2>
-            <Link :href="route('user.create')" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+            <h2>Plans</h2>
+            <Link c class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
                 <i class="fa-solid fa-plus"></i>
-                <span>Add Staff</span>
+                <span>Post Plan</span>
             </Link>
         </div>
 
@@ -15,30 +15,28 @@
                     <tr>
                         <th class="border-b border-gray-200 px-2 py-1"></th>
                         <th class="border-b border-gray-200 px-2 py-1 text-left">Name</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Email</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Phone</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Role</th>
+                        <th class="border-b border-gray-200 px-2 py-1 text-left">Level</th>
+                        <th class="border-b border-gray-200 px-2 py-1 text-left">Style</th>
+                        <th class="border-b border-gray-200 px-2 py-1 text-left">Price</th>
                         <th class="border-b border-gray-200 px-2 py-1 text-left">Status</th>
                         <th class="border-b border-gray-200 px-2 py-1 text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-teal-500">
-                    <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-50 transition">
+                    <tr v-for="plan in plans.data" :key="plan.id" class="hover:bg-gray-50 transition">
                         <td class="border-b border-gray-200 px-2 py-3">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-home"></i>
                         </td>
-                        <td class="border-b border-gray-200 px-2 py-1 text-left">{{ user.name }}</td>
-                        <td class="border-b border-gray-200 px-2 py-1 text-left">
-                            <a :href="`mailto:${user.email}`">{{ user.email }}</a>
-                        </td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ user.phone }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ user.role }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3"><span class="bg-teal-500 px-2 rounded-md text-white">{{ user.status }}</span></td>
+                        <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.name }}</td>
+                        <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.levels }}</td>
+                        <td class="border-b border-gray-200 px-2 py-3">{{ plan.style }}</td>
+                        <td class="border-b border-gray-200 px-2 py-3">{{ plan.price }} ZMW</td>
+                        <td class="border-b border-gray-200 px-2 py-3"><span class="bg-teal-500 px-2 rounded-md text-white">{{ plan.area }}</span></td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right">
-                            <Link :href="route('user.edit', user.id)" class="p-2 text-sky-500">
+                            <Link :href="route('plans.edit', plan.id)" class="p-2 text-sky-500">
                                 <i class="fa-solid fa-edit"></i>
                             </Link>
-                            <Link :href="route('user.destroy', user.id)" method="delete" class="text-red-500" as="button" type="button" :onBefore="confirm" >
+                            <Link :href="route('plans.destroy', plan.id)" method="delete" class="text-red-500" as="button" type="button" :onBefore="confirm" >
                                 <i class="fa-solid fa-trash-can"></i>
                             </Link>
 
@@ -47,7 +45,7 @@
                                     <h4>Confirm action</h4>
                                 </template>
                                 <template v-slot:content>
-                                    <p>Are you sure you want to delete this user?</p>
+                                    <p>Are you sure you want to delete this plan?</p>
                                 </template>
                                 <template v-slot:footer>
                                     <button @click="close" class="text-gray-500 hover:bg-secondary-100 px-4 rounded transition">Cancel</button>
@@ -73,11 +71,11 @@ export default {
     ConfirmationModal
 },
     props: {
-        users: Object,
+        plans: Object,
     },
     layout: DashboardLaout,
     setup() {
-        const confirm = () => window.confirm('Are you sure you want to delete this user?');
+        const confirm = () => window.confirm('Are you sure you want to delete this plan?');
 
         return {
             confirm

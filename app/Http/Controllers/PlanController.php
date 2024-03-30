@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class PlanController extends Controller
 {
@@ -12,7 +14,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::paginate(20);
+        return Inertia::render("Plans/Index",["plans" => $plans]);
     }
 
     /**
