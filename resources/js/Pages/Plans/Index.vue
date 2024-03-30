@@ -30,7 +30,7 @@
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.name }}</td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.levels }}</td>
                         <td class="border-b border-gray-200 px-2 py-3">{{ plan.style }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ plan.price }} ZMW</td>
+                        <td class="border-b border-gray-200 px-2 py-3">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</td>
                         <td class="border-b border-gray-200 px-2 py-3"><span class="bg-teal-500 px-2 rounded-md text-white">{{ plan.area }}</span></td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right">
                             <Link :href="route('plans.edit', plan.id)" class="p-2 text-sky-500">
@@ -60,8 +60,8 @@
 </template>
 
 <script>
+
 import DashboardLaout from '@/Layouts/DashboardLaout.vue';
-// import Inertia from '@inertiajs/vue3'
 import { Link, Head } from '@inertiajs/vue3';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
 
