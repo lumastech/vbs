@@ -1,0 +1,205 @@
+<template>
+    <Head title="Home" />
+    <header class="bg-secondary-500">
+        <Navbar />
+
+        <!-- dynamic colousel -->
+        <div class="colousel-bg h-96">
+
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <section class="bg-secondary-800 text-secondary-10 pt-9">
+
+        <!-- New House Plans -->
+        <div class="max-w-7xl mx-auto p-4 bg-primary-700 rounded">
+            <h1 class="text-4xl text-center text-secondary-100">Welcome To Mfumu House Plans</h1>
+            <p class="text-center max-w-2xl mx-auto">If you are looking to Design or build your dream home, you're in the right place.
+                Mfumu house plans offers a variety of ready-made house plans created by Zambia's best floor plan designers offering you
+                a unique house plan at an affordable price</p>
+
+                <!-- products list -->
+            <div class="flex mt-9">
+                <h2 class="text-primary-100 text-3xl font-bold flex-auto">New House Plans</h2>
+                <button class="bg-secondary-800 rounded-r-full px-2 py-1">View All</button>
+            </div>
+            <p class="mb-4">Explore our newest house plans added on a weekly basis.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <ProductItem v-for="i in 4" />
+            </div>
+        </div>
+
+        <!-- Trending House Plans -->
+        <div class="max-w-7xl mx-auto p-2 mt-16">
+            <div class="flex">
+                <h2 class="text-primary-600 text-3xl font-bold flex-auto">Trending House Plans</h2>
+                <button class="bg-primary-600 rounded-r-full px-2 py-1">View All</button>
+            </div>
+            <p class="mb-4">Curated monthly, these house plans represent current market trends.</p>
+
+            <!-- products list -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <ProductItem  v-for="i in 12"/>
+            </div>
+        </div>
+
+        <!-- banner -->
+        <div class="max-w-7xl mx-auto p-2 my-24">
+            <div class="shadow">
+                <div class="colousel-bg w-full h-64 rounded-t overflow-hidden"></div>
+                <div class="grid md:grid-cols-3 border-b-4 border-primary-700">
+                    <div class="bg-secondary-900 p-4">
+                        <i class="fas fa-home"></i>
+                        <h5 class="text-2xl font-bold flex-auto">Customize Any Plan</h5>
+                        <p>
+                            You've found a house plan you really like,
+                            but you'd like the rooms to be oriented
+                            differently. Or perhaps you'd like to add
+                            another bedroom, an office, a garage, or
+                            remove something? Our in-house experts
+                            can customize your floor plans to meet
+                            your exact needs!
+                        </p>
+                    </div>
+
+                    <div class="bg-primary-700 md:bg-secondary-900 border-x border-primary-700 p-4">
+                        <i class="fas fa-home"></i>
+                        <h5 class="text-2xl font-bold flex-auto">Customize Any Plan</h5>
+                        <p>
+                            You've found a house plan you really like,
+                            but you'd like the rooms to be oriented
+                            differently. Or perhaps you'd like to add
+                            another bedroom, an office, a garage, or
+                            remove something? Our in-house experts
+                            can customize your floor plans to meet
+                            your exact needs!
+                        </p>
+                    </div>
+
+                    <div class="bg-secondary-900 p-4">
+                        <i class="fas fa-home"></i>
+                        <h5 class="text-2xl font-bold flex-auto">Customize Any Plan</h5>
+                        <p>
+                            You've found a house plan you really like,
+                            but you'd like the rooms to be oriented
+                            differently. Or perhaps you'd like to add
+                            another bedroom, an office, a garage, or
+                            remove something? Our in-house experts
+                            can customize your floor plans to meet
+                            your exact needs!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- What you get -->
+        <div class="max-w-7xl mx-auto p-2 mb-24">
+            <div class="grid md:grid-cols-2 bg-secondary-900 shadow rounded overflow-hidden">
+                <img src="../../assets/landing_cover.jpg" alt="What you get" class="w-full">
+                <div class="bg-primary-700 px-4 py-7">
+                    <h4 class="text-2xl font-bold flex-auto">What you get</h4>
+                    <hr class="my-2">
+                    <ul class="space-y-3">
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Floor plan, Roof plan</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Sections and Elevations</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Door and window schedule</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Drainage and Plumbing plans</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Electrical drawings</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Structural drawings</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Bills of quantities - without rates</li>
+                        <li><i class="fas fa-check-circle text-secondary-100"></i> Schedule of materials - without rates</li>
+                    </ul>
+                    <p class="mt-2"><i>*Drawings Delivered in PDF and DWG Format</i></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- about us -->
+        <div class="colousel-bg">
+            <div class="backdrop-blur bg-secondary-900/70">
+                <div class="max-w-7xl mx-auto px-2 py-16">
+                    <h4 class="text-2xl font-bold flex-auto">Mfumu house plans</h4>
+                    <p>If you are looking to Design or build your dream home, you're in the right place.
+                        Mfumu house plans offers a variety of ready-made house plans created by Zambia's best floor plan designers offering you
+                        a unique house plan at an affordable price</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 my-9">
+                        <div>
+                            <h5 class="text-2xl font-bold flex-auto">Customize any plan</h5>
+                            <p>
+                                If you have found a plan that you already like but you
+                                would like to add another bedroom, office, garage or
+                                remove a room our inhouse designers will be able to
+                                customise the plan to meet your needs.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="text-2xl font-bold flex-auto">Develop new plan</h5>
+                            <p>
+                                If you have not found a plan that meets your
+                                requirements, you have the option of designing a
+                                house from scratch using our inhouse floor plan
+                                designers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        After you have selected a plan that you like, you have the option of building with us. For information on our construction
+                        services, kindly click here. New house plans will be curated and uploaded monthly that reflect market trends.
+                    </p>
+
+
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <ul class="space-y-3">
+                            <li>1. Floor plan,Roof plan</li>
+                            <li>2. Door and window schedule</li>
+                            <li>3. Plumbing and electrical drawings</li>
+                            <li>4. Structural design</li>
+                            <li>5. Bill of quantities- without rates.</li>
+                            <li>6. 3D render of the plan</li>
+                        </ul>
+
+                        <hr class="border-t border-secondary-500 my-4 md:hidden">
+
+                        <ul class="space-y-3">
+                            <li><i class="fas fa-home"></i> 1 bedroom house plans</li>
+                            <li><i class="fas fa-home"></i> 2 bedroom house plans</li>
+                            <li><i class="fas fa-home"></i> 3 bedroom house plans</li>
+                            <li><i class="fas fa-home"></i> 4 bedroom house plans</li>
+                            <li><i class="fas fa-home"></i> 5 bedroom house plans</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <Footer />
+
+</template>
+
+<script>
+import Navbar from '@/Components/Navbar.vue';
+import Footer from '@/Components/Footer.vue';
+import ProductItem from '@/Components/ProductItem.vue';
+import {Link, Head} from '@inertiajs/vue3'
+export default {
+    components: { Head, Link, Navbar, Footer, ProductItem },
+    
+}
+</script>
+
+<style>
+.colousel-bg{
+    background-image: url("./../../assets/landing_cover.jpg");
+    background-size: cover;
+    background-position: 50%;
+}
+</style>
