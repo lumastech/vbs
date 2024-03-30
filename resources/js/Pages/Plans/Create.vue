@@ -73,46 +73,46 @@
             <!-- image input list -->
             <h2 class="text-2xl mb-2">Select preview images to be uploaded</h2>
             <div class="thumb-cont grid grid-cols-4 gap-4">
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(1)">
-                    <img src="" alt="" id="preview_1" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 0)" oncancel="clearimage(this, 0)" accept="image/*" type="file" name="image_1" id="image_1" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(1)">
+                    <img src="" alt="" ref="preview_1" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 0)" oncancel="clearimage(this, 0)" accept="image/*" type="file" ref="image_1" id="image_1" class="hidden">
                     <label for="image_1">Image 1 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_1 }}</span></label>
                 </div>
 
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(2)">
-                    <img src="" alt="" id="preview_2" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 1)" type="file" name="image_2" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(2)">
+                    <img src="" alt="" ref="preview_2" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 1)" type="file" ref="image_2" accept="image/*" class="hidden">
                     <label for="image_2">Image 2 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_2 }}</span></label>
                 </div>
 
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(3)">
-                    <img src="" alt="" id="preview_3" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 2)" type="file" name="image_3" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(3)">
+                    <img src="" alt="" ref="preview_3" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 2)" type="file" ref="image_3" accept="image/*" class="hidden">
                     <label for="image_3">Image 3 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_3 }}</span></label>
                 </div>
 
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(4)">
-                    <img src="" alt="" id="preview_4" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 3)" type="file" name="image_4" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(4)">
+                    <img src="" alt="" ref="preview_4" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 3)" type="file" ref="image_4" accept="image/*" class="hidden">
                     <label for="image_4">Image 4 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_4 }}</span></label>
                 </div>
 
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(5)">
-                    <img src="" alt="" id="preview_5" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 4)" type="file" name="image_5" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(5)">
+                    <img src="" alt="" ref="preview_5" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 4)" type="file" ref="image_5" accept="image/*" class="hidden">
                     <label for="image_5">Image 5 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_5 }}</span></label>
                 </div>
 
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(6)">
-                    <img src="" alt="" id="preview_6" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 5)" type="file" name="image_6" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(6)">
+                    <img src="" alt="" ref="preview_6" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 5)" type="file" ref="image_6" accept="image/*" class="hidden">
                     <label for="image_6">Image 6 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_6 }}</span></label>
                 </div>
 
                 <!-- extra blured plan -->
-                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" onclick="selectFile(7)">
-                    <img src="" alt="" id="preview_7" class="w-full aspect-video rounded overflow-hidden">
-                    <input onchange="imagePreview(this, 6)" type="file" name="image_7" accept="image/*" class="hidden">
+                <div class="thumb bg-gray-100 hover:bg-gray-300 transition-all" @click="selectFile(7)">
+                    <img src="" alt="" ref="preview_7" class="w-full aspect-video rounded overflow-hidden">
+                    <input @change="imagePreview(this, 6)" type="file" ref="image_7" accept="image/*" class="hidden">
                     <label for="image_7">Image 7 <span class="text-red-600 rounded-md bg-red-50 p-1"> - {{ errors.image_7 }}</span></label>
                 </div>
 
@@ -148,26 +148,54 @@
 </div>
 </template>
 <script>
+import { ref } from 'vue';
 import DashboardLayout from '../../Layouts/DashboardLaout.vue';
-import { Link, Head } from '@inertiajs/vue3';
+import { Link, Head, useForm } from '@inertiajs/vue3';
     export default {
         components:{DashboardLayout, Link, Head},
-    layout: DashboardLayout,
-    props: {
-        auth:Object,
-        users: Number,
-        visitors: Number,
-        plans: Object,
-        sales: Number,
-        plans_count: Number,
-        errors:Object,
-    },
-    setup() {
-        return {
-            sideToggle() {
-                document.getElementById('side').classList.toggle('hidden');
+        layout: DashboardLayout,
+        props: {
+            auth:Object,
+            users: Number,
+            visitors: Number,
+            plans: Object,
+            sales: Number,
+            plans_count: Number,
+            errors:Object,
+        },
+        setup() {
+            const plan = useForm()
+
+            const preview_1 = ref(null)
+            const preview_2 = ref(null)
+            const preview_3 = ref(null)
+            const preview_4 = ref(null)
+            const preview_5 = ref(null)
+            const preview_6 = ref(null)
+            const preview_7 = ref(null)
+
+            const image_1 = ref(null)
+            const image_2 = ref(null)
+            const image_3 = ref(null)
+            const image_4 = ref(null)
+            const image_5 = ref(null)
+            const image_6 = ref(null)
+            const image_7 = ref(null)
+
+            const selectFile = (pos) => {
+
+            }
+
+            const imagePreview = (file, pos) => {
+                switch (pos) {
+                    case 1:
+                        preview_1.value.click()
+                        break
+                }
+            }
+            return {
+                selectFile, imagePreview
             }
         }
-    }
     }
 </script>
