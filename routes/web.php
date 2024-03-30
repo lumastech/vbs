@@ -6,10 +6,6 @@ use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\TicketController;
-use App\Http\Controllers\VehicleController;
-use App\Http\Controllers\RouteController;
-use App\Http\Controllers\InsuranceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,10 +51,7 @@ Route::middleware([
 
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
-    Route::resource('ticket', TicketController::class);
-    Route::resource('vehicle', VehicleController::class);
-    Route::resource('route', RouteController::class);
-    Route::resource('insurance', InsuranceController::class);
+    Route::resource('plans', PlanController::class);
 
     Route::get('/roles', function () {
         return Inertia::render('roles/index');
@@ -91,6 +84,4 @@ Route::middleware([
     Route::get('/permissions/{permission}/show', function () {
         return Inertia::render('permissions/show');
     })->name('permissions.show');
-
-
 });
