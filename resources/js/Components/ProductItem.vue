@@ -5,12 +5,12 @@
 
             <h5 class="bg-secondary-900/50 absolute w-full px-2 top-0">3 bedrooms</h5>
 
-            <div class="absolute bottom-0 bg-secondary-900/50 w-full">
-                <div class="grid grid-cols-3">
+            <div class="absolute bottom-0 bg-secondary-900/50 w-full text-xs text-center">
+                <div class="grid grid-cols-3 border-b">
                     <div class="overflow-hidden">
                         <span>1 store</span>
                     </div>
-                    <div class="overflow-hidden">
+                    <div class="overflow-hidden border-x text-center">
                         <span>1 bedr</span>
                     </div>
                     <div class="overflow-hidden">
@@ -21,7 +21,7 @@
                     <div class="overflow-hidden">
                         <span>Gable</span>
                     </div>
-                    <div class="overflow-hidden">
+                    <div class="overflow-hidden border-x text-center">
                         <span>Commencial</span>
                     </div>
                     <div class="overflow-hidden">

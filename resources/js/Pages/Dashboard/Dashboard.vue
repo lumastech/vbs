@@ -4,7 +4,7 @@
     <div class="grid lg:grid-cols-4 grid-cols-2 gap-4">
         <Link to="/" class="bg-white/50 backdrop-blur hover:bg-secondary-500/50 hover:text-white transition rounded-md shadow-sm p-4 flex">
             <div class="flex-1">
-                <h2 class="">PLANS {{ auth.name}}</h2>
+                <h2 class="">PLANS</h2>
                 <p class="text-3xl font-bold">{{ plans_count? plans_count : '00' }}</p>
             </div>
             <div class="">
