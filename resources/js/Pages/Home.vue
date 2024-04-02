@@ -22,12 +22,12 @@
                 <!-- products list -->
             <div class="flex mt-9">
                 <h2 class="text-primary-100 text-3xl font-bold flex-auto">New House Plans</h2>
-                <button class="bg-secondary-800 rounded-r-full px-2 py-1">View All</button>
+                <Link :href="route('plan.list')" class="self-center text-xs md:text-sm shrink-0 bg-secondary-800 rounded-r-full px-2 py-1">View All</Link>
             </div>
             <p class="mb-4">Explore our newest house plans added on a weekly basis.</p>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem v-for="i in 4" />
+                <ProductItem v-for="plan in new_plans" :key="plan.id" :plan="plan" />
             </div>
         </div>
 
@@ -35,13 +35,13 @@
         <div class="max-w-7xl mx-auto p-2 mt-16">
             <div class="flex">
                 <h2 class="text-primary-600 text-3xl font-bold flex-auto">Trending House Plans</h2>
-                <button class="bg-primary-600 rounded-r-full px-2 py-1">View All</button>
+                <Link :href="route('plan.list')" class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1">View All</Link>
             </div>
             <p class="mb-4">Curated monthly, these house plans represent current market trends.</p>
 
             <!-- products list -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem  v-for="i in 12"/>
+                <ProductItem v-for="plan in plans.data" :key="plan.id"  :plan="plan"/>
             </div>
         </div>
 
@@ -192,7 +192,11 @@ import ProductItem from '@/Components/ProductItem.vue';
 import {Link, Head} from '@inertiajs/vue3'
 export default {
     components: { Head, Link, Navbar, Footer, ProductItem },
-    
+    props: {
+        plans:Object,
+        new_plans:Object,
+    }
+
 }
 </script>
 

@@ -64,14 +64,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-
-    /**
-     * Get all of the routeNames for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function routeNames(): \Illuminate\Database\Eloquent\Relations\HasMany {
-        return $this->hasMany(RouteName::class);
-    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,28 +20,22 @@ use App\Http\Controllers\PlanController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        ]);
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/about', function () {
     return Inertia::render('About');
 });
 
-Route::get('/contacts', function () {
+Route::get('contacts', function () {
     return Inertia::render('Contacts');
 });
 
-Route::get('/products', function () {
+Route::get('products', function () {
     return Inertia::render('Products');
 });
 
-Route::get('/plan/{id}', function () {
-    return Inertia::render('Plan');
-});
+Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
+Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
 
 
 Route::middleware([

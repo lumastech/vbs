@@ -2,9 +2,9 @@
     <nav class="bg-secondary-900 text-primary-600">
         <div class="bg-secondary-800">
             <div class="flex max-w-7xl mx-auto px-2 py-1 space-x-2" >
-                <img src="../../assets/logo_yellow.png" alt="mfumu" class="w-32">
+                <img src="../../assets/logo_white.png" alt="mfumu" class="w-16 md:w-32">
                 <p class="flex-auto"></p>
-                <p class="text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 9729 858</p>
+                <p class="text-sm text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 9729 858</p>
                 <div class="bg-secondary-300 rounded overflow-hidden">
                     <input type="tel" class="hidden md:inline h-full px-2 bg-secondary-900 p-0 focus:outline-none focus:border-0border border-0 outline-none">
                     <button class="bg-primary-700 text-secondary-200 hover:bg-primary-800 transition md:border-l h-full px-2"><i class="fas fa-magnifying-glass"></i></button>
@@ -17,13 +17,13 @@
             </div>
             <div class="uppercase flex-auto hidden md:flex">
                 <Link href="/" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition"><i class="fas fa-home"></i> Home</Link>
-                <Link href="#" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">House Plans</Link>
+                <Link href="#" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">House Plans <i class="fas fa-angle-down"></i></Link>
                 <Link href="/about" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">About US</Link>
-                <Link href="#" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
+                <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
             <div class="uppercase">
                 <div v-if="$page.props.auth" class="inline">
-                    <Link href="#" class="p-2 inline-block hover:text-secondary-200 transition">dashboard <i class="fas fa-angle-down"></i></Link>
+                    <Link href="/dashboard" class="text-sm p-2 inline-block hover:text-secondary-200 transition">dashboard <i class="fas fa-angle-down"></i></Link>
                 </div>
                 <div v-else class="inline">
                     <Link href="/login" class="p-2 inline-block hover:text-secondary-200 transition">Login</Link>

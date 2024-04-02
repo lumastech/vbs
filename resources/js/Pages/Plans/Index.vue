@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-2">
         <div class="flex justify-between gap-4 mb-4 place-items-center">
             <h2>Plans</h2>
-            <Link c class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+            <Link :href="route('plans.create')" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
                 <i class="fa-solid fa-plus"></i>
                 <span>Post Plan</span>
             </Link>
@@ -24,8 +24,8 @@
                 </thead>
                 <tbody class="text-teal-500">
                     <tr v-for="plan in plans.data" :key="plan.id" class="hover:bg-gray-50 transition">
-                        <td class="border-b border-gray-200 px-2 py-3">
-                            <i class="fa-solid fa-home"></i>
+                        <td class="border-b border-gray-200 shrink-0">
+                            <img :src="plan.image_1" alt="" class="w-16">
                         </td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.name }}</td>
                         <td class="border-b border-gray-200 px-2 py-1 text-center">{{ plan.levels }}</td>
@@ -33,7 +33,7 @@
                         <td class="border-b border-gray-200 px-2 py-3 text-right">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right"><span class="bg-teal-500 px-2 rounded-md text-white">{{ plan.area }}</span></td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right">
-                            <Link :href="route('plans.edit', plan.id)" class="p-2 text-sky-500">
+                            <Link :href="route('plans.edit', plan)" class="p-2 text-sky-500">
                                 <i class="fa-solid fa-edit"></i>
                             </Link>
                             <Link :href="route('plans.destroy', plan.id)" method="delete" class="text-red-500" as="button" type="button" :onBefore="confirm" >
@@ -57,6 +57,7 @@
             </table>
         </div>
     </div>
+    <Toast />
 </template>
 
 <script>
@@ -64,11 +65,12 @@
 import DashboardLaout from '@/Layouts/DashboardLaout.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
+import Toast from '@/Components/Toast.vue'
 
 export default {
     components: {
     DashboardLaout, Link, Head,
-    ConfirmationModal
+    ConfirmationModal, Toast
 },
     props: {
         plans: Object,

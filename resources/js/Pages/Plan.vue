@@ -11,17 +11,26 @@
                 <div class="md:col-span-4">
                     <!-- dynamic colousel -->
                     <img
-                        src="../../assets/landing_cover.jpg"
+                        :src="preview"
                         alt="plan name"
                         class="rounded aspect-video w-full"
                     />
-                    <div class="flex overflow-x-scroll my-4 gap-4">
-                        <img
-                            v-for="i in 16"
-                            src="../../assets/landing_cover.jpg"
-                            alt="plan name"
-                            class="w-24 h-24 rounded"
-                        />
+                    <div class="flex my-4 gap-3">
+                        <div class="w-8 bg-secondary-200 rounded-l-xl">
+
+                        </div>
+                        <div class="flex overflow-x-scroll flex-auto gap-4">
+                            <img v-if="plan.image_1" @click="preview = plan.image_1" :src="plan.image_1" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_2" @click="preview = plan.image_2" :src="plan.image_2" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_3" @click="preview = plan.image_3" :src="plan.image_3" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_4" @click="preview = plan.image_4" :src="plan.image_4" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_5" @click="preview = plan.image_5" :src="plan.image_5" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_6" @click="preview = plan.image_6" :src="plan.image_6" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-if="plan.image_7" @click="preview = plan.image_7" :src="plan.image_7" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                        </div>
+                        <div class="w-8 bg-secondary-200 rounded-r-xl">
+
+                        </div>
                     </div>
 
                     <h2 class=" mt-9 my-4 font-bold">WHAT YOU'LL GET:</h2>
@@ -38,40 +47,40 @@
                     <div class="mt-9 p-2 md:p-4 rounded border border-gray-500">
                         <!-- description -->
                         <h2 class="text-2xl">DESCRIPTION</h2>
-                        <p>{{ "$plan->description" }}</p>
+                        <p>{{ plan.description }}</p>
                     </div>
                 </div>
                 <div class="col-span-2">
                     <h1 class="text-xl text-primary-600">
-                        {{ "name" }} - HOUSE PLANS
+                        {{ plan.name }} - HOUSE PLANS
                     </h1>
 
-                    <h2 class="text-3xl text-primary-600">2,500.00 ZMW</h2>
+                    <h2 class="text-3xl text-primary-600">{{ plan.price }} ZMW</h2>
                     <h4 class="font-bold mt-4">FEATURES</h4>
                     <table class="table-auto w-full space-y-3">
                         <tr class="border-b border-secondary-500">
                             <td>Bedrooms</td>
-                            <td>00</td>
+                            <td> {{ plan.bedrooms }} bedrooms </td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Bathrooms</td>
-                            <td>00</td>
+                            <td>{{ plan.bathrooms }}</td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Levels</td>
-                            <td>00</td>
+                            <td>{{ plan.levels }}</td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Style</td>
-                            <td>00</td>
+                            <td>{{ plan.style }}</td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Roof Finish</td>
-                            <td>00</td>
+                            <td>{{ plan.roof_finish }}</td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Area</td>
-                            <td>00</td>
+                            <td>{{ plan.area }}</td>
                         </tr>
                     </table>
 
@@ -171,7 +180,7 @@
         <section class="max-w-7xl mx-auto p-2 pb-24">
             <h2 class="text-xl font-bold my-4 uppercase">You may also like</h2>
             <div class="grid md:grid-cols-4 grid-cols-2 gap-4">
-                <ProductItem v-for="i in 8"/>
+                <ProductItem v-for="item in plans.data" :key="item.id" :plan="item"/>
             </div>
         </section>
     </section>
@@ -185,8 +194,17 @@ import Navbar from "@/Components/Navbar.vue";
 import Footer from "@/Components/Footer.vue";
 import ProductItem from "@/Components/ProductItem.vue";
 import { Link, Head } from "@inertiajs/vue3";
+import { ref } from 'vue'
 export default {
     components: { Head, Link, Navbar, Footer, ProductItem },
+    props: {
+        plans: Object,
+        plan: Object,
+    },
+    setup(props) {
+        const preview = ref(props.plan.image_1)
+        return{preview, }
+    }
 };
 </script>
 

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
+            $table->string('ip')->unique();
+            $table->string('device_os')->nullable();
+            $table->string('device_os_version')->nullable();
+            $table->string('device_type')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('browser_version')->nullable();
             $table->timestamps();
         });
     }
