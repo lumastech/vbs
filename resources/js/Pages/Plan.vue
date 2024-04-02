@@ -55,7 +55,7 @@
                         {{ plan.name }} - HOUSE PLANS
                     </h1>
 
-                    <h2 class="text-3xl text-primary-600">{{ plan.price }} ZMW</h2>
+                    <h2 class="text-3xl text-primary-600">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</h2>
                     <h4 class="font-bold mt-4">FEATURES</h4>
                     <table class="table-auto w-full space-y-3">
                         <tr class="border-b border-secondary-500">
