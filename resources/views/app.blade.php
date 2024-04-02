@@ -9,11 +9,12 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        
 
         <!-- fontawesome  -->
         <link rel="stylesheet" href="/fa/all.css">
         <script src="/fa/all.js"></script>
-        
+
 
         <!-- Scripts -->
         @routes
