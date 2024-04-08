@@ -5,7 +5,7 @@
                 <button
                     class="rounded px-2 pyy-1 bg-indigo-500 hover:bg-indigo-600 transition text-white"
                 >
-                    2024 <i class="fas fa-angle-down"></i>
+                    {{ getPreviousMonths()[0] }} <i class="fas fa-angle-down"></i>
                 </button>
             </template>
 

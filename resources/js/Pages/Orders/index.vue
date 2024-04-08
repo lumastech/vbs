@@ -5,7 +5,7 @@
             <h2 class="text-xl md:text-2xl font-bold">ORDERS</h2>
         </div>
 
-        <div class="shadow rounded bg-white/60 p-2 overflow-x-scroll">
+        <div class="shadow rounded bg-white/90 p-2 overflow-x-scroll">
             <table class="w-full">
                 <thead>
                     <tr>

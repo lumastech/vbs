@@ -26,41 +26,47 @@
                     />
                 </div>
             </div>
-            <div class="shadow-sm rounded bg-white p-3">
-                <i class="text-4xl text-teal-400 fas fa-ticket"></i>
-                <p class="mt-2">Plans</p>
-                <p class="text-2xl font-bold">
-                    {{ plans_count < 10 ? "0" : ""
-                    }}{{ plans_count ? plans_count : "00" }}
-                </p>
-                <p class="text-red-500">
-                    <i class="fas fa-arrowdown"></i>$1400
-                </p>
+            <div class="flex lg:inline shadow-sm rounded bg-white p-3 space-x-2">
+                <i class="self-center p-4 bg-sky-100 text-sky-500 rounded-md fas fa-ticket"></i>
+                <div class="flex-auto sm:text-center lg:text-left self-center">
+                    <p class="mt-2">Plans</p>
+                    <p class="text-2xl font-bold">
+                        {{ plans_count < 10 ? "0" : ""
+                        }}{{ plans_count ? plans_count : "00" }}
+                    </p>
+                    <p class="text-red-500">
+                        <i class="fas fa-arrowdown"></i>$1400
+                    </p>
+                </div>
             </div>
 
-            <div class="shadow-sm rounded bg-white p-3">
+            <div class="flex lg:inline shadow-sm rounded bg-white p-3 space-x-2">
                 <i
-                    class="text-4xl text-teal-400 fas fa-file-invoice-dollar"
+                    class="self-center p-4 bg-teal-100 text-teal-500 rounded-md fas fa-file-invoice-dollar"
                 ></i>
-                <p class="mt-2">SALES</p>
-                <p class="md:text-3xl font-bold">
-                    <span class="text-xs">K</span> {{ sales ? sales : "0.00" }}
-                </p>
-                <p class="text-green-500">
-                    <i class="fas fa-arrowdown"></i> $1400
-                </p>
+                <div class="flex-auto sm:text-center lg:text-left self-center">
+                    <p class="mt-2">SALES</p>
+                    <p class="md:text-3xl font-bold">
+                        <span class="text-xs">K</span> {{ sales ? sales : "0.00" }}
+                    </p>
+                    <p class="text-green-500">
+                        <i class="fas fa-arrowdown"></i> $1400
+                    </p>
+                </div>
             </div>
 
             <div
-                class="hidden md:inline lg:hidden shadow-sm rounded bg-white p-3"
+                class="hidden md:flex lg:hidden shadow-sm rounded bg-white p-3"
             >
-                <i class="text-4xl text-teal-400 fas fa-ticket"></i>
-                <p class="mt-2">VISITORS</p>
-                <p class="text-2xl font-bold">
-                    {{ visitors < 10 ? "0" : ""
-                    }}{{ visitors ? visitors : "00" }}
-                </p>
-                <p class="text-red-500">1</p>
+                <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-ticket"></i>
+                <div class="flex-auto text-center self-center">
+                    <p class="mt-2">VISITORS</p>
+                    <p class="text-2xl font-bold">
+                        {{ visitors < 10 ? "0" : ""
+                        }}{{ visitors ? visitors : "00" }}
+                    </p>
+                    <p class="text-red-500">1</p>
+                </div>
             </div>
         </div>
 
@@ -77,7 +83,7 @@
                     class="md:col-span-2"
                 ></apexchart>
 
-                <div class="border-l">
+                <div class="md:border-l">
                     <GaugeChart />
                 </div>
             </div>
@@ -85,20 +91,24 @@
             <div
                 class="grid grid-col-2 col-span-2 md:col-span-3 lg:col-span-2 lg:grid-cols-2 md:grid-cols-3 gap-4"
             >
-                <div class="md:hidden lg:inline shadow-sm rounded bg-white p-3">
-                    <i class="text-4xl text-teal-400 fas fa-ticket"></i>
-                    <p class="mt-2">VISITORS</p>
-                    <p class="text-2xl font-bold">
-                        {{ visitors < 10 ? "0" : ""
-                        }}{{ visitors ? visitors : "00" }}
-                    </p>
-                    <p class="text-red-500">1</p>
+                <div class="md:hidden lg:flex text-center flex-col justify-evenly justify-evenly place-items-center shadow-sm rounded bg-white p-3">
+                     <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-ticket"></i>
+                    <div class="flex-auto self-center">
+                        <p class="mt-2">VISITORS</p>
+                        <p class="text-2xl font-bold">
+                            {{ visitors < 10 ? "0" : ""
+                            }}{{ visitors ? visitors : "00" }}
+                        </p>
+                        <p class="text-red-500">1</p>
+                    </div>
                 </div>
 
-                <div class="shadow-sm rounded bg-white p-3">
-                    <i
-                        class="text-4xl text-teal-400 fas fa-file-invoice-dollar"
+                <div class="flex flex-col justify-evenly place-items-center shadow-sm rounded bg-white p-3">
+                    <div>
+                        <i
+                        class="inline-block p-4 bg-teal-100 text-teal-500 rounded-md fas fa-file-invoice-dollar"
                     ></i>
+                    </div>
                     <p class="mt-2">SALES</p>
                     <p class="md:text-3xl font-bold">
                         <span class="text-xs">K</span>
@@ -110,7 +120,7 @@
                 </div>
 
                 <div class="col-span-2 grid grid-cols-6 shadow-sm rounded bg-white p-3">
-                    <div class="col-span-2">
+                    <div class="col-span-2 flex flex-col justify-evenly">
                         <p class="mt-2 font-bold text-xl">Profit Report</p>
                         <p
                             class="mt-2 uppercase rounded bg-primary-50 px-2 text-primary-600 inline py-1"
@@ -165,7 +175,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <div v-for="i in 5" :key="i" class="flex gap-3 rounded hover:bg-secondary-50 transition cursor-pointer p-1">
+                    <div v-for="i in 5" :key="i" class="flex gap-3 rounded transition p-1">
                         <i class="self-center p-2 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
                         <div class="flex-auto">
                             <h4 class="font-bold capitalize text-secondary-600">2 bedrooms</h4>
@@ -222,8 +232,8 @@
                         </template>
                     </dropdown-menu>
                 </div>
-                <div class="mt-4 text-secondary-400">
-                    <div v-for="i in 6" :key="i" class="flex gap-3 rounded hover:bg-secondary-50 transition cursor-pointer px-1 py-2 border-b">
+                <div class="mt-2 text-secondary-400">
+                    <div v-for="i in 6" :key="i" class="flex gap-3 rounded transition px-1 py-2 border-b">
                         <i class="self-center p-2 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
                         <div class="flex-auto">
                             <h4 class="font-bold capitalize text-secondary-600">2 bedrooms</h4>

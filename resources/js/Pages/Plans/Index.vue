@@ -9,7 +9,7 @@
             </Link>
         </div>
 
-        <div class="shadow rounded bg-white/60 p-2 overflow-x-scroll">
+        <div class="shadow-xs rounded bg-white/90 p-2 overflow-x-scroll">
             <table class="w-full">
                 <thead>
                     <tr>

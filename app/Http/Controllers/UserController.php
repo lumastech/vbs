@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         // user with pagination 15
-        $users = User::paginate(15);
+        $users = User::orderBy('created_at', 'desc')->paginate(15);
         // return inertia view
         return Inertia::render('User/index', [
             'users' => $users,
@@ -130,11 +130,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        // find user
-        $user = User::find($id);
-        // delete user
-        $user->delete();
-        // return inertia view
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        if(User::find($id)->delete()){
+            return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+        }
+        else{
+            return back()->with('error', 'something went wrong!');
+        }
     }
 }

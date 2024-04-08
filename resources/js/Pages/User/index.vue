@@ -2,14 +2,14 @@
     <Head title="Users" />
     <div class="max-w-7xl mx-auto px-2">
         <div class="flex justify-between gap-4 mb-4 place-items-center">
-            <h2>STAFFS</h2>
+            <h2 class="text-xl font-bold">STAFFS</h2>
             <Link :href="route('user.create')" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
-                <i class="fa-solid fa-plus"></i>
+                <i class="mr-2 fa-solid fa-plus"></i>
                 <span>Add Staff</span>
             </Link>
         </div>
 
-        <div class="shadow rounded bg-white/60 p-2 overflow-x-scroll">
+        <div class="shadow-xs rounded bg-white/90 p-2 overflow-x-scroll">
             <table class="w-full">
                 <thead>
                     <tr>
@@ -24,16 +24,18 @@
                 </thead>
                 <tbody class="text-teal-500">
                     <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-50 transition">
-                        <td class="border-b border-gray-200 px-2 py-3">
-                            <i class="fa-solid fa-user"></i>
+                        <td class="border-b border-gray-200 px-2">
+                            <div class="rounded-full inline-block" :class="{'bg-teal-100 text-teal-500':user.role=='admin', 'bg-purple-100 text-purple-500':user.role=='user', 'bg-orange-100 text-orange-500':user.role=='staff'}">
+                                <i class="p-2 fa-solid fa-user"></i>
+                            </div>
                         </td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ user.name }}</td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">
                             <a :href="`mailto:${user.email}`">{{ user.email }}</a>
                         </td>
                         <td class="border-b border-gray-200 px-2 py-3">{{ user.phone }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ user.role }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3"><span class="bg-teal-500 px-2 rounded-md text-white">{{ user.status }}</span></td>
+                        <td class="border-b border-gray-200 px-2 py-3"><span class="px-2 py-1 rounded-md" :class="{'bg-teal-100 text-teal-500':user.role=='admin', 'bg-purple-100 text-purple-500':user.role=='user', 'bg-orange-100 text-orange-500':user.role=='staff'}">{{ user.role }}</span></td>
+                        <td class="border-b border-gray-200 px-2 py-3"><span class="px-2 py-1 rounded-md" :class="{'bg-teal-100 text-teal-500':user.status=='active', 'bg-red-100 text-red-500':user.status !='active'}">{{ user.status }}</span></td>
                         <td class="border-b border-gray-200 px-2 py-3 text-right">
                             <Link :href="route('user.edit', user.id)" class="p-2 text-sky-500">
                                 <i class="fa-solid fa-edit"></i>

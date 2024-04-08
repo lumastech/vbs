@@ -1,7 +1,7 @@
 <template>
     <div class="fixed w-full h-full blurd-bg text-secondary-500">
         <div class="md:flex h-full backdrop-blur-lg bg-secondary-100/80">
-            <aside @click="sideToggle" class="z-50 lg:w-[300px] shrink-0 text-secondary-800 bg-white/80 backdrop-blur shadow py-7 h-full lg:mb-7 lg:mt-2 lg:mx-2 lg:bottom-7 lg:left-2 rounded-md overflow-x-hidd overflow-y-auto absolute lg:static lg:translate-x-0 -translate-x-full transition-all">
+            <aside @click="sideToggle" class="z-50 lg:w-[200px] shrink-0 text-secondary-800 bg-white/80 backdrop-blur shadow py-7 h-full lg:mb-7 lg:mt-2 lg:mx-2 lg:bottom-7 lg:left-2 rounded-md overflow-x-hidd overflow-y-auto absolute lg:static lg:translate-x-0 -translate-x-full transition-all">
                 <nav class="flex flex-col px-2 md:px-2 text-secondary-600">
                     <div class="text-center border-b pb-4 mb-7 border-secondary-200">
                         <div class="rounded-full bg-white ring w-12 h-12 lg:w-24 lg:h-24 mx-auto transition-all overflow-hidden">

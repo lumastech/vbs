@@ -3,8 +3,8 @@
         <Head title="Dashboard" />
         <h1 class="text-2xl mb-4">EDIT A PLAN</h1>
         <form @submit.prevent="upload" action="#" class="capitalize">
-            <div class="shadow p-4 grid md:grid-cols-2 md:gap-4 bg-white/50 rounded mb-16" >
-                <div>
+            <div class="shadow-xs p-4 grid grid-cols-6 gap-4 bg-white/90 rounded mb-16" >
+                <div class="col-span-4">
                     <div>
                         <label for="name">
                             type
@@ -81,7 +81,7 @@
                     </div>
 
                     <div>
-                        <label for="roof_finish" class="mt-9"
+                        <label for="roof_finish" class=""
                             >Roof Finish
                             <span v-if="errors.roof_finish" class="text-red-600"> - {{ errors.roof_finish }}</span>
                         </label>
@@ -132,10 +132,10 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="col-span-2">
                     <div>
                         <label for="bedrooms">
-                            N0# of bedrooms
+                            Bedrooms
                             <span v-if="errors.bedrooms" class="text-red-600"> - {{ errors.bedrooms }}</span>
                         </label>
                         <input
@@ -192,7 +192,7 @@
                         />
                     </div>
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-6">
                     <label for="description">
                         Description
                         <span v-if="errors.description" class="text-red-600"> - {{ errors.description }}</span>
@@ -207,8 +207,8 @@
                         :class="{'border-red-500': errors.description , 'border-teal-500': !errors.description}"
                     ></textarea>
                 </div>
-                <div class="text-right px-4 col-span-2">
-                    <button class="bg-teal-500/70 shadow text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                <div class="text-right px-4 col-span-6">
+                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
                     >UPDATE</button>
                 </div>
             </div>
@@ -226,7 +226,7 @@
                     class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(1)"
                     >
                         <img
@@ -252,7 +252,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(2)"
                     >
                         <img
@@ -276,7 +276,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(3)"
                     >
                         <img
@@ -300,7 +300,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(4)"
                     >
                         <img
@@ -324,7 +324,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(5)"
                     >
                         <img
@@ -348,7 +348,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(6)"
                     >
                         <img
@@ -373,7 +373,7 @@
 
                     <!-- extra blured plan -->
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(7)"
                     >
                         <img
@@ -397,14 +397,14 @@
                     </div>
                 </div>
                 <div class="text-right px-4 col-span-2 mt-7">
-                    <button class="bg-teal-500/70 shadow text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
                     >UPDATE</button>
                 </div>
             </div>
 
             <!-- files -->
             <div
-                class="shadow rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/50"
+                class="shadow-xs rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/90"
             >
                 <!-- files -->
                 <h2 class="text-2xl mb-2 mt-9">Select plan files</h2>
@@ -482,7 +482,7 @@
                     </div>
                 </div>
                 <div class="text-right px-4 col-span-2">
-                    <button class="bg-teal-500/70 shadow text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
                     >UPDATE</button>
                 </div>
             </div>

@@ -4,9 +4,9 @@
         <h1 class="text-2xl mb-4">UPLOAD A PLAN</h1>
         <form @submit.prevent="upload" action="#" class="capitalize">
             <div
-                class="shadow p-4 grid md:grid-cols-2 md:gap-4 bg-white/50 rounded"
+                class="shadow-xs p-4 grid grid-cols-6 gap-4 bg-white/90 rounded"
             >
-                <div>
+                <div class="col-span-4">
                     <div>
                         <label for="name">
                             type
@@ -83,7 +83,7 @@
                     </div>
 
                     <div>
-                        <label for="roof_finish" class="mt-9"
+                        <label for="roof_finish" class="mt-"
                             >Roof Finish
                             <span v-if="errors.roof_finish" class="text-red-600"> - {{ errors.roof_finish }}</span>
                         </label>
@@ -134,10 +134,10 @@
                     </div>
                 </div>
 
-                <div>
+                <div class="col-span-2">
                     <div>
                         <label for="bedrooms">
-                            N0# of bedrooms
+                            Bedrooms
                             <span v-if="errors.bedrooms" class="text-red-600"> - {{ errors.bedrooms }}</span>
                         </label>
                         <input
@@ -196,7 +196,7 @@
                 </div>
             </div>
 
-            <div class="shadow py-2 px-4 bg-white/50 my-7 rounded">
+            <div class="shadow-xs py-2 px-4 bg-white/90 my-7 rounded">
                 <label for="description">
                     Description
                     <span v-if="errors.description" class="text-red-600"> - {{ errors.description }}</span>
@@ -224,7 +224,7 @@
                     class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(1)"
                     >
                         <img
@@ -250,7 +250,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(2)"
                     >
                         <img
@@ -274,7 +274,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(3)"
                     >
                         <img
@@ -298,7 +298,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(4)"
                     >
                         <img
@@ -322,7 +322,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(5)"
                     >
                         <img
@@ -346,7 +346,7 @@
                     </div>
 
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(6)"
                     >
                         <img
@@ -371,7 +371,7 @@
 
                     <!-- extra blured plan -->
                     <div
-                        class="thumb shadow rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
+                        class="thumb shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all"
                         @click="selectFile(7)"
                     >
                         <img
@@ -398,7 +398,7 @@
 
             <!-- files -->
             <div
-                class="shadow rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/50"
+                class="shadow-xs rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/90"
             >
                 <!-- files -->
                 <h2 class="text-2xl mb-2 mt-9">Select plan files</h2>
@@ -479,7 +479,7 @@
 
             <div class="text-right px-4">
                 <button
-                    class="bg-secondary-600 shadow text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-secondary-700 transition-all"
+                    class="bg-secondary-600 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-secondary-700 transition-all"
                 >
                     UPLOAD
                 </button>
