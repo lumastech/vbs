@@ -19,6 +19,8 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "vue-numerals": "^4.0.6"
+        "v-dropdown-menu": "^2.0.4",
+        "vue-numerals": "^4.0.6",
+        "vue3-apexcharts": "^1.5.2"
     }
 }

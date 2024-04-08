@@ -1,10 +1,12 @@
 <template>
     <div class="fixed w-full h-full blurd-bg text-secondary-500">
-        <div class="md:flex h-full bg-secondary-100/60 backdrop-blur-lg">
-            <aside @click="sideToggle" class="z-50 md:w-[60px] hover:w-[300px] lg:w-[300px] shrink-0 text-secondary-800 bg-white/50 backdrop-blur shadow py-7 h-full md:mb-7 md:mt-2 md:mx-2 md:bottom-7 md:left-2 rounded-md overflow-x-hidd overflow-y-auto absolute md:static md:translate-x-0 -translate-x-full transition-all">
+        <div class="md:flex h-full backdrop-blur-lg bg-secondary-100/80">
+            <aside @click="sideToggle" class="z-50 lg:w-[300px] shrink-0 text-secondary-800 bg-white/80 backdrop-blur shadow py-7 h-full lg:mb-7 lg:mt-2 lg:mx-2 lg:bottom-7 lg:left-2 rounded-md overflow-x-hidd overflow-y-auto absolute lg:static lg:translate-x-0 -translate-x-full transition-all">
                 <nav class="flex flex-col px-2 md:px-2 text-secondary-600">
                     <div class="text-center border-b pb-4 mb-7 border-secondary-200">
-                        <div class="rounded-full bg-white ring w-12 h-12 lg:w-24 lg:h-24 mx-auto transition-all"></div>
+                        <div class="rounded-full bg-white ring w-12 h-12 lg:w-24 lg:h-24 mx-auto transition-all overflow-hidden">
+                            <img src="../../assets/avater.png" alt="" class="w-full h-full scale-110 rounded-full">
+                        </div>
                         <p class="mt-4 md:hidden lg:block">{{$page.props.auth.name}}</p>
                         <Link href="/logout" as="button"  method="post" class="block w-full place-items-center overflow-hidden px-4 py-2 rounded md:rounded-lg bg-white shadow-sm mb-1 mt-4 hover:bg-secondary-500 hover:text-white transition">
                             <i class="fa-solid fa-lock w-7 mr-4"></i>
@@ -40,8 +42,12 @@
                 </nav>
             </aside>
             <main class="flex-auto h-full text-gray-500">
-                <div class="flex justify-between p-4 m-2 rounded-md place-items-center backdrop-blur bg-white/60 border-b">
-                    <h2 class="text-gray-500">DASHBOARD</h2>
+                <div class="flex px-2 py-2 m-2 rounded-md place-items-center backdrop-blur bg-white/80 border-b">
+                     <!-- menu button -->
+                        <button @click="sideToggle" class="xl:hidden rounded p-2 bg-secondary-50 h-10 flex gap-2 place-items-center justify-center text-secondary-500 hover:bg-secondary-500 hover:text-white transition ">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    <h2 class="text-gray-500 flex-auto mx-2">DASHBOARD</h2>
                     <div class="flex space-x-4">
                         <div class="hidden md:flex rounded-md border border-secondary-400 bg-white overflow-hidden">
                             <input type="search" name="search" id="search" class="border-0 bg-none" placeholder="Search">
@@ -56,10 +62,7 @@
                             <i class="fa-solid fa-sign-out"></i>
                             <span class="hidden md:inline">Logout</span>
                         </Link>
-                        <!-- menu button -->
-                        <button @click="sideToggle" class="xl:hidden rounded-md p-2 bg-secondary-50 border border-secondary-400  h-10 flex gap-2 place-items-center justify-center text-secondary-500 hover:bg-secondary-500 hover:text-white transition ">
-                            <i class="fa-solid fa-bars"></i>
-                        </button>
+
                     </div>
                 </div>
                 <div class="pt-10 h-full w-full overflow-auto pb-32">
