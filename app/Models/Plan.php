@@ -20,7 +20,7 @@ class Plan extends Model
         'area',
         'description',
         'status',
-        
+
         'image_1',
         'image_2',
         'image_3',
@@ -37,4 +37,8 @@ class Plan extends Model
         'file_5',
         'file_6',
     ];
+
+    public function images() {
+        return $this->hasMany(Image::class, 'ref_id');
+    }
 }

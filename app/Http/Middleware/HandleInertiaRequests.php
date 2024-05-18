@@ -38,8 +38,8 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             "auth" => \Auth::user(),
-            "sessionMessage" => \session("message", null),
-            // "sessionMessage" => \session()->pull("message", null),
+            // "sessionMessage" => \session("message", null),
+            "sessionMessage" => \session()->pull("message", null),
         ]);
     }
 }

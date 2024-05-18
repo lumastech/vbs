@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-7xl mx-auto px-2">
+    <div class="max-w-12xl mx-auto px-2">
         <Head title="Dashboard" />
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -58,7 +58,7 @@
             <div
                 class="hidden md:flex lg:hidden shadow-sm rounded bg-white p-3"
             >
-                <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-ticket"></i>
+                <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-users"></i>
                 <div class="flex-auto text-center self-center">
                     <p class="mt-2">VISITORS</p>
                     <p class="text-2xl font-bold">
@@ -92,7 +92,7 @@
                 class="grid grid-col-2 col-span-2 md:col-span-3 lg:col-span-2 lg:grid-cols-2 md:grid-cols-3 gap-4"
             >
                 <div class="md:hidden lg:flex text-center flex-col justify-evenly justify-evenly place-items-center shadow-sm rounded bg-white p-3">
-                     <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-ticket"></i>
+                     <i class="self-center p-4 bg-orange-100 text-orange-500 rounded-md fas fa-users"></i>
                     <div class="flex-auto self-center">
                         <p class="mt-2">VISITORS</p>
                         <p class="text-2xl font-bold">
@@ -106,16 +106,14 @@
                 <div class="flex flex-col justify-evenly place-items-center shadow-sm rounded bg-white p-3">
                     <div>
                         <i
-                        class="inline-block p-4 bg-teal-100 text-teal-500 rounded-md fas fa-file-invoice-dollar"
-                    ></i>
+                        class="inline-block p-4 bg-teal-100 text-teal-500 rounded-md fas fa-users"></i>
                     </div>
-                    <p class="mt-2">SALES</p>
+                    <p class="mt-2">USERS</p>
                     <p class="md:text-3xl font-bold">
-                        <span class="text-xs">K</span>
-                        {{ sales ? sales : "0.00" }}
+                        {{ users ? users : "00" }}
                     </p>
                     <p class="text-green-500">
-                        <i class="fas fa-arrowdown"></i> $1400
+                        <i class="fas fa-arrowdown"></i> 00
                     </p>
                 </div>
 
@@ -234,7 +232,7 @@
                 </div>
                 <div class="mt-2 text-secondary-400">
                     <div v-for="i in 6" :key="i" class="flex gap-3 rounded transition px-1 py-2 border-b">
-                        <i class="self-center p-2 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
+                        <i class="self-center p-3 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
                         <div class="flex-auto">
                             <h4 class="font-bold capitalize text-secondary-600">2 bedrooms</h4>
                             <p >some descriptions</p>

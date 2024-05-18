@@ -3,18 +3,25 @@
         <Head title="Dashboard" />
         <h1 class="text-2xl mb-4">EDIT A PLAN</h1>
         <form @submit.prevent="upload" action="#" class="capitalize">
-            <div class="shadow-xs p-4 grid grid-cols-6 gap-4 bg-white/90 rounded mb-16" >
+            <div
+                class="shadow-xs p-4 grid grid-cols-6 gap-4 bg-white/90 rounded mb-16"
+            >
                 <div class="col-span-4">
                     <div>
                         <label for="name">
                             type
-                            <span v-if="errors.name" class="text-red-600"> - {{ errors.name }}</span>
+                            <span v-if="errors.name" class="text-red-600">
+                                - {{ errors.name }}</span
+                            >
                         </label>
                         <select
                             v-model="plan.name"
                             id="name"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.name , 'border-teal-500': !errors.name}"
+                            :class="{
+                                'border-red-500': errors.name,
+                                'border-teal-500': !errors.name,
+                            }"
                         >
                             <option value="1 Bedroom">1 Bedroom</option>
                             <option value="2 Bedroom">2 Bedroom</option>
@@ -28,7 +35,9 @@
                     <div>
                         <label for="price">
                             Price
-                            <span v-if="errors.price" class="text-red-600"> - {{ errors.price }}</span>
+                            <span v-if="errors.price" class="text-red-600">
+                                - {{ errors.price }}</span
+                            >
                         </label>
                         <input
                             v-model="plan.price"
@@ -36,20 +45,28 @@
                             name="price"
                             id="price"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.price , 'border-teal-500': !errors.price}"
+                            :class="{
+                                'border-red-500': errors.price,
+                                'border-teal-500': !errors.price,
+                            }"
                         />
                     </div>
 
                     <div>
                         <label for="style">
                             style
-                            <span v-if="errors.style" class="text-red-600"> - {{ errors.style }}</span>
+                            <span v-if="errors.style" class="text-red-600">
+                                - {{ errors.style }}</span
+                            >
                         </label>
                         <select
                             v-model="plan.style"
                             id="style"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.style , 'border-teal-500': !errors.style}"
+                            :class="{
+                                'border-red-500': errors.style,
+                                'border-teal-500': !errors.style,
+                            }"
                         >
                             <option value="Commercial Buildinngs">
                                 Commercial Buildinngs
@@ -83,14 +100,22 @@
                     <div>
                         <label for="roof_finish" class=""
                             >Roof Finish
-                            <span v-if="errors.roof_finish" class="text-red-600"> - {{ errors.roof_finish }}</span>
+                            <span
+                                v-if="errors.roof_finish"
+                                class="text-red-600"
+                            >
+                                - {{ errors.roof_finish }}</span
+                            >
                         </label>
                         <select
                             v-model="plan.roof_finish"
                             name="roof_finish"
                             id="roof_finish"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.roof_finish , 'border-teal-500': !errors.roof_finish}"
+                            :class="{
+                                'border-red-500': errors.roof_finish,
+                                'border-teal-500': !errors.roof_finish,
+                            }"
                         >
                             <option value="Gable roof">Gable roof</option>
                             <option value="Hip and valley roof">
@@ -136,7 +161,9 @@
                     <div>
                         <label for="bedrooms">
                             Bedrooms
-                            <span v-if="errors.bedrooms" class="text-red-600"> - {{ errors.bedrooms }}</span>
+                            <span v-if="errors.bedrooms" class="text-red-600">
+                                - {{ errors.bedrooms }}</span
+                            >
                         </label>
                         <input
                             v-model="plan.bedrooms"
@@ -144,14 +171,19 @@
                             name="bedrooms"
                             id="bedrooms"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.bedrooms , 'border-teal-500': !errors.bedrooms}"
+                            :class="{
+                                'border-red-500': errors.bedrooms,
+                                'border-teal-500': !errors.bedrooms,
+                            }"
                         />
                     </div>
 
                     <div>
                         <label for="bathrooms">
                             bathrooms
-                            <span v-if="errors.bathrooms" class="text-red-600"> - {{ errors.bathrooms }}</span>
+                            <span v-if="errors.bathrooms" class="text-red-600">
+                                - {{ errors.bathrooms }}</span
+                            >
                         </label>
                         <input
                             v-model="plan.bathrooms"
@@ -159,14 +191,19 @@
                             name="bathrooms"
                             id="bathrooms"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.bathrooms , 'border-teal-500': !errors.bathrooms}"
+                            :class="{
+                                'border-red-500': errors.bathrooms,
+                                'border-teal-500': !errors.bathrooms,
+                            }"
                         />
                     </div>
 
                     <div>
                         <label for="levels">
                             levels
-                            <span v-if="errors.levels" class="text-red-600"> - {{ errors.levels }}</span>
+                            <span v-if="errors.levels" class="text-red-600">
+                                - {{ errors.levels }}</span
+                            >
                         </label>
                         <input
                             v-model="plan.levels"
@@ -174,28 +211,38 @@
                             name="levels"
                             id="levels"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.levels , 'border-teal-500': !errors.levels}"
+                            :class="{
+                                'border-red-500': errors.levels,
+                                'border-teal-500': !errors.levels,
+                            }"
                         />
                     </div>
 
                     <div>
                         <label for="area">
                             area
-                            <span v-if="errors.area" class="text-red-600"> - {{ errors.area }}</span>
+                            <span v-if="errors.area" class="text-red-600">
+                                - {{ errors.area }}</span
+                            >
                         </label>
                         <input
                             v-model="plan.area"
                             type="number"
                             id="area"
                             class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                            :class="{'border-red-500': errors.area , 'border-teal-500': !errors.area}"
+                            :class="{
+                                'border-red-500': errors.area,
+                                'border-teal-500': !errors.area,
+                            }"
                         />
                     </div>
                 </div>
                 <div class="col-span-6">
                     <label for="description">
                         Description
-                        <span v-if="errors.description" class="text-red-600"> - {{ errors.description }}</span>
+                        <span v-if="errors.description" class="text-red-600">
+                            - {{ errors.description }}</span
+                        >
                     </label>
                     <textarea
                         v-model="plan.description"
@@ -204,24 +251,28 @@
                         cols="30"
                         rows="5"
                         class="block w-full rounded mb-3 border-teal-500 rounded-md focus:ring-2 focus:ring-teal-500"
-                        :class="{'border-red-500': errors.description , 'border-teal-500': !errors.description}"
+                        :class="{
+                            'border-red-500': errors.description,
+                            'border-teal-500': !errors.description,
+                        }"
                     ></textarea>
                 </div>
                 <div class="text-right px-4 col-span-6">
-                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
-                    >UPDATE</button>
+                    <button
+                        @click="update()"
+                        class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                    >
+                        UPDATE
+                    </button>
                 </div>
             </div>
-
 
             <!-- images -->
             <div
                 class="border rounded p-2 md:p-4 max-w-7xl mx-auto bg-white/40"
             >
                 <!-- image input list -->
-                <h2 class="text-xl mb-2">
-                    Select at least one image.
-                </h2>
+                <h2 class="text-xl mb-2">Select at least one image.</h2>
                 <div
                     class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
@@ -397,8 +448,11 @@
                     </div>
                 </div>
                 <div class="text-right px-4 col-span-2 mt-7">
-                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
-                    >UPDATE</button>
+                    <button
+                        class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                    >
+                        UPDATE
+                    </button>
                 </div>
             </div>
 
@@ -408,9 +462,7 @@
             >
                 <!-- files -->
                 <h2 class="text-2xl mb-2 mt-9">Select plan files</h2>
-                <p>
-                    If files are not avairrable now, you skip this section
-                </p>
+                <p>If files are not avairrable now, you skip this section</p>
                 <div class="mb-9 grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
                         <input
@@ -422,7 +474,8 @@
                         />
                         <label for="file_1"
                             >File 1
-                            <span v-if="errors.file_1"
+                            <span
+                                v-if="errors.file_1"
                                 class="text-red-600 text-teal-500"
                             >
                                 - {{ errors.file_1 }}</span
@@ -439,7 +492,8 @@
                         />
                         <label for="file_2"
                             >File 2
-                            <span v-if="errors.file_2"
+                            <span
+                                v-if="errors.file_2"
                                 class="text-red-600 text-teal-500"
                             >
                                 - {{ errors.file_2 }}</span
@@ -456,7 +510,8 @@
                         />
                         <label for="file_3"
                             >File 3
-                            <span v-if="errors.file_3"
+                            <span
+                                v-if="errors.file_3"
                                 class="text-red-600 text-teal-500"
                             >
                                 - {{ errors.file_3 }}</span
@@ -473,7 +528,8 @@
                         />
                         <label for="file_4"
                             >File 4
-                            <span v-if="errors.file_4"
+                            <span
+                                v-if="errors.file_4"
                                 class="text-red-600 text-teal-500"
                             >
                                 - {{ errors.file_4 }}</span
@@ -482,8 +538,11 @@
                     </div>
                 </div>
                 <div class="text-right px-4 col-span-2">
-                    <button class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
-                    >UPDATE</button>
+                    <button
+                        class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
+                    >
+                        UPDATE
+                    </button>
                 </div>
             </div>
         </form>
@@ -493,6 +552,7 @@
 import { ref } from "vue";
 import DashboardLayout from "../../Layouts/DashboardLaout.vue";
 import { Link, Head, useForm } from "@inertiajs/vue3";
+import axios from "axios";
 export default {
     components: { DashboardLayout, Link, Head },
     layout: DashboardLayout,
@@ -500,17 +560,20 @@ export default {
         plan: Object,
         errors: Object,
     },
-    setup() {
+    setup(props) {
         const form = useForm({
             name: "1 Bedroom",
-            price: '',
+            price: "",
             style: "Apartments",
             roof_finish: "Simple Hip roof",
             bathrooms: 1,
             bedrooms: 1,
             levels: 1,
-            area: '',
+            area: "",
             description: "",
+        });
+
+        const imagesForm = useForm({
             image_1: null,
             image_2: null,
             image_3: null,
@@ -518,6 +581,8 @@ export default {
             image_5: null,
             image_6: null,
             image_7: null,
+        });
+        const filesForm = useForm({
             file_1: null,
             file_2: null,
             file_3: null,
@@ -568,7 +633,7 @@ export default {
 
         const imagePreview = (el, pos) => {
             var url = URL.createObjectURL(el.target.files[0]);
-            console.log(url);
+            // console.log(url);
             switch (pos) {
                 case 0:
                     preview_1.value = url;
@@ -615,9 +680,19 @@ export default {
         };
 
         // submit plan form
-        const upload = () => {
-            // plan.defaults()
-            form.post(route("plans.store"));
+        const update = () => {
+            let plan = props.plan;
+            form.name = plan.name;
+            form.price = plan.price;
+            form.style = plan.style;
+            form.roof_finish = plan.roof_finish;
+            form.bathrooms = plan.bathrooms;
+            form.bedrooms = plan.bedrooms;
+            form.levels = plan.levels;
+            form.area = plan.area;
+            form.description = plan.description;
+
+            form.put(route("plans.update", props.plan));
         };
         return {
             selectFile,
@@ -638,8 +713,7 @@ export default {
             preview_6,
             preview_7,
 
-
-            upload,
+            update,
         };
     },
     mounted() {
@@ -651,18 +725,16 @@ export default {
         this.preview_5 = this.plan.image_5;
         this.preview_6 = this.plan.image_6;
         this.preview_7 = this.plan.image_7;
-
-    }
+    },
 };
 </script>
 
 <style>
-.thumb{
+.thumb {
     background-image: url("../../../assets/addimg.png");
     background-position: 50%;
     background-size: 50%;
     background-repeat: no-repeat;
     cursor: pointer;
-
 }
 </style>

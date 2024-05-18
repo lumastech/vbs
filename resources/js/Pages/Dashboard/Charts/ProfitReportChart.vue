@@ -11,7 +11,43 @@
 
 <script setup>
 import { ref } from "vue";
+// previous months
+        const getPreviousMonths = () => {
+            const months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
+            const currentDate = new Date();
+            const currentMonthIndex = currentDate.getMonth();
+            const previousMonths = [];
+
+            for (let i = 0; i <= 7; i++) {
+                const previousMonthIndex = (currentMonthIndex - i + 12) % 12;
+                previousMonths.push(months[previousMonthIndex]);
+            }
+            previousMonths.reverse()
+            return previousMonths;
+        };
 const chartOptions = ref({
+    legend: {
+      show: false
+    },
+    grid: {
+        show: false,
+    },
+    xaxis: {
+        labels:{show:false}
+    },
     chart: {
         animations: {
             enabled: true,
@@ -28,7 +64,8 @@ const chartOptions = ref({
         }
     },
     xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        show:false,
+        categories: getPreviousMonths(),
     },
 
     stroke: {
@@ -45,4 +82,6 @@ const series = ref([
         data: [30, 40, 35, 50, 49, 60, 70, 91],
     },
 ]);
+
+
 </script>

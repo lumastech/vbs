@@ -19,7 +19,7 @@ export default {
                 height: 'auto',
                 type: "radialBar",
             },
-            series: [67],
+            series: [33],
             colors: ["#20E647"],
             plotOptions: {
                 radialBar: {
@@ -44,9 +44,9 @@ export default {
             fill: {
                 type: "gradient",
                 gradient: {
-                shade: "dark",
+                shade: "light",
                 type: "horizontal",
-                gradientToColors: ["#87D4F9"],
+                gradientToColors: ["#87D4F9", "#06ECEC"],
                 stops: [0, 100],
                 },
             },

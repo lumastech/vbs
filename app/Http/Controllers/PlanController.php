@@ -132,15 +132,47 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        return inertia::render('Plans/Edit', ['plan'=>$plan]);
+        return Inertia::render('Plans/Edit', ['plan'=>$plan]);
     }
 
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, Plan $plan)
     {
-        //
+        // dd($plan);
+        $rules = [
+            'name' => 'string|required',
+            'price' => 'numeric|required',
+            'bedrooms' => 'nullable|numeric',
+            'bathrooms' => 'nullable|numeric',
+            'levels' => 'nullable|numeric',
+            'style' => 'nullable|string',
+            'roof_finish' => 'nullable|string',
+            'area' => 'nullable|numeric',
+            'description' => 'nullable|string',
+        ];
+
+        $request->validate($rules);
+
+        // insert into plan table
+        $plan->name = $request->name;
+        $plan->price = $request->price;
+
+        $plan->bedrooms = $request->bedrooms;
+        $plan->bathrooms = $request->bathrooms;
+        $plan->levels = $request->levels;
+
+        $plan->style = $request->style;
+        $plan->roof_finish = $request->roof_finish;
+
+        $plan->area = $request->area;
+
+        $plan->description = $request->description;
+        $plan->update();
+
+        return Inertia::render('Plans/Edit', ['plan'=>$plan, 'title' => 'success', "message" => 'Plan information successfully updated']);
     }
 
     /**

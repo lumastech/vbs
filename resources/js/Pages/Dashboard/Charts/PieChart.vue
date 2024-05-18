@@ -13,19 +13,24 @@
 import { ref } from "vue";
 const chartOptions = ref({
     series: [44, 55, 13, 33],
+    legend: {
+      show: false
+    },
     labels: [44, 55, 13, 33],
-    dataLabels: {
-      enabled: false,
-      formatter: function (val) {
-        return val + "%"
-      },
-      dropShadow: {
-      }
+     dataLabels: {
+        name: {
+        show: false,
+        },
+        value: {
+        fontSize: "12px",
+        show: false,
+        },
     },
     pie: {
         donut: {
           size: '65%'
-        }
+        },
+
       }
 });
 const series = ref([44, 55, 13, 33]);
