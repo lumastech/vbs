@@ -21,6 +21,7 @@
     "dependencies": {
         "v-dropdown-menu": "^2.0.4",
         "vue-numerals": "^4.0.6",
-        "vue3-apexcharts": "^1.5.2"
+        "vue3-apexcharts": "^1.5.2",
+        "vue3-carousel": "^0.3.3"
     }
 }

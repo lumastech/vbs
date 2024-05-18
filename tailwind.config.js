@@ -45,6 +45,9 @@ export default {
                     900: "#1F2937",
                 },
             },
+            spacing: {
+                130: '38rem'
+            }
         },
     },
 

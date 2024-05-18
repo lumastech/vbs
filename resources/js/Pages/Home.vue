@@ -4,8 +4,27 @@
         <Navbar />
 
         <!-- dynamic colousel -->
-        <div class="colousel-bg h-96">
+        <div class="colousel-bg">
+            <carousel :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue" :transition="1000" :pauseAutoplayOnHover="true" class="relative">
+                <slide v-for="plan in plans.data" :key="plan.id">
+                    <img :src="plan.image_1" alt="plan.name" class="aspect-video md:h-130 w-full" />
+                    <div class="absolute bg-black/70 hover:bg-black/80 transition w-full h-full pt-">
+                       <div class="md:absolute md:top-1/2 md:right-1/3">
+                            <h1 class="text-4xl text-center text-secondary-100">Welcome To Mfumu House Plans</h1>
+                            <p class="text-center text-white max-w-2xl mx-auto">If you are looking to Design or build your dream home, you're in the right place.
+                                Mfumu house plans offers a variety of ready-made house plans created by Zambia's best floor plan designers offering you
+                                a unique house plan at an affordable price</p>
+                       </div>
+                    </div>
+                </slide>
 
+                <template #addons>
+                    <navigation class="text-white" />
+                    <div class="absolute md:bottom-2 w-full">
+                        <pagination class="mx-auto"/>
+                    </div>
+                </template>
+            </carousel>
         </div>
     </header>
 
@@ -48,7 +67,17 @@
         <!-- banner -->
         <div class="max-w-7xl mx-auto p-2 my-24">
             <div class="shadow">
-                <div class="colousel-bg w-full h-64 rounded-t overflow-hidden"></div>
+                <div class="colousel-bg w-full h-64 rounded-t overflow-hidden">
+                    <carousel :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue" :transition="1000" :pauseAutoplayOnHover="true" class="relative">
+                        <slide v-for="plan in plans.data" :key="plan.id" class="-ntranslat-y-32">
+                            <img :src="plan.image_1" alt="plan.name" class="object-fill h-full w-full top-0 left-0 " />
+                        </slide>
+
+                        <template #addons>
+                            <navigation class="text-white" />
+                        </template>
+                    </carousel>
+                </div>
                 <div class="grid md:grid-cols-3 border-b-4 border-primary-700">
                     <div class="bg-secondary-900 p-4">
                         <i class="fas fa-home"></i>
@@ -88,7 +117,7 @@
                             another bedroom, an office, a garage, or
                             remove something? Our in-house experts
                             can customize your floor plans to meet
-                            your exact needs!   
+                            your exact needs!
                         </p>
                     </div>
                 </div>
@@ -189,9 +218,15 @@
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
 import ProductItem from '@/Components/ProductItem.vue';
-import {Link, Head} from '@inertiajs/vue3'
+import { Link, Head } from '@inertiajs/vue3'
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
 export default {
-    components: { Head, Link, Navbar, Footer, ProductItem },
+    components: { Head, Link, Navbar, Footer, ProductItem, Carousel,
+    Slide,
+    Pagination,
+    Navigation, },
     props: {
         plans:Object,
         new_plans:Object,
