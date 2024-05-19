@@ -12,8 +12,8 @@ class HomeController extends Controller
 
     // render landing page
     public function home() {
-        $plans = Plan::orderBy('id', 'desc')->paginate(12);
-        $new_plans = Plan::orderBy('id', 'desc')->limit(4)->get();
+        $plans = Plan::with('images')->orderBy('id', 'desc')->paginate(12);
+        $new_plans = Plan::with('images')->orderBy('id', 'desc')->limit(4)->get();
         return Inertia::render('Home', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -24,9 +24,9 @@ class HomeController extends Controller
 
     // plan show
     public function planshow($id) {
-        $plan = Plan::find($id);
+        $plan = Plan::where("id", $id)->with('images')->first();
         // popular algo plan
-        $plans = Plan::orderBy('id', 'desc')->paginate(8);
+        $plans = Plan::with('images')->orderBy('id', 'desc')->paginate(8);
         return Inertia::render('Plan',['plan' => $plan, 'plans' => $plans]);
     }
 

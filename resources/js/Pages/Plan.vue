@@ -20,13 +20,7 @@
 
                         </div>
                         <div class="flex overflow-x-scroll flex-auto gap-4">
-                            <img v-if="plan.image_1" @click="preview = plan.image_1" :src="plan.image_1" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_2" @click="preview = plan.image_2" :src="plan.image_2" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_3" @click="preview = plan.image_3" :src="plan.image_3" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_4" @click="preview = plan.image_4" :src="plan.image_4" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_5" @click="preview = plan.image_5" :src="plan.image_5" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_6" @click="preview = plan.image_6" :src="plan.image_6" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
-                            <img v-if="plan.image_7" @click="preview = plan.image_7" :src="plan.image_7" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img v-for="image in plan.images" :key="image.id" @click="preview = image.image" :src="image.image" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
                         </div>
                         <div class="w-8 bg-secondary-200 rounded-r-xl">
 
@@ -202,7 +196,7 @@ export default {
         plan: Object,
     },
     setup(props) {
-        const preview = ref(props.plan.image_1)
+        const preview = ref(props.plan.images[0].image)
         return{preview, }
     }
 };

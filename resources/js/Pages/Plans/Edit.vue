@@ -289,11 +289,13 @@
                 <div v-for="image in images" :key="image.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
                     <img :alt="image.name" :src="image.image" class="w-full aspect-video" />
                     <label class="px-2">{{image.name}}</label>
-                    <button @click="showConfirmDelete(image)" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
+                    <button @click="showConfirmDelete(image, 'image.destroy')" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
                 </div>
                 <!-- image add -->
-                <div @click="()=>{ imageUploadShow=true }" class="thumb aspect-video border !border-teal-500 p-2 text-center text-teal-500 shadow-xs rounded bg-teal-100 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
-                    <label>ADD IMAGE</label>
+                <div class="text-center">
+                    <div @click="()=>{ imageUploadShow=true }" class="thumb aspect-video border !border-teal-500 p-2 shadow-xs rounded bg-teal-50 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
+                    </div>
+                    <label class="text-teal-500">ADD IMAGE</label>
                 </div>
             </div>
         </div>
@@ -304,20 +306,22 @@
             <!-- file input list -->
             <div class="flex justify-between gap-4 mb-4 place-items-center">
                 <h1 class="md:text-2xl mb-4 flex-auto">PLAN FILES</h1>
-                <button @click="()=>{ imageUploadShow=true }" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+                <button @click="()=>{ fileUploadShow=true }" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
                     <i class="fa-solid fa-plus mr-2"></i>
                     <span>Upload File</span>
                 </button>
             </div>
             <div class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div v-for="file in files" :key="file.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
-                    <img :alt="file.name" :src="file.file" class="w-full aspect-video" />
+                    <img :alt="file.name" src="../../../assets/file_thumb.png" class="w-full aspect-video object-contain" />
                     <label class="px-2">{{file.name}}</label>
-                    <button @click="showConfirmDelete(file)" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
+                    <button @click="showConfirmDelete(file, 'file.destroy')" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
                 </div>
                 <!-- file add -->
-                <div @click="()=>{ fileUploadShow=true }" class="thumb aspect-video border !border-sky-500 p-2 text-center text-sky-500 shadow-xs rounded bg-sky-100 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
-                    <label>ADD FILE</label>
+                <div class="text-center">
+                    <div @click="()=>{ fileUploadShow=true }" class="thumb aspect-video border !border-sky-500 p-2 shadow-xs rounded bg-sky-50 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
+                    </div>
+                    <label class="text-sky-500">ADD FILE</label>
                 </div>
             </div>
         </div>
@@ -352,7 +356,9 @@
 
     <!-- FILE UPLOAD MODAL -->
     <Modal :show="fileUploadShow">
+        <div class="bg-teal-500 px-4 py-1 text-white font-bold">FILE UPLOAD</div>
         <form @submit.prevent="uploadFile" class="p-4">
+            <div v-if="fileForm.errors.file" class="bg-red-100 p-2 rounded-2 text-red-500">{{fileForm.errors.file}}</div>
             <div>
                 <label for="file">Select a File
                     <span v-if="fileForm.errors.file" class="text-red-600 text-teal-500" > - {{ fileForm.errors.file }}</span>
@@ -389,7 +395,7 @@
         </template>
         <template v-slot:footer>
             <button @click="() => { confirmDelete.show = false }" class="px-4 py-1 mt-2 bg-gray-300/70 shadow-xs text- rounded hover:bg-gray-400 transition-all">CANCEL</button>
-            <button @click="deleteImage()" class="px-4 py-1 mt-2 bg-teal-500/70 shadow-xs text-white rounded hover:bg-teal-700 transition-all">DELETE</button>
+            <button @click="deleteFile()" class="px-4 py-1 mt-2 bg-teal-500/70 shadow-xs text-white rounded hover:bg-teal-700 transition-all">DELETE</button>
         </template>
     </ConfirmationModal>
 </template>
@@ -428,7 +434,8 @@ export default {
             show: 0,
             title: 'DELETE',
             content: "are you sure you want to delete this item?",
-            confirm: '#',
+            id: null,
+            url: null
         })
 
         const image = ref("image")
@@ -476,42 +483,56 @@ export default {
             form.levels = plan.levels;
             form.area = plan.area;
             form.description = plan.description;
-
             form.put(route("plans.update", props.plan));
         };
 
-        // submit plan form
+        // submit plan images form
         const imageUpload = () => {
-            imageForm.post(route("image.store"),  {
-                options: {
-                    onSuccess: ()=>{
+            router.post(route("image.store"), imageForm, {
+                onSuccess: (data)=>{
                     imageUploadShow.value = 0;
+                    imageForm.reset();
+                    imageForm.plan = props.plan.id;
                 }
-                }
-            });
+            })
         };
 
-        // submit plan form
+        // submit plan file form
         const uploadFile = () => {
-            imageForm.post(route("file.store"),  {
-                options: {
-                    onSuccess: ()=>{
-                    imageUploadShow.value = 0;
+            console.log(fileForm);
+            router.post(route("file.store"), fileForm, {
+                onSuccess: (data)=>{
+                    fileUploadShow.value = 0;
+                     fileForm.reset();
+                    fileForm.plan = props.plan.id;
+                },
+                onError: (err) => {
+                    console.log(err.file)
+                    fileForm.errors.file = err.file
                 }
-                }
-            });
+            })
         };
 
-        const showConfirmDelete = (image) => {
-            confirmDelete.value.title = 'DELETE '+ image.name + " IMAGE?",
+        const showConfirmDelete = (file, url) => {
+            confirmDelete.value.title = 'DELETE '+ file.name + " file?",
             confirmDelete.value.content = "are you sure you want to delete this item?",
-            confirmDelete.value.confirm = image,
+            confirmDelete.value.id = file,
+            confirmDelete.value.url = url,
             confirmDelete.value.show = true
         }
 
         // delete image
-        const deleteImage = () => {
-            router.delete(route("image.destroy", confirmDelete.value.confirm.id), {
+        // const deleteFile = () => {
+        //     router.delete(route("image.destroy", confirmDelete.value.id.id), {
+        //         onSuccess: () => {
+        //             confirmDelete.value.show = 0;
+        //         }
+        //     });
+        // };
+
+        // delete image
+        const deleteFile = () => {
+            router.delete(route(confirmDelete.value.url, confirmDelete.value.id.id), {
                 onSuccess: () => {
                     confirmDelete.value.show = 0;
                 }
@@ -527,7 +548,7 @@ export default {
             fileForm,
             imageUpload,
             uploadFile,
-            deleteImage,
+            deleteFile,
             confirmDelete,
             showConfirmDelete,
             image,
@@ -540,7 +561,7 @@ export default {
 
 <style>
 .thumb {
-    background-image: url("../../../assets/addimg.png");
+    background-image: url("../../../assets/ad_icon.png");
     background-position: 50%;
     background-size: 50%;
     background-repeat: no-repeat;

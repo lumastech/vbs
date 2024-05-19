@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,7 @@ Route::middleware([
     Route::resource('order', OrderController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('image', ImageController::class);
-    Route::resource('file', ImageController::class);
+    Route::resource('file', FileController::class);
 
     Route::get('/roles', function () {
         return Inertia::render('roles/index');

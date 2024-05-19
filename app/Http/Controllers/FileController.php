@@ -26,9 +26,24 @@ class FileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        //file validation rules
+        $rules = [
+            'name' => 'nullable|string',
+            'type' => 'string',
+            'file' => 'required'
+        ];
+
+        // dd($request->file('file'));
+
+        $request->validate($rules);
+        $file = new File();
+        $file->ref_id = $request->plan;
+        $file->name = $request->name ? $request->name : "File";
+        $file->file = '/storage/'.$request->file("file")->store('files/plans');
+        $file->save();
+
+        return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Plan File uploaded successfully']);
     }
 
     /**
@@ -60,6 +75,12 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        $file = File::where("id", $file->id)->first()->get();
+        if($file->delete()){
+            if (Storage::exists(\str_replace('/storage/','', $file->file))) {
+                Storage::delete(\str_replace('/storage/','', $file->file));
+            }
+            return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'file deleted']);
+        }
     }
 }

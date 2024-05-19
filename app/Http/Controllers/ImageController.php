@@ -26,10 +26,9 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //image validation rules
-        $image_rules = [
+        $rules = [
             'name' => 'nullable|string',
             'type' => 'string',
             'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
@@ -37,7 +36,7 @@ class ImageController extends Controller
 
         // dd($request->file('file'));
 
-        $request->validate($image_rules);
+        $request->validate($rules);
         $image = new Image();
         $image->ref_id = $request->plan;
         $image->name = $request->name? $request->name : "Image";
@@ -77,8 +76,12 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         // dd($image);
-        if(Image::where("id", $image->id)->delete()){
-            return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Imane deleted']);
+         $image = Image::where("id", $image->id)->first()->get();
+        if($image->delete()){
+            if (Storage::exists(\str_replace('/storage/','', $image->image))) {
+                Storage::delete(\str_replace('/storage/','', $image->image));
+            }
+            return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'file deleted']);
         }
     }
 }

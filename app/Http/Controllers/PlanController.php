@@ -18,7 +18,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::orderBy('id', "desc")->with('images')->paginate(10);
+        $plans = Plan::with('images')->orderBy('id', "desc")->paginate(10);
         return Inertia::render("Plans/Index",["plans" => $plans]);
     }
 
@@ -46,61 +46,11 @@ class PlanController extends Controller
             'roof_finish' => 'nullable|string',
             'area' => 'nullable|numeric',
             'description' => 'nullable|string',
-            'image_1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4048',
-            'image_2' => $image_rules,
-            'image_3' => $image_rules,
-            'image_4' => $image_rules,
-            'image_5' => $image_rules,
-            'image_6' => $image_rules,
-            'image_7' => $image_rules,
-
-            'file_1' => 'nullable',
-            'file_2' => 'nullable',
-            'file_3' => 'nullable',
-            'file_4' => 'nullable',
-            'file_5' => 'nullable',
-            'file_6' => 'nullable',
         ];
 
         $request->validate($rules);
 
         $plan = new Plan(); //retreave pan table
-
-        // prepare images for upload
-        //insert into plan table
-        $imagefiles = [
-            'image_1' => $request->file('image_1'),
-            'image_2' => $request->file('image_2'),
-            'image_3' => $request->file('image_3'),
-            'image_4' => $request->file('image_4'),
-            'image_5' => $request->file('image_5'),
-            'image_6' => $request->file('image_6'),
-            'image_7' => $request->file('image_7'),
-        ];
-
-        //upload images
-        foreach ($imagefiles as $key => $file) {
-            if ($file) {
-                $plan->$key = '/storage/'.$file->store('images/plans');
-            }
-        }
-
-        // prepare files for upload
-        //insert into plan table
-        $dfiles = [
-            'file_1' => $request->file('file_1'),
-            'file_2' => $request->file('file_2'),
-            'file_3' => $request->file('file_3'),
-            'file_4' => $request->file('file_4'),
-            'file_5' => $request->file('file_5'),
-            'file_6' => $request->file('file_6'),
-        ];
-
-        foreach ($dfiles as $key => $file) {
-            if ($file) {
-                $plan->$key = $file->store('/files/plans');
-            }
-        }
 
         // insert into plan table
         $plan->name = $request->name;
@@ -118,14 +68,15 @@ class PlanController extends Controller
         $plan->description = $request->description;
         $plan->save();
 
-        return \to_route('plans.index');
+        return \to_route('plans.edit', $plan);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Plan $plan)
+    public function show(Plan $pn)
     {
+        $plan = Plan::where("id", $pn->id)->with('images')->first();
         return redirect(route("plans.edit", $plan));
     }
 
