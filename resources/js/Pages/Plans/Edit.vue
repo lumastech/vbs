@@ -272,120 +272,55 @@
                     </button>
                 </div>
             </div>
-
-            <!-- images -->
-            <div class="border rounded p-2 md:p-4 max-w-7xl mx-auto bg-white/40">
-                <!-- image input list -->
-                <div class="flex justify-between gap-4 mb-4 place-items-center">
-                    <h1 class="md:text-2xl mb-4 flex-auto">PLAN IMAGES</h1>
-                    <button @click="()=>{ imageUploadShow=true }" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
-                        <i class="fa-solid fa-plus mr-2"></i>
-                        <span>upload image</span>
-                    </button>
-                </div>
-                <div class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div v-for="image in images" :key="image.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
-                        <img :alt="image.name" :src="image.image" class="w-full aspect-video" />
-                        <label class="px-2">{{image.name}}</label>
-                        <button @click="showConfirmDelete(image)" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
-                    </div>
-                    <!-- image add -->
-                    <div @click="()=>{ imageUploadShow=true }" class="thumb aspect-video border !border-teal-500 p-2 text-center text-white shadow-xs rounded bg-teal-500 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
-                        <label>ADD IMAGE</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- files -->
-            <div
-                class="shadow-xs rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/90"
-            >
-                <!-- files -->
-                <h2 class="text-2xl mb-2 mt-9">Select plan files</h2>
-                <p>If files are not avairrable now, you skip this section</p>
-                <div class="mb-9 grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div>
-                        <input
-                            @change="imagePreview($event, 7)"
-                            type="file"
-                            name="file"
-                            id="file"
-                            class="border border-teal-500 py-2 bg-white w-full overflow-hidden rounded focus:ring-4 focus:ring-teal-500"
-                        />
-                        <label for="file"
-                            >File 1
-                            <span
-                                v-if="errors.file"
-                                class="text-red-600 text-teal-500"
-                            >
-                                - {{ errors.file }}</span
-                            ></label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            @change="imagePreview($event, 8)"
-                            type="file"
-                            name="file_2"
-                            id="file_2"
-                            class="border border-teal-500 py-2 bg-white w-full overflow-hidden rounded focus:ring-4 focus:ring-teal-500"
-                        />
-                        <label for="file_2"
-                            >File 2
-                            <span
-                                v-if="errors.file_2"
-                                class="text-red-600 text-teal-500"
-                            >
-                                - {{ errors.file_2 }}</span
-                            ></label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            @change="imagePreview($event, 9)"
-                            type="file"
-                            name="file_3"
-                            id="file_3"
-                            class="border border-teal-500 py-2 bg-white w-full overflow-hidden rounded focus:ring-4 focus:ring-teal-500"
-                        />
-                        <label for="file_3"
-                            >File 3
-                            <span
-                                v-if="errors.file_3"
-                                class="text-red-600 text-teal-500"
-                            >
-                                - {{ errors.file_3 }}</span
-                            ></label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            @change="imagePreview($event, 10)"
-                            type="file"
-                            name="file_4"
-                            id="file_4"
-                            class="border border-teal-500 py-2 bg-white w-full overflow-hidden rounded focus:ring-4 focus:ring-teal-500"
-                        />
-                        <label for="file_4"
-                            >File 4
-                            <span
-                                v-if="errors.file_4"
-                                class="text-red-600 text-teal-500"
-                            >
-                                - {{ errors.file_4 }}</span
-                            ></label
-                        >
-                    </div>
-                </div>
-                <div class="text-right px-4 col-span-2">
-                    <button
-                        class="bg-teal-500/70 shadow-xs text-white text-2xl py-2 px-4 rounded w-full md:w-1/4 hover:bg-teal-700 transition-all"
-                    >
-                        UPDATE
-                    </button>
-                </div>
-            </div>
         </form>
+
+
+        <!-- images -->
+        <div class="border rounded p-2 md:p-4 max-w-7xl mx-auto bg-white/40">
+            <!-- image input list -->
+            <div class="flex justify-between gap-4 mb-4 place-items-center">
+                <h1 class="md:text-2xl mb-4 flex-auto">PLAN IMAGES</h1>
+                <button @click="()=>{ imageUploadShow=true }" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    <span>Upload Image</span>
+                </button>
+            </div>
+            <div class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div v-for="image in images" :key="image.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
+                    <img :alt="image.name" :src="image.image" class="w-full aspect-video" />
+                    <label class="px-2">{{image.name}}</label>
+                    <button @click="showConfirmDelete(image)" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
+                </div>
+                <!-- image add -->
+                <div @click="()=>{ imageUploadShow=true }" class="thumb aspect-video border !border-teal-500 p-2 text-center text-teal-500 shadow-xs rounded bg-teal-100 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
+                    <label>ADD IMAGE</label>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- files -->
+        <div class="shadow-xs rounded p-2 md:p-4 border my-9 max-w-7xl mx-auto bg-white/90">
+            <!-- file input list -->
+            <div class="flex justify-between gap-4 mb-4 place-items-center">
+                <h1 class="md:text-2xl mb-4 flex-auto">PLAN FILES</h1>
+                <button @click="()=>{ imageUploadShow=true }" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    <span>Upload File</span>
+                </button>
+            </div>
+            <div class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div v-for="file in files" :key="file.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
+                    <img :alt="file.name" :src="file.file" class="w-full aspect-video" />
+                    <label class="px-2">{{file.name}}</label>
+                    <button @click="showConfirmDelete(file)" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
+                </div>
+                <!-- file add -->
+                <div @click="()=>{ fileUploadShow=true }" class="thumb aspect-video border !border-sky-500 p-2 text-center text-sky-500 shadow-xs rounded bg-sky-100 hover:bg-gray-300 overflow-hidden hover:scale-95 transition-all">
+                    <label>ADD FILE</label>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- IMAGE UPLOAD MODAL -->
@@ -472,10 +407,11 @@ export default {
         plan: Object,
         errors: Object,
         images: Object,
+        files: Object,
     },
     setup(props, refs) {
         const imageUploadShow = ref(false);
-        const fileUploadShow = ref(1);
+        const fileUploadShow = ref(false);
         const form = useForm({
             name: "1 Bedroom",
             price: "",

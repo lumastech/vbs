@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use App\Models\Image;
+use App\Models\File;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -134,7 +135,8 @@ class PlanController extends Controller
     public function edit(Plan $plan)
     {
         $images = Image::where("ref_id", $plan->id)->where("type", "plan")->get();
-        return Inertia::render('Plans/Edit', ['plan'=>$plan, "images" =>$images]);
+        $files = File::where("ref_id", $plan->id)->where("type", "plan")->get();
+        return Inertia::render('Plans/Edit', ['plan'=>$plan, "images" =>$images, "files" =>$files]);
     }
 
     /**

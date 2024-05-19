@@ -41,4 +41,7 @@ class Plan extends Model
     public function images() {
         return $this->hasMany(Image::class, 'ref_id')->where('type', 'plan');
     }
+    public function files() {
+        return $this->hasMany(Image::class, 'ref_id')->where('type', 'plan');
+    }
 }
