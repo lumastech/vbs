@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::orderBy('id', "desc")->paginate(10);
+        $plans = Plan::orderBy('id', "desc")->with('images')->paginate(10);
         return Inertia::render("Plans/Index",["plans" => $plans]);
     }
 
@@ -33,7 +34,7 @@ class PlanController extends Controller
      */
     public function store(Request $request){
         // strings validation rules
-        $image_rules = 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:4048';
+
         $rules = [
             'name' => 'string|required',
             'price' => 'numeric|required',
@@ -124,7 +125,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        //
+        return redirect(route("plans.edit", $plan));
     }
 
     /**
@@ -132,7 +133,8 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        return Inertia::render('Plans/Edit', ['plan'=>$plan]);
+        $images = Image::where("ref_id", $plan->id)->where("type", "plan")->get();
+        return Inertia::render('Plans/Edit', ['plan'=>$plan, "images" =>$images]);
     }
 
     /**
@@ -154,9 +156,12 @@ class PlanController extends Controller
             'description' => 'nullable|string',
         ];
 
+
+
+
         $request->validate($rules);
 
-        // insert into plan table
+        // update into plan table
         $plan->name = $request->name;
         $plan->price = $request->price;
 
@@ -171,6 +176,9 @@ class PlanController extends Controller
 
         $plan->description = $request->description;
         $plan->update();
+
+
+
 
         return Inertia::render('Plans/Edit', ['plan'=>$plan, 'title' => 'success', "message" => 'Plan information successfully updated']);
     }

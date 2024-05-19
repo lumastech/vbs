@@ -1,7 +1,13 @@
 <template>
     <div class="max-w-7xl mx-auto px-2">
-        <Head title="Dashboard" />
-        <h1 class="text-2xl mb-4">UPLOAD A PLAN</h1>
+        <Head title="POST PLNA" />
+        <div class="flex justify-between gap-4 mb-4 place-items-center">
+            <h1 class="md:text-2xl mb-4 flex-auto">UPLOAD A PLAN</h1>
+            <Link href="/plans" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+                <i class="fa-solid fa-arrow-left mr-2"></i>
+                <span>Back to Plans</span>
+            </Link>
+        </div>
         <form @submit.prevent="upload" action="#" class="capitalize">
             <div
                 class="shadow-xs p-4 grid grid-cols-6 gap-4 bg-white/90 rounded"
