@@ -25,7 +25,7 @@
                 <tbody class="text-teal-500">
                     <tr v-for="plan in plans.data" :key="plan.id" class="hover:bg-gray-50 transition">
                         <td class="border-b border-gray-200 shrink-0">
-                            <img :src="plan.images[0].image" alt="" class="w-16">
+                            <img :src="plan.images.length? plan.images[0].image : ''" alt="" class="w-16">
                         </td>
                         <td class="border-b border-gray-200 px-2 py-1 text-left">{{ plan.name }}</td>
                         <td class="border-b border-gray-200 px-2 py-1 text-center">{{ plan.levels }}</td>

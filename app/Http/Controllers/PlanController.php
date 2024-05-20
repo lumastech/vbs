@@ -77,7 +77,7 @@ class PlanController extends Controller
     public function show(Plan $pn)
     {
         $plan = Plan::where("id", $pn->id)->with('images')->first();
-        return redirect(route("plans.edit", $plan));
+        return redirect(route("plans.edit", $pn));
     }
 
     /**
@@ -130,10 +130,7 @@ class PlanController extends Controller
         $plan->description = $request->description;
         $plan->update();
 
-
-
-
-        return Inertia::render('Plans/Edit', ['plan'=>$plan, 'title' => 'success', "message" => 'Plan information successfully updated']);
+        return back()->with("message", 'Plan information successfully updated');
     }
 
     /**

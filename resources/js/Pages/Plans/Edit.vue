@@ -312,7 +312,7 @@
                 </button>
             </div>
             <div class="thumb-cont grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div v-for="file in files" :key="file.id" class="thumb-bg relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
+                <div v-for="file in files" :key="file.id" class="thumb-bg shadow-sm border text-center relative shadow-xs rounded bg-gray-100 hover:bg-gray-300 overflow-hidden hover:scale-105 transition-all">
                     <img :alt="file.name" src="../../../assets/file_thumb.png" class="w-full aspect-video object-contain" />
                     <label class="px-2">{{file.name}}</label>
                     <button @click="showConfirmDelete(file, 'file.destroy')" class="absolute top-1 right-1 text-red-500 p-1 rounded-full bg-red-100/50 hover:bg-red-100 w-8 h-8 transition-all"><i class="far fa-trash-can"></i></button>
@@ -329,8 +329,9 @@
 
     <!-- IMAGE UPLOAD MODAL -->
     <Modal :show="imageUploadShow">
+        <div class="bg-teal-500 px-4 py-1 text-white font-bold">UPLOAD AN IMAGE</div>
         <form @submit.prevent="imageUpload" class="p-1">
-            <div class="thumb shadow-xs rounded bg-gray-100"
+            <div class="thumb-bg shadow-xs rounded bg-gray-100"
                 @click="selectFile(1)" >
                 <img alt="" :src="preview" class="w-full aspect-video"/>
                 <input @change="filePreview($event, 'image')" oncancel="clearimage(this, 0)" accept="image/*"
@@ -356,7 +357,7 @@
 
     <!-- FILE UPLOAD MODAL -->
     <Modal :show="fileUploadShow">
-        <div class="bg-teal-500 px-4 py-1 text-white font-bold">FILE UPLOAD</div>
+        <div class="bg-teal-500 px-4 py-1 text-white font-bold">UPLOAD A FILE </div>
         <form @submit.prevent="uploadFile" class="p-4">
             <div v-if="fileForm.errors.file" class="bg-red-100 p-2 rounded-2 text-red-500">{{fileForm.errors.file}}</div>
             <div>
@@ -398,16 +399,18 @@
             <button @click="deleteFile()" class="px-4 py-1 mt-2 bg-teal-500/70 shadow-xs text-white rounded hover:bg-teal-700 transition-all">DELETE</button>
         </template>
     </ConfirmationModal>
+
+    <LoadingAnim :show="loader" />
 </template>
 <script>
 import { ref } from "vue";
 import DashboardLayout from "../../Layouts/DashboardLaout.vue";
 import { Link, Head, useForm, router } from "@inertiajs/vue3";
 import Modal from "@/Components/Modal.vue";
+import LoadingAnim from "@/Components/LoadingAnim.vue";
 import ConfirmationModal from "@/Components/ConfirmationModal.vue";
-import axios from "axios";
 export default {
-    components: { DashboardLayout, Link, Head, Modal, ConfirmationModal },
+    components: { DashboardLayout, Link, Head, Modal, ConfirmationModal, LoadingAnim },
     layout: DashboardLayout,
     props: {
         plan: Object,
@@ -418,6 +421,7 @@ export default {
     setup(props, refs) {
         const imageUploadShow = ref(false);
         const fileUploadShow = ref(false);
+        const loader = ref(false);
         const form = useForm({
             name: "1 Bedroom",
             price: "",
@@ -483,18 +487,23 @@ export default {
             form.levels = plan.levels;
             form.area = plan.area;
             form.description = plan.description;
-            form.put(route("plans.update", props.plan));
+            form.put(route("plans.update", props.plan), {
+                onBefore: () => { loader.value = 1;},
+                onFinish:()=>{loader.value = 0;}
+            });
         };
 
         // submit plan images form
         const imageUpload = () => {
+            loader.value = 1;
             router.post(route("image.store"), imageForm, {
                 onSuccess: (data)=>{
                     imageUploadShow.value = 0;
                     imageForm.reset();
                     imageForm.plan = props.plan.id;
                     preview.value = ''
-                }
+                },
+                onFinish: () => {loader.value = 0;}
             })
         };
 
@@ -510,7 +519,8 @@ export default {
                 onError: (err) => {
                     console.log(err.file)
                     fileForm.errors.file = err.file
-                }
+                },
+                onFinish: () => {loader.value = 0;}
             })
         };
 
@@ -523,15 +533,6 @@ export default {
         }
 
         // delete image
-        // const deleteFile = () => {
-        //     router.delete(route("image.destroy", confirmDelete.value.id.id), {
-        //         onSuccess: () => {
-        //             confirmDelete.value.show = 0;
-        //         }
-        //     });
-        // };
-
-        // delete image
         const deleteFile = () => {
             router.delete(route(confirmDelete.value.url, confirmDelete.value.id.id), {
                 onSuccess: () => {
@@ -541,6 +542,7 @@ export default {
         };
 
         return {
+            loader,
             selectFile,
             filePreview,
             imageUploadShow,
@@ -557,12 +559,25 @@ export default {
             update,
         };
     },
+    mounted() {
+        if (!this.images.length) {
+            this.imageUploadShow = 1;
+        }
+    }
 };
 </script>
 
 <style>
 .thumb {
     background-image: url("../../../assets/ad_icon.png");
+    background-position: 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.thumb-bg {
+    background-image: url("../../../assets/addimg.png");
     background-position: 50%;
     background-size: 50%;
     background-repeat: no-repeat;
