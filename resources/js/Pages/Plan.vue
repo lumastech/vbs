@@ -153,7 +153,7 @@
 
                     <div class="grid grid-cols-2 gap-4">
                         <button
-                            onclick="showDialog()"
+                            @click="orderModal=1"
                             class="bg-primary-500 center text-white p-2 rounded mt-4 hover:bg-primary-700 transition-all duration-300"
                         >
                             Buy Now
@@ -179,25 +179,86 @@
         </section>
     </section>
 
+    <!-- ORDER MODAL -->
+    <Modal :show="orderModal" maxWidth="sm">
+        <form @submit.prevent="submitOrder" class="p-2 bg-gradient-to-b from-primary-900 to-primary-400">
+            <h2 class="text-white text-xl foent-bold my-2">MAKE PAYMENT</h2>
+            <div class="aspect-video bg-gradient-to-r from-secondary-700 to-secondary-900 rounded mb-4 p-3">
+                <div class="flex flex-col justify-between h-full text-right text-white font-bold">
+                    <div class="flex space-x-2">
+                        <div class="flex-auto text-left text-xs">AMOUNT: <span class="text-2xl">{{plan.price}}</span>  ZMW</div>
+                        <p class="text-xs">MOMO</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <div class="flex-auto">
+
+                        </div>
+                        <p class="text-xs self-center">097 / 096 / 095 XXXXXX</p>
+                    </div>
+                    <div class="flex space-x-2">
+                         <div class="flex-auto flex">
+                            <img src="../../assets/momo_logo.png" alt="" class="w-32"/>
+                        </div>
+                        <p class="text-xs self-end">SECURE PAYMENT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <input v-model="orderForm.name" type="text" class="w-full d-block rounded pl-9" placeholder="Your name">
+                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-user"></i>
+            </div>
+            <div class="relative">
+                <input v-model="orderForm.email" type="email" class="w-full d-block rounded pl-9 my-2" placeholder="Your Email">
+                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-user"></i>
+            </div>
+            <label class="text-white">Mobile money Number</label>
+            <div class="relative">
+                <input v-model="orderForm.phone" type="tel" class="w-full d-block rounded pl-9" placeholder="097/096/095 XXXXXX">
+                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-phone"></i>
+            </div>
+
+            <button type="submit" class="d-block px-4 py-2 bg-teal-600 text-white mt-4 rounded w-full">PAY NOW</button>
+            <button @click="orderModal=0" class="d-block px-4 py-2 bg-secondary-50/50 border border-secondary-800 my-2 rounded w-full">CANCEL</button>
+        </form>
+    </Modal>
+
     <!-- footer -->
     <Footer />
 </template>
 
 <script>
 import Navbar from "@/Components/Navbar.vue";
+import Modal from "@/Components/Modal.vue";
 import Footer from "@/Components/Footer.vue";
 import ProductItem from "@/Components/ProductItem.vue";
-import { Link, Head } from "@inertiajs/vue3";
+import { Link, Head, useForm, router } from "@inertiajs/vue3";
 import { ref } from 'vue'
 export default {
-    components: { Head, Link, Navbar, Footer, ProductItem },
+    components: { Head, Link, Navbar, Footer, ProductItem, Modal },
     props: {
         plans: Object,
         plan: Object,
     },
     setup(props) {
         const preview = ref(props.plan.images[0].image)
-        return{preview, }
+        const orderModal = ref(1);
+        const orderForm = useForm({
+            name: '',
+            email: '',
+            phone: ''
+        });
+
+        const submitOrder = () => {
+            console.log(orderForm);
+            router.post("/order", orderForm, {})
+        }
+        return {
+            preview,
+            orderModal,
+            orderForm,
+            submitOrder
+        }
     }
 };
 </script>
