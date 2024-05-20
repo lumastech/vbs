@@ -16,24 +16,27 @@
                         class="rounded aspect-video w-full"
                     />
                     <div class="flex my-4 gap-3">
-                        <div class="w-8 bg-secondary-200 rounded-l-xl">
-
-                        </div>
+                        <div class="w-8 bg-secondary-200 rounded-l-xl"></div>
                         <div class="flex overflow-x-scroll flex-auto gap-4">
-                            <img v-for="image in plan.images" :key="image.id" @click="preview = image.image" :src="image.image" :alt="plan.name" class="w-24 h-24 rounded cursor-pointer"  />
+                            <img
+                                v-for="image in plan.images"
+                                :key="image.id"
+                                @click="preview = image.image"
+                                :src="image.image"
+                                :alt="plan.name"
+                                class="w-24 h-24 rounded cursor-pointer"
+                            />
                         </div>
-                        <div class="w-8 bg-secondary-200 rounded-r-xl">
-
-                        </div>
+                        <div class="w-8 bg-secondary-200 rounded-r-xl"></div>
                     </div>
 
-                    <h2 class=" mt-9 my-4 font-bold">WHAT YOU'LL GET:</h2>
+                    <h2 class="mt-9 my-4 font-bold">WHAT YOU'LL GET:</h2>
                     <div class="border border-gray-500 p-2 rounded">
                         <p>
-                            This full set of construction drawings complies
-                            with the minimum requirements of the National
-                            Building Regulations for approval at any local
-                            authority in Zambia.
+                            This full set of construction drawings complies with
+                            the minimum requirements of the National Building
+                            Regulations for approval at any local authority in
+                            Zambia.
                         </p>
                         <!-- <br> -->
                         <!-- <a href="#" class="border border-primary-200 px-2 py-1 rounded bg-primary-100 hover:bg-primary-100/10 transition-all duration-150 text-orange-500">View Samples</a> -->
@@ -49,12 +52,14 @@
                         {{ plan.name }} - HOUSE PLANS
                     </h1>
 
-                    <h2 class="text-3xl text-primary-600">{{ numeralFormat(plan.price, '0,0[.]00 ZMW')}} ZMW</h2>
+                    <h2 class="text-3xl text-primary-600">
+                        {{ numeralFormat(plan.price, "0,0[.]00 ZMW") }} ZMW
+                    </h2>
                     <h4 class="font-bold mt-4">FEATURES</h4>
                     <table class="table-auto w-full space-y-3">
                         <tr class="border-b border-secondary-500">
                             <td>Bedrooms</td>
-                            <td> {{ plan.bedrooms }} bedrooms </td>
+                            <td>{{ plan.bedrooms }} bedrooms</td>
                         </tr>
                         <tr class="border-b border-secondary-500">
                             <td>Bathrooms</td>
@@ -141,8 +146,8 @@
                     </div>
 
                     <p class="text-lg font-semibold mt-7">
-                        PLEASE SPECIFIY THE CITY OR TOWN WHERE THE HOUSE
-                        WILL BE BUILT:
+                        PLEASE SPECIFIY THE CITY OR TOWN WHERE THE HOUSE WILL BE
+                        BUILT:
                     </p>
                     <textarea
                         name=""
@@ -153,7 +158,7 @@
 
                     <div class="grid grid-cols-2 gap-4">
                         <button
-                            @click="orderModal=1"
+                            @click="orderModal = 1"
                             class="bg-primary-500 center text-white p-2 rounded mt-4 hover:bg-primary-700 transition-all duration-300"
                         >
                             Buy Now
@@ -169,35 +174,53 @@
             </div>
         </section>
 
-        <hr class="max-w-7xl mx-auto border-t border-secondary-600 my-12">
+        <hr class="max-w-7xl mx-auto border-t border-secondary-600 my-12" />
 
         <section class="max-w-7xl mx-auto p-2 pb-24">
             <h2 class="text-xl font-bold my-4 uppercase">You may also like</h2>
             <div class="grid md:grid-cols-4 grid-cols-2 gap-4">
-                <ProductItem v-for="item in plans.data" :key="item.id" :plan="item"/>
+                <ProductItem
+                    v-for="item in plans.data"
+                    :key="item.id"
+                    :plan="item"
+                />
             </div>
         </section>
     </section>
 
     <!-- ORDER MODAL -->
     <Modal :show="orderModal" maxWidth="sm">
-        <form @submit.prevent="submitOrder" class="p-2 bg-gradient-to-b from-primary-900 to-primary-400">
-            <h2 class="text-white text-xl foent-bold my-2">MAKE PAYMENT</h2>
-            <div class="aspect-video bg-gradient-to-r from-secondary-700 to-secondary-900 rounded mb-4 p-3">
-                <div class="flex flex-col justify-between h-full text-right text-white font-bold">
+        <form
+            @submit.prevent="submitOrder"
+            class="p-2 bg-gradient-to-b from-primary-900 to-primary-400"
+        >
+            <h2 class="text-white text-xl foent-bold my-2">MAKE AN ORDER</h2>
+            <div
+                class="aspect-video bg-gradient-to-r from-secondary-700 to-secondary-900 rounded mb-4 p-3"
+            >
+                <div
+                    class="flex flex-col justify-between h-full text-right text-white font-bold"
+                >
                     <div class="flex space-x-2">
-                        <div class="flex-auto text-left text-xs">AMOUNT: <span class="text-2xl">{{plan.price}}</span>  ZMW</div>
+                        <div class="flex-auto text-left text-xs">
+                            AMOUNT:
+                            <span class="text-2xl">{{ plan.price }}</span> ZMW
+                        </div>
                         <p class="text-xs">MOMO</p>
                     </div>
                     <div class="flex space-x-2">
-                        <div class="flex-auto">
-
-                        </div>
-                        <p class="text-xs self-center">097 / 096 / 095 XXXXXX</p>
+                        <div class="flex-auto"></div>
+                        <p class="text-xs self-center">
+                            097 / 096 / 095 XXXXXX
+                        </p>
                     </div>
                     <div class="flex space-x-2">
-                         <div class="flex-auto flex">
-                            <img src="../../assets/momo_logo.png" alt="" class="w-32"/>
+                        <div class="flex-auto flex">
+                            <img
+                                src="../../assets/momo_logo.png"
+                                alt=""
+                                class="w-32"
+                            />
                         </div>
                         <p class="text-xs self-end">SECURE PAYMENT</p>
                     </div>
@@ -205,21 +228,50 @@
             </div>
 
             <div class="relative">
-                <input v-model="orderForm.name" type="text" class="w-full d-block rounded pl-9" placeholder="Your name">
-                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-user"></i>
+                <input
+                    v-model="orderForm.name"
+                    type="text"
+                    class="w-full d-block rounded pl-9"
+                    placeholder="Your name"
+                />
+                <i
+                    class="absolute text-teal-500 left-3 top-1/3 fas fa-user"
+                ></i>
             </div>
             <div class="relative">
-                <input v-model="orderForm.email" type="email" class="w-full d-block rounded pl-9 my-2" placeholder="Your Email">
-                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-user"></i>
+                <input
+                    v-model="orderForm.email"
+                    type="email"
+                    class="w-full d-block rounded pl-9 my-2"
+                    placeholder="Your Email"
+                />
+                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-at"></i>
             </div>
             <label class="text-white">Mobile money Number</label>
             <div class="relative">
-                <input v-model="orderForm.phone" type="tel" class="w-full d-block rounded pl-9" placeholder="097/096/095 XXXXXX">
-                <i class="absolute text-teal-500 left-3 top-1/3 fas fa-phone"></i>
+                <input
+                    v-model="orderForm.phone"
+                    type="tel"
+                    class="w-full d-block rounded pl-9"
+                    placeholder="097/096/095 XXXXXX"
+                />
+                <i
+                    class="absolute text-teal-500 left-3 top-1/3 fas fa-phone"
+                ></i>
             </div>
 
-            <button type="submit" class="d-block px-4 py-2 bg-teal-600 text-white mt-4 rounded w-full">PAY NOW</button>
-            <button @click="orderModal=0" class="d-block px-4 py-2 bg-secondary-50/50 border border-secondary-800 my-2 rounded w-full">CANCEL</button>
+            <button
+                type="submit"
+                class="d-block px-4 py-2 bg-teal-600 text-white mt-4 rounded w-full hover:bg-teal-700 transion"
+            >
+                PAY NOW
+            </button>
+            <button
+                @click="orderModal = 0"
+                class="d-block px-4 py-2 bg-secondary-50/50 hover:bg-secondary-50 transition border border-secondary-800 my-2 rounded w-full"
+            >
+                CANCEL
+            </button>
         </form>
     </Modal>
 
@@ -233,7 +285,7 @@ import Modal from "@/Components/Modal.vue";
 import Footer from "@/Components/Footer.vue";
 import ProductItem from "@/Components/ProductItem.vue";
 import { Link, Head, useForm, router } from "@inertiajs/vue3";
-import { ref } from 'vue'
+import { ref } from "vue";
 export default {
     components: { Head, Link, Navbar, Footer, ProductItem, Modal },
     props: {
@@ -241,25 +293,25 @@ export default {
         plan: Object,
     },
     setup(props) {
-        const preview = ref(props.plan.images[0].image)
-        const orderModal = ref(1);
+        const preview = ref(props.plan.images[0].image);
+        const orderModal = ref(0);
         const orderForm = useForm({
-            name: '',
-            email: '',
-            phone: ''
+            name: "",
+            email: "",
+            phone: "",
         });
 
         const submitOrder = () => {
             console.log(orderForm);
-            router.post("/order", orderForm, {})
-        }
+            router.post("/order", orderForm, {});
+        };
         return {
             preview,
             orderModal,
             orderForm,
-            submitOrder
-        }
-    }
+            submitOrder,
+        };
+    },
 };
 </script>
 

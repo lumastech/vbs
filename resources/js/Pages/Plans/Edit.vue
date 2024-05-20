@@ -493,6 +493,7 @@ export default {
                     imageUploadShow.value = 0;
                     imageForm.reset();
                     imageForm.plan = props.plan.id;
+                    preview.value = ''
                 }
             })
         };
@@ -503,7 +504,7 @@ export default {
             router.post(route("file.store"), fileForm, {
                 onSuccess: (data)=>{
                     fileUploadShow.value = 0;
-                     fileForm.reset();
+                    fileForm.reset();
                     fileForm.plan = props.plan.id;
                 },
                 onError: (err) => {

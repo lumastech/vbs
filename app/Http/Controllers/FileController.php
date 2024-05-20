@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
-
+use \Storage;
 class FileController extends Controller
 {
     /**
@@ -75,7 +75,7 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        $file = File::where("id", $file->id)->first()->get();
+        $file = File::where("id", $file->id)->first();
         if($file->delete()){
             if (Storage::exists(\str_replace('/storage/','', $file->file))) {
                 Storage::delete(\str_replace('/storage/','', $file->file));

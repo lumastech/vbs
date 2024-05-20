@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use \Storage;
 
 class ImageController extends Controller
 {
@@ -76,7 +77,7 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         // dd($image);
-         $image = Image::where("id", $image->id)->first()->get();
+         $image = Image::where("id", $image->id)->first();
         if($image->delete()){
             if (Storage::exists(\str_replace('/storage/','', $image->image))) {
                 Storage::delete(\str_replace('/storage/','', $image->image));
