@@ -10,6 +10,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\SpackleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get('products', function () {
 
 Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
 Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
+Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
 
 
 Route::middleware([

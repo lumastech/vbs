@@ -275,6 +275,16 @@
         </form>
     </Modal>
 
+    <Modal :show="errs.show">
+        <h2 class="px-4 py-2 bg-red-500 text-white font-bold text-xl">{{errs.title}}</h2>
+        <p class="p-4">{{errs.error}}</p>
+        <div class="text-right px-4 py-2 border-t">
+            <button @click="errs.show = 0" class="bg-secondary-200 px-4 py-2 rounded shadow-sm hover:bg-secondary-300 transition">CLOSE</button>
+        </div>
+    </Modal>
+
+    <LoadingAnim :show="ShowLoaderAnim" />
+
     <!-- footer -->
     <Footer />
 </template>
@@ -283,33 +293,58 @@
 import Navbar from "@/Components/Navbar.vue";
 import Modal from "@/Components/Modal.vue";
 import Footer from "@/Components/Footer.vue";
+import LoadingAnim from "@/Components/LoadingAnim.vue";
 import ProductItem from "@/Components/ProductItem.vue";
 import { Link, Head, useForm, router } from "@inertiajs/vue3";
 import { ref } from "vue";
 export default {
-    components: { Head, Link, Navbar, Footer, ProductItem, Modal },
+    components: { Head, Link, Navbar, Footer, ProductItem, Modal, LoadingAnim, },
     props: {
         plans: Object,
         plan: Object,
+        errs: Array,
     },
     setup(props) {
         const preview = ref(props.plan.images[0].image);
         const orderModal = ref(0);
+        const ShowLoaderAnim = ref(0);
         const orderForm = useForm({
-            name: "",
-            email: "",
-            phone: "",
+            name: "Lumas Mulo",
+            email: "lumastech@gmail.com",
+            phone: "0971864421",
         });
 
+        const errs = ref({
+            show: 0,
+            title: null,
+            error: ''
+        })
+
         const submitOrder = () => {
-            console.log(orderForm);
-            router.post("/order", orderForm, {});
+            ShowLoaderAnim.value = 1;
+            router.post(`/pay/${props.plan.id}`, orderForm, {
+                onError: (err) => {
+                    errs.value.title = "TRANSACTION FAILD!"
+                    errs.value.error = err.error
+                    errs.value.show = 1
+                },
+                onSuccess: (res) => {
+                    console.log(res.data);
+                },
+                onFinish: (res) => {
+                    ShowLoaderAnim.value = 0;
+                    // console.log(res);
+                },
+                preserveScroll: true,
+            });
         };
         return {
             preview,
             orderModal,
             orderForm,
             submitOrder,
+            ShowLoaderAnim,
+            errs
         };
     },
 };

@@ -4,28 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Http;
 
-class Sparco extends Model
+class Spackle extends Model
 {
     use HasFactory;
 
-    public function initiatePayment($uniqueOrderNumber,$currency,$amount,$transactionName,$customerFirstName,$customerLastName,$customerEmail,$customerPhone): array
+    public function initiatePayment(Invoice $invoice): array
     {
 
         try {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
             ])->post('https://checkout.broadpay.io/gateway/api/v1/checkout', [
-                "transactionName" => $transactionName,
-                "amount" => $amount,
-                "currency" => $currency,
-                "transactionReference" => $uniqueOrderNumber,
-                "customerFirstName" => $customerFirstName,
-                "customerLastName" => $customerLastName,
-                "customerEmail" => $customerEmail,
-                "customerPhone" => $customerPhone,
-                "merchantPublicKey" => env('SPARCO_MERCHANT_PUBLIC_KEY')
+                "transactionName" => $invoice->transactionName,
+                "amount" => $invoice->amount,
+                "currency" => $invoice->currency,
+                "transactionReference" => $invoice->transactionReference,
+                "customerFirstName" => $invoice->customerFirstName,
+                "customerLastName" => $invoice->customerLastName,
+                "customerEmail" => $invoice->customerEmail,
+                "customerPhone" => $invoice->customerPhone,
+                "wallet" => $invoice->customerPhone,
+                "chargeMe" => true,
+                "merchantPublicKey" => env('SPARCO_PUBLIC_KEY')
             ]);
 
             if ($response->status() === 200) {
@@ -51,7 +54,7 @@ class Sparco extends Model
                 }
 
             } else {
-                return ['success'=>false,'error'=> 'We received an unexpected response from the payment serve, please try again in a little while.' ];
+                return ['success'=>false,'error'=> 'We received an unexpected response from the payment serve, please try again in a little while. ' ];
             }
         } catch (\Exception $e) {
             return ['success'=>false,'error'=> 'Something went wrong. Please try again later.' ];
