@@ -521,31 +521,27 @@ export default {
         const uploadFile = () => {
             fileUploadShow.value = 0;
             loader.value = 1
-            setTimeout(
-                () => {
-                    router.post(route("file.store"), fileForm, {
-                        onSuccess: (data)=>{
-                            fileUploadShow.value = 0;
-                            fileForm.reset();
-                            fileForm.plan = props.plan.id;
-                        },
-                        onError: (err) => {
-                            console.log(err.file)
-                            fileForm.errors.file = err.file
-                        },
-                        onError: (err) => {
-                            fileUploadShow.value = 1;
-                            if (err && err.file) {
-                                fileForm.errors.file = err.file
-                            }
-                            if (err && err.name) {
-                                fileForm.errors.name = err.name
-                            }
-                        },
-                        onFinish: () => {loader.value = 0;}
-                    })
-                }, 5000
-            )
+            router.post(route("file.store"), fileForm, {
+                onSuccess: (data)=>{
+                    fileUploadShow.value = 0;
+                    fileForm.reset();
+                    fileForm.plan = props.plan.id;
+                },
+                onError: (err) => {
+                    console.log(err.file)
+                    fileForm.errors.file = err.file
+                },
+                onError: (err) => {
+                    fileUploadShow.value = 1;
+                    if (err && err.file) {
+                        fileForm.errors.file = err.file
+                    }
+                    if (err && err.name) {
+                        fileForm.errors.name = err.name
+                    }
+                },
+                onFinish: () => {loader.value = 0;}
+            })
         };
 
         const showConfirmDelete = (file, url) => {

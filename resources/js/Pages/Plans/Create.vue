@@ -229,13 +229,15 @@
             </div>
         </form>
     </div>
+    <LoadingAnim :show="plan.processing" />
 </template>
 <script>
 import { ref } from "vue";
 import DashboardLayout from "../../Layouts/DashboardLaout.vue";
+import LoadingAnim from "@/Components/LoadingAnim.vue";
 import { Link, Head, useForm } from "@inertiajs/vue3";
 export default {
-    components: { DashboardLayout, Link, Head },
+    components: { DashboardLayout, Link, Head, LoadingAnim },
     layout: DashboardLayout,
     props: {
         errors: Object,
@@ -256,7 +258,9 @@ export default {
         // submit plan form
         const upload = () => {
             // plan.defaults()
-            plan.post(route("plans.store"));
+            setTimeout(() => {
+                plan.post(route("plans.store"));
+            }, 3000)
         };
         return {
             plan,
