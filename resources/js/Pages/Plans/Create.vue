@@ -258,9 +258,7 @@ export default {
         // submit plan form
         const upload = () => {
             // plan.defaults()
-            setTimeout(() => {
-                plan.post(route("plans.store"));
-            }, 3000)
+            plan.post(route("plans.store"));
         };
         return {
             plan,
