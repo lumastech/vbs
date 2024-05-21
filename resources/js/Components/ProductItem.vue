@@ -1,6 +1,6 @@
 <template>
     <Link  :href="route('plan.show', plan.id)" class="relative aspect-video shadow rounded hover:scale-105 transition overflow-hidden">
-        <img :src="plan.images[0].image" alt="3 bed rooms" class="w-full aspect-video">
+        <img v-if="plan.images.length" :src="plan.images[0].image" alt="3 bed rooms" class="w-full aspect-video">
         <div class="absolute top-0 w-full h-full hover:bg-primary-900/50 transition">
 
             <h5 class="bg-secondary-900/50 absolute w-full px-2 top-0">{{plan.name}}</h5>

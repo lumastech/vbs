@@ -16,6 +16,7 @@
             >
                 <slide v-for="plan in plans.data" :key="plan.id">
                     <img
+                    v-if="plan.images.length"
                         :src="plan.images[0].image"
                         :alt="plan.name"
                         class="aspect-video md:h-130 w-full"
@@ -134,7 +135,8 @@
                             class="-ntranslat-y-32"
                         >
                             <img
-                                :src="plan.image_1"
+                            v-if="plan.images.length"
+                                :src="plan.images[0]"
                                 :alt="plan.name"
                                 class="object-fill h-full w-full top-0 left-0"
                             />

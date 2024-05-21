@@ -32,8 +32,8 @@ class HomeController extends Controller
 
     // dedicated page for listing all plnas with pagination
     public function plans() {
-        $plans = Plan::orderBy('id', 'desc')->paginate(20);
-        $new_plans = Plan::orderBy('id', 'desc')->limit(4)->get();
+        $plans = Plan::with('images')->orderBy('id', 'desc')->paginate(20);
+        $new_plans = Plan::with('images')->orderBy('id', 'desc')->limit(4)->get();
         return Inertia::render('Plans', [
             'plans' => $plans,
             'new_plans' => $new_plans,
