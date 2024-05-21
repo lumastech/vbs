@@ -1,20 +1,23 @@
 <template>
-    <Modal v-show="show" class="fixed top-0 left-0 w-full h-full bg-black/80">
-        <div class="lds-spinner absolute top-1/3 md:left-1/2 left-1/4 bg-secondary-800/80 p-8 rounded-md ">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </Modal>
+    <div v-if="show" class="fixed top-0 left-0 w-full h-full bg-black/80">
+        <Modal :show="true">
+            <div class="lds-spinner absolute top-1/3 md:left-1/2 left-1/4 bg-secondary-800/80 p-8 rounded-md ">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </Modal>
+
+    </div>
 </template>
 
 <script>
@@ -22,7 +25,10 @@ import Modal from './Modal.vue';
 
 export default {
     props: {
-            show:Boolean,
+            show: {
+                type: Boolean,
+                default: false,
+            },
         }
     }
 </script>

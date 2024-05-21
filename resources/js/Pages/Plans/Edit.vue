@@ -495,6 +495,7 @@ export default {
 
         // submit plan images form
         const imageUpload = () => {
+            imageUploadShow.value = 0;
             loader.value = 1;
             router.post(route("image.store"), imageForm, {
                 onSuccess: (data)=>{
@@ -503,25 +504,48 @@ export default {
                     imageForm.plan = props.plan.id;
                     preview.value = ''
                 },
+                onError: (err) => {
+                    imageUploadShow.value = 1;
+                    if (err && err.file) {
+                        imageForm.errors.file = err.file
+                    }
+                    if (err && err.name) {
+                        imageForm.errors.name = err.name
+                    }
+                },
                 onFinish: () => {loader.value = 0;}
             })
         };
 
         // submit plan file form
         const uploadFile = () => {
-            console.log(fileForm);
-            router.post(route("file.store"), fileForm, {
-                onSuccess: (data)=>{
-                    fileUploadShow.value = 0;
-                    fileForm.reset();
-                    fileForm.plan = props.plan.id;
-                },
-                onError: (err) => {
-                    console.log(err.file)
-                    fileForm.errors.file = err.file
-                },
-                onFinish: () => {loader.value = 0;}
-            })
+            fileUploadShow.value = 0;
+            loader.value = 1
+            setTimeout(
+                () => {
+                    router.post(route("file.store"), fileForm, {
+                        onSuccess: (data)=>{
+                            fileUploadShow.value = 0;
+                            fileForm.reset();
+                            fileForm.plan = props.plan.id;
+                        },
+                        onError: (err) => {
+                            console.log(err.file)
+                            fileForm.errors.file = err.file
+                        },
+                        onError: (err) => {
+                            fileUploadShow.value = 1;
+                            if (err && err.file) {
+                                fileForm.errors.file = err.file
+                            }
+                            if (err && err.name) {
+                                fileForm.errors.name = err.name
+                            }
+                        },
+                        onFinish: () => {loader.value = 0;}
+                    })
+                }, 5000
+            )
         };
 
         const showConfirmDelete = (file, url) => {
