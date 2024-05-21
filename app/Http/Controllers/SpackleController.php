@@ -22,12 +22,13 @@ class SpackleController extends Controller
         $lastname = $request->lastname;
         $email = $request->email;
         $phone = $request->phone;
+        $plan_id = $request->plan;
 
 
-        $uniqueOrderNumber = strtoupper(str_replace('.', '', uniqid('', true)));
-        $invoice = SalesInvoices::where('id',$id)->with('client','currenc')->first();
-        $currency = $invoice->currenc->code;
-        $transactionName = "Being payment for Invoice No.".$invoice->id;
+        $orderNumber = strtoupper(str_replace('.', '', uniqid('', true)));
+        $plan = Plan::where('id', $plan_id)->first();
+        $currency = "zmw";
+        $transactionName = "Being payment for: ".$plan->name;
 
         $maxAttempts = 3;
         $attempts = 0;
@@ -35,7 +36,7 @@ class SpackleController extends Controller
 
 
             try{
-                $payment_process = (new Sparco)->initiatePayment($uniqueOrderNumber,$currency,$invoice->total,$transactionName,$customerFirstName,$customerLastName,$customerEmail,$customerPhone);
+                $payment_process = (new Sparco)->initiatePayment($orderNumber,$currency,$invoice->total,$transactionName,$firstname,$lastname,$email,$phone);
             }
             catch (Exception $error){
                 $payment_process['error'] = $error;
@@ -44,7 +45,7 @@ class SpackleController extends Controller
             if($payment_process['success'])
             {
                 $invoice->payment_link = $payment_process['url'];
-                $invoice->payment_ref = $uniqueOrderNumber;
+                $invoice->payment_ref = $orderNumber;
                 $invoice->save();
                 return ['success'=>true,'url'=>$payment_process['url']];
             }
