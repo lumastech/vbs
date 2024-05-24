@@ -28,6 +28,11 @@ class DashboardController extends Controller
         $users_count_this_month = User::whereMonth('created_at', Carbon::now()->month)
                              ->whereYear('created_at', Carbon::now()->year)->count();
 
+        $visitors_count_last_month = Visitor::whereMonth('created_at', $previousMonth->month)
+                              ->whereYear('created_at', $previousMonth->year)->count();
+        $visitors_count_this_month = Visitor::whereMonth('created_at', Carbon::now()->month)
+                             ->whereYear('created_at', Carbon::now()->year)->count();
+
         $plans_count_last_month = Plan::whereMonth('created_at', $previousMonth->month)
                               ->whereYear('created_at', $previousMonth->year)->count();
         $plans_count_this_month = Plan::whereMonth('created_at', Carbon::now()->month)
@@ -53,8 +58,11 @@ class DashboardController extends Controller
                 'invoices'=>$invoices,
                 'invoice_count'=>$invoices_count,
                 'invoice_sum'=>$invoices_sum,
+
                 "users_count_last_month" => $users_count_last_month,
                 "users_count_this_month" => $users_count_this_month,
+                "visitors_count_last_month" => $visitors_count_last_month,
+                "visitors_count_this_month" => $visitors_count_this_month,
                 "plans_count_last_month" => $plans_count_last_month,
                 "plans_count_this_month" => $plans_count_this_month,
                 "invoice_count_last_month" => $invoice_count_last_month,

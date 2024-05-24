@@ -21,7 +21,8 @@ class Property extends Model
         'bathrooms',
         'square_feet',
         'lot_size',
-        'property_type',
+        'property_type_id',
+        'status'
     ];
 
     // Optionally, define the relationship with the PropertyImage model

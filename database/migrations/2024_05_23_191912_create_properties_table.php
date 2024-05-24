@@ -25,7 +25,8 @@ return new class extends Migration
             $table->integer('bathrooms')->nullable();
             $table->integer('square_feet')->nullable();
             $table->decimal('lot_size', 10, 2)->nullable();
-            $table->string('property_type', 50);
+            $table->foreignId('property_type_id');
+            $table->string('status')->default('active', 20);
             $table->timestamps();
         });
     }

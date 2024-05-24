@@ -7,10 +7,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\SpackleController;
+use App\Http\Controllers\PropertyTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +57,10 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
     Route::resource('plans', PlanController::class);
-    Route::resource('properties', PlanController::class);
+    Route::resource('property', PropertyController::class);
     Route::resource('image', ImageController::class);
     Route::resource('file', FileController::class);
+    Route::resource('property-type', PropertyTypeController::class);
 
     Route::get('/roles', function () {
         return Inertia::render('roles/index');

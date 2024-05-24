@@ -5,7 +5,8 @@
                 <button
                     class="rounded px-2 pyy-1 bg-indigo-500 hover:bg-indigo-600 transition text-white"
                 >
-                    {{ getPreviousMonths()[0] }} <i class="fas fa-angle-down"></i>
+                    {{ getPreviousMonths()[0] }}
+                    <i class="fas fa-angle-down"></i>
                 </button>
             </template>
 
@@ -36,24 +37,27 @@
     />
 
     <div>
-        <p class="text-center mb-2">0% Company Growth</p>
+        <p class="text-center mb-2"> {{ growthPer(last_month, this_month) }}% Company Growth</p>
         <div class="flex justify-evenly">
             <div class="flex">
-                <i class="self-center p-3 rounded bg-green-100 mr-1 text-green-500 fas fa-dollar"></i>
+                <i
+                    class="self-center p-3 rounded bg-green-100 mr-1 text-green-500 fas fa-dollar"
+                ></i>
                 <div class="text-sm self-center">
                     <p>{{ getPreviousMonths()[1] }}</p>
-                    <p>{{last_month}}</p>
+                    <p>{{ last_month }}</p>
                 </div>
             </div>
 
             <div class="flex">
-                <i class="self-center p-3 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
+                <i
+                    class="self-center p-3 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"
+                ></i>
                 <div class="text-sm self-center">
                     <p>{{ getPreviousMonths()[0] }}</p>
-                    <p>{{this_month}}</p>
+                    <p>{{ this_month }}</p>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -67,7 +71,7 @@ export default {
         this_month: Number,
     },
     setup() {
-        const series = ref([33]);
+        const series = ref([0]);
         const plotOptions = ref({
             chart: {
                 height: 280,
@@ -77,55 +81,43 @@ export default {
             colors: ["#20E647"],
             plotOptions: {
                 radialBar: {
-                startAngle: -135,
-                endAngle: 135,
-                track: {
-                    background: "#333",
                     startAngle: -135,
                     endAngle: 135,
-                },
-                dataLabels: {
-                    name: {
-                    show: false,
+                    track: {
+                        background: "#333",
+                        startAngle: -135,
+                        endAngle: 135,
                     },
-                    value: {
-                    fontSize: "16px",
-                    show: true,
+                    dataLabels: {
+                        name: {
+                            show: false,
+                        },
+                        value: {
+                            fontSize: "16px",
+                            show: true,
+                        },
                     },
-                },
                 },
             },
             fill: {
                 type: "gradient",
                 gradient: {
-                shade: "dark",
-                type: "horizontal",
-                gradientToColors: ["#87D4F9"],
-                stops: [0, 100],
+                    shade: "dark",
+                    type: "horizontal",
+                    gradientToColors: ["#87D4F9"],
+                    stops: [0, 100],
                 },
             },
             stroke: {
                 lineCap: "butt",
             },
             labels: ["Progress"],
-            })
-
+        });
 
         // previous months
         const getPreviousMonths = () => {
             const months = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",
+                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
             ];
             const currentDate = new Date();
             const currentMonthIndex = currentDate.getMonth();
@@ -138,10 +130,15 @@ export default {
             return previousMonths;
         };
 
+        const growthPer = (last, current) => {
+            let growth = ((current == 0 ? 1 : current) / (last == 0 ? 1 : last)) * 100;
+            return growth;
+        }
         return {
             series,
             plotOptions,
             getPreviousMonths,
+            growthPer,
         };
     },
 };

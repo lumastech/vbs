@@ -448,8 +448,8 @@ export default {
         const imageForm = useForm({
             file: null,
             name: null,
-            type: 'image',
-            plan: props.plan.id
+            type: 'plan',
+            item: props.plan.id
         })
 
         // FILE FORM

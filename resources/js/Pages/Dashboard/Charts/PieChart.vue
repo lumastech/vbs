@@ -12,7 +12,7 @@
 <script setup>
 import { ref } from "vue";
 const chartOptions = ref({
-    series: [44, 55, 13, 33],
+    series: [0, 0, 0, 0],
     legend: {
       show: false
     },

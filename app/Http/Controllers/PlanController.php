@@ -19,7 +19,7 @@ class PlanController extends Controller
     public function index()
     {
         $plans = Plan::with('images')->orderBy('id', "desc")->paginate(10);
-        return Inertia::render("Plans/Index",["plans" => $plans]);
+        return Inertia::render("Plans/Index",["plans" => $plans]); 
     }
 
     /**

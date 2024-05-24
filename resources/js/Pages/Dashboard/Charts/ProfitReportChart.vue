@@ -1,70 +1,64 @@
 <template>
-    <apexchart
-        width="100%"
-        height="auto"
-        type="line"
-        :options="chartOptions"
-        :series="series"
-        class="md:col-span-2"
-    ></apexchart>
+    <apexchart width="100%" height="auto" type="line" :options="chartOptions" :series="series" class="md:col-span-2">
+    </apexchart>
 </template>
 
 <script setup>
 import { ref } from "vue";
 // previous months
-        const getPreviousMonths = () => {
-            const months = [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ];
-            const currentDate = new Date();
-            const currentMonthIndex = currentDate.getMonth();
-            const previousMonths = [];
+const getPreviousMonths = () => {
+    const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+    const currentDate = new Date();
+    const currentMonthIndex = currentDate.getMonth();
+    const previousMonths = [];
 
-            for (let i = 0; i <= 7; i++) {
-                const previousMonthIndex = (currentMonthIndex - i + 12) % 12;
-                previousMonths.push(months[previousMonthIndex]);
-            }
-            previousMonths.reverse()
-            return previousMonths;
-        };
+    for (let i = 0; i <= 7; i++) {
+        const previousMonthIndex = (currentMonthIndex - i + 12) % 12;
+        previousMonths.push(months[previousMonthIndex]);
+    }
+    previousMonths.reverse();
+    return previousMonths;
+};
 const chartOptions = ref({
     legend: {
-      show: false
+        show: false,
     },
     grid: {
         show: false,
     },
     xaxis: {
-        labels:{show:false}
+        labels: { show: false },
     },
     chart: {
         animations: {
             enabled: true,
-            easing: 'easeinout',
+            easing: "easeinout",
             speed: 800,
             animateGradually: {
                 enabled: true,
-                delay: 150
+                delay: 150,
             },
             dynamicAnimation: {
                 enabled: true,
-                speed: 350
-            }
-        }
+                speed: 350,
+            },
+        },
     },
     xaxis: {
-        show:false,
+        show: false,
         categories: getPreviousMonths(),
     },
 
@@ -79,9 +73,7 @@ const chartOptions = ref({
 const series = ref([
     {
         name: "series-1",
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
+        data: [0, 0, 0, 0, 0, 0, 0, 0],
     },
 ]);
-
-
 </script>
