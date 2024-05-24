@@ -33,6 +33,10 @@
                         <i class="fa-solid fa-plus-circle w-7 mr-3"></i>
                         ADD PLAN
                     </Link>
+                     <Link href="/properties" class="flex line-clamp-1 place-items-cent~er overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
+                        <i class="fa-solid fa-plus-circle w-7 mr-3"></i>
+                        PROPERTIES
+                    </Link>
                     <Link href="/dashboard" class="flex line-clamp-1 place-items-cent~er overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                         <i class="fa-solid fa-plus-circle w-7 mr-3"></i>
                         BURNER SLIDERS

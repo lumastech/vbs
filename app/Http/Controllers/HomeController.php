@@ -7,7 +7,9 @@ use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Utility;
+use App\Models\Utility;
+
+
 
 class HomeController extends Controller
 {
@@ -21,25 +23,15 @@ class HomeController extends Controller
 
         $visitors = Visitor::count();
         $plans_count = Plan::count();
-        $orders_count = Order::count();
-        $orders_all = Order::all();
-        $orders = Order::orderByDesc('id')->limit(10)->get();
-        $users = User::count();
-        $orders_sum = Order::sum('amount')->get();
 
 
-        return Inertia::render('Home', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'plans' => $plans,
-            'new_plans' => $new_plans,
-            'visitors'=>$visitors,
-            'orders'=>$orders,
-            'orders_sum'=>$orders_sum,
-            'users'=>$users,
-            'orders_count'=>$orders_count,
-            'plans_count'=>$plans_count
-        ]);
+        return Inertia::render('Home',
+            [
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+                'plans' => $plans,
+                'new_plans' => $new_plans,
+            ]);
     }
 
     // plan show

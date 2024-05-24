@@ -42,7 +42,7 @@
                 <i class="self-center p-3 rounded bg-green-100 mr-1 text-green-500 fas fa-dollar"></i>
                 <div class="text-sm self-center">
                     <p>{{ getPreviousMonths()[1] }}</p>
-                    <p>$ 2.3K</p>
+                    <p>{{last_month}}</p>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                 <i class="self-center p-3 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
                 <div class="text-sm self-center">
                     <p>{{ getPreviousMonths()[0] }}</p>
-                    <p>$ 2.3K</p>
+                    <p>{{this_month}}</p>
                 </div>
             </div>
 
@@ -62,6 +62,10 @@
 import { ref } from "vue";
 
 export default {
+    props: {
+        last_month: Number,
+        this_month: Number,
+    },
     setup() {
         const series = ref([33]);
         const plotOptions = ref({

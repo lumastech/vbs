@@ -37,6 +37,9 @@ Route::get('products', function () {
     return Inertia::render('Products');
 });
 
+Route::get('/filter/{filter}', [PlanController::class, 'filter']);
+Route::get('/searchplan/{search}', [PlanController::class, 'searchplan']);
+
 Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
 Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
 Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
@@ -52,6 +55,7 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
     Route::resource('plans', PlanController::class);
+    Route::resource('properties', PlanController::class);
     Route::resource('image', ImageController::class);
     Route::resource('file', FileController::class);
 

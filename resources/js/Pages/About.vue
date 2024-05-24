@@ -4,7 +4,7 @@
         <Navbar />
 
         <div class="max-w-7xl mx-auto p-2">
-            <h1 class="md:text-7xl text-4xl text-secondary-200 my-7 font-bold">Mfumu House Plans</h1>
+            <h1 class="md:text-7xl text-4xl text-secondary-200 my-7 font-bold">About us</h1>
             <!-- dynamic colousel -->
             <div class="colousel-bg h-64 rounded-md"></div>
         </div>

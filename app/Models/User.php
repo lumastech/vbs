@@ -64,4 +64,20 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    use HasFactory, Notifiable;
+
+    // Other model properties and methods...
+
+    // Define the relationship with the Cart model
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    // Define the relationship with the Favorite model
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
 }

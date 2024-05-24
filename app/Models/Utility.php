@@ -1,5 +1,7 @@
 <?php
-
+namespace App\Models;
+use Illuminate\Http\Request;
+use Jenssegers\Agent\Facades\Agent;
 class Utility{
     public function countVisitors(Request $request) {
         try {

@@ -31,11 +31,11 @@
                 <div class="flex-auto sm:text-center lg:text-left self-center">
                     <p class="mt-2">Plans</p>
                     <p class="text-2xl font-bold">
-                        {{ plans_count < 10 ? "0" : ""
-                        }}{{ plans_count ? plans_count : "00" }}
+                        {{ data.plan_count < 10 ? "0" : ""
+                        }}{{ data.plan_count ? data.plan_count : "00" }}
                     </p>
-                    <p class="text-red-500">
-                        <i class="fas fa-arrowdown"></i>$1400
+                    <p class="text-red-500 text-xs">
+                        <i class="fas fa-arrow-down"></i> {{ data.plan_count }} this Month
                     </p>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                 <div class="flex-auto sm:text-center lg:text-left self-center">
                     <p class="mt-2">SALES</p>
                     <p class="md:text-3xl font-bold">
-                        <span class="text-xs">K</span> {{ sales ? sales : "0.00" }}
+                        <span class="text-xs">K</span> {{ data.invoice_sum ? data.invoice_sum : "0.00" }}
                     </p>
-                    <p class="text-green-500">
-                        <i class="fas fa-arrowdown"></i> $1400
+                    <p class="text-green-500 text-xs">
+                        <i class="fas fa-arrow-up"></i> {{ data.invoice_sum }} this Month
                     </p>
                 </div>
             </div>
@@ -62,10 +62,12 @@
                 <div class="flex-auto text-center self-center">
                     <p class="mt-2">VISITORS</p>
                     <p class="text-2xl font-bold">
-                        {{ visitors < 10 ? "0" : ""
-                        }}{{ visitors ? visitors : "00" }}
+                        {{ data.visitors < 10 ? "0" : ""
+                        }}{{ data.visitors ? data.visitors : "00" }}
                     </p>
-                    <p class="text-red-500">1</p>
+                    <p class="text-green-500 text-xs">
+                        <i class="fas fa-arrow-down"></i> {{ data.visitors }} this Month
+                    </p>
                 </div>
             </div>
         </div>
@@ -84,7 +86,7 @@
                 ></apexchart>
 
                 <div class="md:border-l">
-                    <GaugeChart />
+                    <GaugeChart :last_month="data.invoice_sales_last_month" :this_month="data.invoice_sales_this_month" />
                 </div>
             </div>
 
@@ -96,10 +98,12 @@
                     <div class="flex-auto self-center">
                         <p class="mt-2">VISITORS</p>
                         <p class="text-2xl font-bold">
-                            {{ visitors < 10 ? "0" : ""
-                            }}{{ visitors ? visitors : "00" }}
+                            {{ data.visitors < 10 ? "0" : ""
+                            }}{{ data.visitors ? data.visitors : "00" }}
                         </p>
-                        <p class="text-red-500">1</p>
+                        <p class="text-green-500 text-xs">
+                        <i class="fas fa-arrow-up"></i> {{ data.visitors }} this Month
+                    </p>
                     </div>
                 </div>
 
@@ -110,27 +114,25 @@
                     </div>
                     <p class="mt-2">USERS</p>
                     <p class="md:text-3xl font-bold">
-                        {{ users ? users : "00" }}
+                        {{ data.users ? data.users : "00" }}
                     </p>
-                    <p class="text-green-500">
-                        <i class="fas fa-arrowdown"></i> 00
+                    <p class="text-green-500 text-xs">
+                        <i class="fas fa-arrow-up"></i> {{ data.users }} this Month
                     </p>
                 </div>
 
                 <div class="col-span-2 grid grid-cols-6 shadow-sm rounded bg-white p-3">
                     <div class="col-span-2 flex flex-col justify-evenly">
-                        <p class="mt-2 font-bold text-xl">Profit Report</p>
-                        <p
-                            class="mt-2 uppercase rounded bg-primary-50 px-2 text-primary-600 inline py-1"
-                        >
-                            year {{ currentYear() }}
+                        <p class="mt-2 font-bold">Profit Report</p>
+                        <p class="mt-2 uppercase rounded bg-primary-50 px-2 text-primary-600 inline py-1 text-sm">
+                            This month
                         </p>
-                        <p class="md:text-3xl font-bold">
+                        <p class="md:text-xl font-bold">
                             <span class="text-xs">ZMW</span>
-                            {{ sales ? sales : "0.00" }}
+                            {{ data.invoice_sum ? data.invoice_sum : "0.00" }}
                         </p>
                         <p class="text-green-500">
-                            <i class="fas fa-arrowdown"></i> $1400
+                            <i class="fas fa-arrow-up"></i> {{ data.invoice_count }} Invoices
                         </p>
                     </div>
                     <div class="col-span-4">
@@ -145,7 +147,7 @@
                 <div class="flex">
                     <div class="flex-auto">
                         <h2 class="font-bold text-2xl text-secondary-600">Order Statistics</h2>
-                        <p>42.82k Total Sales</p>
+                        <p>Total Sales - {{ data.invoice_sum }} zmw</p>
                     </div>
                     <dropdown-menu :overlay="false" direction="right">
                         <template #trigger>
@@ -166,20 +168,20 @@
 
                 <div class="flex mt-2">
                     <div class="flex-auto self-center">
-                        <h2 class="text-secondary-600 font-bold text-2xl">2,855</h2>
+                        <h2 class="text-secondary-600 font-bold text-2xl">{{ data.invoice_count }}</h2>
                         <p>Total Orders</p>
                     </div>
                     <PieChart />
                 </div>
 
                 <div class="mt-4">
-                    <div v-for="i in 5" :key="i" class="flex gap-3 rounded transition p-1">
+                    <div v-for="invoice in data.invoices" :key="invoice.id" class="flex gap-3 rounded transition p-1">
                         <i class="self-center p-2 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
                         <div class="flex-auto">
-                            <h4 class="font-bold capitalize text-secondary-600">2 bedrooms</h4>
-                            <p >some descriptions</p>
+                            <h4 class="font-bold capitalize text-secondary-600">{{ invoice.plan.name }} <span class="font-light text-sm"> - from {{ invoice.customerFirstName }}</span> </h4>
+                            <p >{{invoice.transactionName}}</p>
                         </div>
-                        <p class="self-center">18.3k</p>
+                        <p class="self-center shrink-0">K {{invoice.amount}}</p>
                     </div>
                 </div>
             </div>
@@ -231,13 +233,13 @@
                     </dropdown-menu>
                 </div>
                 <div class="mt-2 text-secondary-400">
-                    <div v-for="i in 6" :key="i" class="flex gap-3 rounded transition px-1 py-2 border-b">
+                    <div v-for="invoice in data.invoices" :key="invoice.id" class="flex gap-3 rounded transition px-1 py-2 border-b">
                         <i class="self-center p-3 rounded bg-sky-100 mr-1 text-sky-500 fas fa-dollar"></i>
-                        <div class="flex-auto">
-                            <h4 class="font-bold capitalize text-secondary-600">2 bedrooms</h4>
-                            <p >some descriptions</p>
+                         <div class="flex-auto">
+                            <h4 class="font-bold capitalize text-secondary-600">{{ invoice.plan.name }} <span class="font-light text-sm"> - from {{ invoice.customerFirstName }}</span> </h4>
+                            <p >{{invoice.transactionName}}</p>
                         </div>
-                        <p class="self-center">18.3k</p>
+                        <p class="self-center shrink-0">K {{invoice.amount}}</p>
                     </div>
                 </div>
             </div>
@@ -257,12 +259,7 @@ export default {
     components: { DashboardLayout, Link, Head, GaugeChart, ProfitReportChart, PieChart,AreaChart, RadialChart },
     layout: DashboardLayout,
     props: {
-        auth: Object,
-        users: Number,
-        visitors: Number,
-        plans: Object,
-        sales: Number,
-        plans_count: Number,
+        data: Object,
     },
     setup() {
         const chartOptions = ref({

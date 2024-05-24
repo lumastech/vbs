@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->string('price', 20);
+            $table->decimal('price', 2);
 
             $table->string('bedrooms', 4)->nullable();
             $table->string('bathrooms', 4)->nullable();
-            $table->string('levels', 8)->nullable();
+            $table->integer('levels')->nullable();
 
             $table->string('style', 50)->nullable();
             $table->string('roof_finish', 50)->nullable();
 
-            $table->string('area', 8)->nullable();
+            $table->decimal('area', 2)->nullable();
 
             $table->text('description')->nullable();
 
