@@ -22,7 +22,7 @@
                         class="aspect-video md:h-130 w-full"
                     />
                     <div
-                        class="absolute bg-black/70 hover:bg-black/80 transition w-full h-full pt-"
+                        class="absolute bg-black/30 hover:bg-black/60 transition w-full h-full pt-"
                     >
                         <div class="md:absolute md:top-1/2 md:right-1/3">
                             <h1 class="text-xl md:text-4xl text-center text-secondary-100">

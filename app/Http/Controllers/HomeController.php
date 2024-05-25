@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Property;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ class HomeController extends Controller
         return Inertia::render('Plan',['plan' => $plan, 'plans' => $plans]);
     }
 
+
     // dedicated page for listing all plnas with pagination
     public function plans(Request $request) {
         $utility = new Utility();
@@ -51,6 +53,26 @@ class HomeController extends Controller
         return Inertia::render('Plans', [
             'plans' => $plans,
             'new_plans' => $new_plans,
+        ]);
+    }
+
+    // properties show
+    public function propertyshow($id) {
+        $item = Property::where("id", $id)->with('images')->first();
+        // popular algo item
+        $items = Property::with('images')->orderBy('id', 'desc')->paginate(8);
+        return Inertia::render('Property',['item' => $item, 'items' => $items]);
+    }
+
+    // dedicated page for listing all properties with pagination
+    public function properties(Request $request) {
+        $utility = new Utility();
+        $utility->countVisitors($request);
+        $items = Property::with('images')->orderBy('id', 'desc')->paginate(20);
+        $new_items = Property::with('images')->orderBy('id', 'desc')->limit(4)->get();
+        return Inertia::render('Properties', [
+            'items' => $items,
+            'new_items' => $new_items,
         ]);
     }
 
@@ -68,11 +90,24 @@ class HomeController extends Controller
                         ->orWhere('area', 'LIKE', '%'.$search.'%')
                         ->orWhere('description', 'LIKE', '%'.$search.'%')->get();
 
+        $properties = Property::where('price', $search)
+                        ->orWhere('title', 'LIKE', '%'.$search.'%')
+                        ->orWhere('address', 'LIKE', '%'.$search.'%')
+                        ->orWhere('city', 'LIKE', '%'.$search.'%')
+                        ->orWhere('bedrooms', 'LIKE', '%'.$search.'%')
+                        ->orWhere('bathrooms', 'LIKE', '%'.$search.'%')
+                        ->orWhere('state', 'LIKE', '%'.$search.'%')
+                        ->orWhere('lot_size', 'LIKE', '%'.$search.'%')
+                        ->orWhere('description', 'LIKE', '%'.$search.'%')->get();
+
         $new_plans = Plan::with('images')->orderBy('id', 'desc')->limit(4)->get();
+        $new_properties = Property::with('images')->orderBy('id', 'desc')->limit(4)->get();
 
         return Inertia::render('Plans', [
             'plans' => $plans,
             'new_plans' => $new_plans,
+            'properties' => $properties,
+            'new_properties' => $new_properties,
         ]);
     }
 

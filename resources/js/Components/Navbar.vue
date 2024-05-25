@@ -67,6 +67,7 @@
                         </div>
                     </template>
                 </Dropdown>
+                <Link href="/property-list" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">Properties</Link>
                 <Link href="/about" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">About US</Link>
                 <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
@@ -103,7 +104,8 @@
       <div class="overflow-x-hidden h-full bg-secondary-900 text-secondary-200 transition-all duration-500 ease-in-out shadow-md w-2/3 md:w-72" :class="{'-translate-x-full': !navShow}">
         <img src="../../assets/logo_yellow.png" alt="mfumu" class="w-full bg-secondary-600 py-7">
             <Link href="/" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-home mr-4"></i> Home</Link>
-            <Link href="#" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>House Plans</Link>
+            <Link href="/plans-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>All Plans</Link>
+            <Link href="property-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>Properties</Link>
             <Link href="/about" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-circle-info mr-4"></i>About US</Link>
             <Link href="/contacts" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-address-card mr-4"></i>Contact us</Link>
             <hr class="w-2/3 mx-auto border-t border-secondary-800">
