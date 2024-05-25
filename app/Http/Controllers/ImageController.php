@@ -42,7 +42,7 @@ class ImageController extends Controller
         $image->ref_id = $request->item;
         $image->type = isset($request->type) ? $request->type : "plan";
         $image->name = $request->name? $request->name : "Image";
-        $image->image = '/storage/'.$request->file("file")->store('images/plans');
+        $image->image = '/uploads/'.$request->file("file")->store('images/plans');
         $image->save();
 
         return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Plan Image uploaded successfully']);
@@ -80,8 +80,8 @@ class ImageController extends Controller
         // dd($image);
          $image = Image::where("id", $image->id)->first();
         if($image->delete()){
-            if (Storage::exists(\str_replace('/storage/','', $image->image))) {
-                Storage::delete(\str_replace('/storage/','', $image->image));
+            if (Storage::exists(\str_replace('/uploads/','', $image->image))) {
+                Storage::delete(\str_replace('/uploads/','', $image->image));
             }
             return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'file deleted']);
         }
