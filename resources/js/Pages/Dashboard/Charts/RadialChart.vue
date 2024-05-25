@@ -19,7 +19,7 @@ export default {
                 height: 'auto',
                 type: "radialBar",
             },
-            series: [33],
+            series: [0],
             colors: ["#20E647"],
             plotOptions: {
                 radialBar: {

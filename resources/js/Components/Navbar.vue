@@ -6,8 +6,8 @@
                 <p class="flex-auto"></p>
                 <p class="text-sm text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 9729 858</p>
                 <div class="bg-secondary-300 rounded overflow-hidden">
-                    <input type="tel" class="hidden md:inline h-full px-2 bg-secondary-900 p-0 focus:outline-none focus:border-0border border-0 outline-none">
-                    <button class="bg-primary-700 text-secondary-200 hover:bg-primary-800 transition md:border-l h-full px-2"><i class="fas fa-magnifying-glass"></i></button>
+                    <input v-model="search" type="text" class="hidden md:inline h-full px-2 bg-secondary-900 p-0 focus:outline-none focus:border-0border border-0 outline-none">
+                    <button @click="searchFunc" class="bg-primary-700 text-secondary-200 hover:bg-primary-800 transition md:border-l h-full px-2"><i class="fas fa-magnifying-glass"></i></button>
                 </div>
             </div>
         </div>
@@ -17,13 +17,77 @@
             </div>
             <div class="uppercase flex-auto hidden md:flex">
                 <Link href="/" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition"><i class="fas fa-home"></i> Home</Link>
-                <Link href="#" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">House Plans <i class="fas fa-angle-down"></i></Link>
+                <Dropdown>
+                    <template v-slot:trigger>
+                        <button class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">House Plans <i class="fas fa-angle-down"></i></button>
+                    </template>
+                    <template v-slot:content>
+                        <div class="md:w-[60rem] z-50 rounded divide-y divide-gray-100 shadow bg-gray-700">
+                            <div class="grid md:grid-cols-4 gap-4 mx-4 mx-auto">
+                                <div>
+                                    <h2 class="text-xl mb-2 pb-2 pl-2 border-b border-yellow-600">Sizes</h2>
+                                    <ul class="text-sm">
+                                        <li><Link href="/filter/1 Bedroom" class="block px-2 py-1 hover:bg-gray-600 transition-all">1 Bedroom</Link></li>
+                                        <li><Link href="/filter/2 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">2 Bedroom</Link></li>
+                                        <li><Link href="/filter/3 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">3 Bedroom</Link></li>
+                                        <li><Link href="/filter/4 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">4 Bedroom</Link></li>
+                                        <li><Link href="/filter/5 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">+5 Bedroom</Link></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h2 class="text-xl mb-2 pb-2 border-b border-yellow-600">Styles</h2>
+                                    <ul class="text-sm">
+                                        <li><Link href="/filter/Commercial Buildinngs" class="block px-2 py-1 hover:bg-gray-600 transition-all">Commercial Buildinngs</Link></li>
+                                        <li><Link href="/filter/Apartments" class="block px-2 py-1 hover:bg-gray-600 transition-all">Apartments</Link></li>
+                                        <li><Link href="/filter/Hostels and Lodges" class="block px-2 py-1 hover:bg-gray-600 transition-all">Hostels and Lodges</Link></li>
+                                        <li><Link href="/filter/Duplex Desings" class="block px-2 py-1 hover:bg-gray-600 transition-all">Duplex Desings</Link></li>
+                                        <li><Link href="/filter/Modern House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Modern House Plans</Link></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h2 class="text-xl mb-2 pb-2 border-b border-yellow-600">Styles</h2>
+                                    <ul class="text-sm">
+                                        <li><Link href="/filter/Small Houses" class="block px-2 py-1 hover:bg-gray-600 transition-all">Small Houses</Link></li>
+                                        <li><Link href="/filter/Beach House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Beach House Plans</Link></li>
+                                        <li><Link href="/filter/Contemporary House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Contemporary House Plans</Link></li>
+                                        <li><Link href="/filter/Meditaerranean House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Meditaerranean House Plans</Link></li>
+                                        <li><Link href="/filter/Farm House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Farm House Plans</Link></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl mb-2 pb-2 border-b border-yellow-600">Our Favorite</h2>
+                                    <img src="assets/img3.jpg" alt="mfumu" class="aspect-video">
+                                </div>
+                            </div>
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                <li>
+                                    <a href="downloads" class="block py-2 px-4 text-gray-100 ">Orders</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </template>
+                </Dropdown>
+                <Link href="/property-list" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">Properties</Link>
                 <Link href="/about" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">About US</Link>
                 <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
             <div class="uppercase">
                 <div v-if="$page.props.auth" class="inline">
-                    <Link href="/dashboard" class="text-sm p-2 inline-block hover:text-secondary-200 transition">dashboard <i class="fas fa-angle-down"></i></Link>
+                    <dropdown-menu :overlay="false" class="rounded overflow-hidde">
+                        <template #trigger>
+                            <button class="mr-2">DASHBOARD  <i class="fas fa-angle-down"></i></button>
+                        </template>
+                        <template #body>
+                            <Link href="/dashboard" class="block w-full hover:bg-secondary-200 text-sm p-2 transition">dashboard</Link>
+                            <Link :href="route('profile.show')" class="block w-full hover:bg-secondary-200 text-sm p-2 transition border-y">Acount</Link>
+                            <form method="POST" @submit.prevent="logout">
+                                <ResponsiveNavLink as="button"  class="block w-full hover:bg-secondary-200 text-sm p-2 transition">
+                                    Log Out
+                                </ResponsiveNavLink>
+                            </form>
+
+                        </template>
+                    </dropdown-menu>
                 </div>
                 <div v-else class="inline">
                     <Link href="/login" class="p-2 inline-block hover:text-secondary-200 transition">Login</Link>
@@ -40,7 +104,8 @@
       <div class="overflow-x-hidden h-full bg-secondary-900 text-secondary-200 transition-all duration-500 ease-in-out shadow-md w-2/3 md:w-72" :class="{'-translate-x-full': !navShow}">
         <img src="../../assets/logo_yellow.png" alt="mfumu" class="w-full bg-secondary-600 py-7">
             <Link href="/" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-home mr-4"></i> Home</Link>
-            <Link href="#" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>House Plans</Link>
+            <Link href="/plans-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>All Plans</Link>
+            <Link href="property-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>Properties</Link>
             <Link href="/about" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-circle-info mr-4"></i>About US</Link>
             <Link href="/contacts" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-address-card mr-4"></i>Contact us</Link>
             <hr class="w-2/3 mx-auto border-t border-secondary-800">
@@ -50,20 +115,36 @@
       </button>
 
     </div>
+    <LoadingAnim :show="animate" />
 </template>
 
 <script>
 import { ref } from 'vue'
-import {Link} from '@inertiajs/vue3'
+import {Link, router} from '@inertiajs/vue3'
+import Dropdown from './Dropdown.vue';
+import ResponsiveNavLink from './ResponsiveNavLink.vue';
+import LoadingAnim from './LoadingAnim.vue';
 
 export default {
-    components: { Link },
+    components: { Link, Dropdown, LoadingAnim, ResponsiveNavLink },
   setup() {
     const navShow = ref(false)
-    const user_agent_suport = ref(true)
+      const user_agent_suport = ref(true)
+      const search = ref(null)
+      const animate = ref(0)
+
+      const searchFunc = () => {
+          if (search.value != null || search.value != '') {
+              animate.value = 1;
+              router.get('/searchplan/' + search.value, {}, {
+                  onFinish: () => { animate.value = 1; }
+              })
+              animate.value = 1;
+        }
+      }
 
     return {
-      navShow, user_agent_suport
+      navShow, user_agent_suport, search, searchFunc
     }
   },
 

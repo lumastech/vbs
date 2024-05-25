@@ -7,10 +7,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\SpackleController;
+use App\Http\Controllers\PropertyTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,13 @@ Route::get('products', function () {
     return Inertia::render('Products');
 });
 
+Route::get('/filter/{filter}', [PlanController::class, 'filter']);
+Route::get('/searchplan/{search}', [PlanController::class, 'searchplan']);
+
 Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
 Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
+Route::get('properties/{plan}', [HomeController::class, 'propertyshow'])->name('properties.show');
+Route::get('property-list', [HomeController::class, 'properties'])->name('properties.list');
 Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
 
 
@@ -52,8 +59,10 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
     Route::resource('plans', PlanController::class);
+    Route::resource('property', PropertyController::class);
     Route::resource('image', ImageController::class);
     Route::resource('file', FileController::class);
+    Route::resource('property-type', PropertyTypeController::class);
 
     Route::get('/roles', function () {
         return Inertia::render('roles/index');

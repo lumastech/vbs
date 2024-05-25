@@ -44,4 +44,15 @@ class Plan extends Model
     public function files() {
         return $this->hasMany(Image::class, 'ref_id')->where('type', 'plan');
     }
+
+     public function favorites()
+    {
+        return $this->hasMany(Favorite::class)->where('type', 'plan');
+    }
+
+    // Define the relationship with the Cart model
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class)->where('type', 'plan');
+    }
 }

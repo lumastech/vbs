@@ -39,7 +39,8 @@ class ImageController extends Controller
 
         $request->validate($rules);
         $image = new Image();
-        $image->ref_id = $request->plan;
+        $image->ref_id = $request->item;
+        $image->type = isset($request->type) ? $request->type : "plan";
         $image->name = $request->name? $request->name : "Image";
         $image->image = '/storage/'.$request->file("file")->store('images/plans');
         $image->save();

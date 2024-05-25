@@ -321,11 +321,13 @@ export default {
         })
 
         const submitOrder = () => {
+            orderModal.value = 0;
             ShowLoaderAnim.value = 1;
             router.post(`/pay/${props.plan.id}`, orderForm, {
                 onError: (err) => {
                     errs.value.title = "TRANSACTION FAILD!"
                     errs.value.error = err.error
+                    orderModal.value = 1;
                     errs.value.show = 1
                 },
                 onSuccess: (res) => {

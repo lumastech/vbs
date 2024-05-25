@@ -36,7 +36,7 @@ class Spackle extends Model
 
                 if($response->body() == "error code: 504")
                 {
-                    return ['success'=>false,'error'=> 'We couldn\'t get a response from the server. Please try again later.' ];
+                    return ['success'=>false,'error'=> 'We couldn\'t get a response from the server. Please try again later.' .$response->status() ];
                 }
 
                 if(json_decode($response->body())->isError)

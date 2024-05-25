@@ -19,7 +19,7 @@ class PlanController extends Controller
     public function index()
     {
         $plans = Plan::with('images')->orderBy('id', "desc")->paginate(10);
-        return Inertia::render("Plans/Index",["plans" => $plans]);
+        return Inertia::render("Plans/Index",["plans" => $plans]); 
     }
 
     /**
@@ -186,5 +186,30 @@ class PlanController extends Controller
                 ]);
         }
         return redirect()->back();
+    }
+
+    // search plans
+    public function searchplan(Request $request){
+        $search = $request->search;
+
+        $plans = Plan::where('price', $search)
+                        ->orWhere('name', 'LIKE', '%'.$search.'%')
+                        ->orWhere('style', 'LIKE', '%'.$search.'%')
+                        ->orWhere('roof_finish', 'LIKE', '%'.$search.'%')
+                        ->orWhere('bedrooms', 'LIKE', '%'.$search.'%')
+                        ->orWhere('bathrooms', 'LIKE', '%'.$search.'%')
+                        ->orWhere('levels', 'LIKE', '%'.$search.'%')
+                        ->orWhere('area', 'LIKE', '%'.$search.'%')
+                        ->orWhere('description', 'LIKE', '%'.$search.'%')->with('images')->paginate(100);
+
+        return Inertia::render("Plans",["plans" => $plans]);
+    }
+
+    // filter plans
+    public function filter($filter){
+// dd($filter);
+        $plans = Plan::with('images')->where('style', $filter)
+                        ->orWhere('name', $filter)->paginate(100);
+        return Inertia::render("Plans",["plans" => $plans]);
     }
 }
