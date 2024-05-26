@@ -198,9 +198,9 @@ export default {
         const orderModal = ref(0);
         const ShowLoaderAnim = ref(0);
         const orderForm = useForm({
-            name: "Lumas Mulo",
-            email: "lumastech@gmail.com",
-            phone: "0971864421",
+            name: "",
+            email: "",
+            phone: "",
         });
 
         const errs = ref({
