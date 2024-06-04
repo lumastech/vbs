@@ -51,6 +51,7 @@ Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
 
 Route::middleware([
     'auth:sanctum',
+    'isadmin',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
@@ -95,4 +96,13 @@ Route::middleware([
     Route::get('/permissions/{permission}/show', function () {
         return Inertia::render('permissions/show');
     })->name('permissions.show');
+});
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
 });
