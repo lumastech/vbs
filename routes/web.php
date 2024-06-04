@@ -51,11 +51,11 @@ Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
 
 Route::middleware([
     'auth:sanctum',
-    'isadmin',
+    'admin',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, "index"])->name('dashboard');
 
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
@@ -104,5 +104,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+    // Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
 });

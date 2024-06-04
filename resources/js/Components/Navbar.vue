@@ -142,9 +142,12 @@ export default {
               animate.value = 1;
         }
       }
+      const logout = () => {
+            router.post(route('logout'));
+        };
 
     return {
-      navShow, user_agent_suport, search, searchFunc
+      navShow, user_agent_suport, search, searchFunc, logout
     }
   },
 

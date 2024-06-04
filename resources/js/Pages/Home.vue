@@ -4,8 +4,9 @@
         <Navbar />
 
         <!-- dynamic colousel -->
-        <div class="colousel-bg">
+        <div class="colousel-bg min-h-130">
             <carousel
+                v-if="plans.data.length"
                 :items-to-show="1"
                 :wrapAround="true"
                 :autoplay="3000"

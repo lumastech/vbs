@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class isadmin
 {
@@ -15,10 +16,11 @@ class isadmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // dd(auth()->user());
-        if(auth()->user() && auth()->user()->role != "admin") {
+        // redirect if not admin
+        if($request->user() && $request->user()->role !== 'admin') {
             return redirect('/');
         }
         return $next($request);
+        // dd($next);
     }
 }
