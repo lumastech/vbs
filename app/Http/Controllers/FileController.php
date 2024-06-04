@@ -40,7 +40,7 @@ class FileController extends Controller
         $file = new File();
         $file->ref_id = $request->plan;
         $file->name = $request->name ? $request->name : "File";
-        $file->file = '/storage/'.$request->file("file")->store('files/plans');
+        $file->file = '/uploads/'.$request->file("file")->store('files/plans');
         $file->save();
 
         return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Plan File uploaded successfully']);
@@ -77,8 +77,8 @@ class FileController extends Controller
     {
         $file = File::where("id", $file->id)->first();
         if($file->delete()){
-            if (Storage::exists(\str_replace('/storage/','', $file->file))) {
-                Storage::delete(\str_replace('/storage/','', $file->file));
+            if (Storage::exists(\str_replace('/uploads/','', $file->file))) {
+                Storage::delete(\str_replace('/uploads/','', $file->file));
             }
             return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'file deleted']);
         }

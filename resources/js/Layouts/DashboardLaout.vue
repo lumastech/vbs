@@ -44,7 +44,7 @@
 
                     <hr class="border-t border-secondary-200 my-4">
                     <Link href="/" class="flex line-clamp-1 place-items-cent~er overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
-                        <i class="fa-solid fa-world w-7 mr-3"></i>
+                        <i class="fa-solid fa-globe w-7 mr-3"></i>
                         Website
                     </Link>
                 </nav>
