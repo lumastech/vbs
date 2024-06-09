@@ -47,6 +47,7 @@ Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
 Route::get('properties/{plan}', [HomeController::class, 'propertyshow'])->name('properties.show');
 Route::get('property-list', [HomeController::class, 'properties'])->name('properties.list');
 Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
+Route::get('invoice-preview/{invoice}', [SpackleController::class, 'invoicePreview'])->name('invoice.preview');
 
 
 Route::middleware([

@@ -1,30 +1,17 @@
 <template>
+
     <Head title="Home" />
     <header class="bg-secondary-500">
         <Navbar />
 
         <!-- dynamic colousel -->
         <div class="colousel-bg min-h-130">
-            <carousel
-                v-if="plans.data.length"
-                :items-to-show="1"
-                :wrapAround="true"
-                :autoplay="3000"
-                :touchDrag="reue"
-                :transition="1000"
-                :pauseAutoplayOnHover="true"
-                class="relative"
-            >
+            <carousel v-if="plans.data.length" :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue"
+                :transition="1000" :pauseAutoplayOnHover="true" class="relative">
                 <slide v-for="plan in plans.data" :key="plan.id">
-                    <img
-                    v-if="plan.images.length"
-                        :src="plan.images[0].image"
-                        :alt="plan.name"
-                        class="aspect-video md:h-130 w-full"
-                    />
-                    <div
-                        class="absolute bg-black/30 hover:bg-black/60 transition w-full h-full pt-"
-                    >
+                    <img v-if="plan.images.length" :src="plan.images[0].image" :alt="plan.name"
+                        class="aspect-video md:h-130 w-full" />
+                    <div class="absolute bg-black/30 hover:bg-black/60 transition w-full h-full pt-">
                         <div class="md:absolute md:top-1/2 md:right-1/3">
                             <h1 class="text-xl md:text-4xl text-center text-secondary-100">
                                 Welcome To Mfumu House Plans
@@ -71,22 +58,16 @@
                 <h2 class="text-primary-100 text-3xl font-bold flex-auto">
                     New House Plans
                 </h2>
-                <Link
-                    :href="route('plan.list')"
-                    class="self-center text-xs md:text-sm shrink-0 bg-secondary-800 rounded-r-full px-2 py-1"
-                    >View All</Link
-                >
+                <Link :href="route('plan.list')"
+                    class="self-center text-xs md:text-sm shrink-0 bg-secondary-800 rounded-r-full px-2 py-1">View All
+                </Link>
             </div>
             <p class="mb-4">
                 Explore our newest house plans added on a weekly basis.
             </p>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem
-                    v-for="plan in new_plans"
-                    :key="plan.id"
-                    :plan="plan"
-                />
+                <ProductItem v-for="plan in new_plans" :key="plan.id" :plan="plan" />
             </div>
         </div>
 
@@ -96,11 +77,9 @@
                 <h2 class="text-primary-600 text-3xl font-bold flex-auto">
                     Trending House Plans
                 </h2>
-                <Link
-                    :href="route('plan.list')"
-                    class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1"
-                    >View All</Link
-                >
+                <Link :href="route('plan.list')"
+                    class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1">View All
+                </Link>
             </div>
             <p class="mb-4">
                 Curated monthly, these house plans represent current market
@@ -109,11 +88,37 @@
 
             <!-- products list -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem
-                    v-for="plan in plans.data"
-                    :key="plan.id"
-                    :plan="plan"
-                />
+                <ProductItem v-for="plan in plans.data" :key="plan.id" :plan="plan" />
+            </div>
+            <div class="text-center my-9">
+                <Link :href="route('plan.list')" class="px-4 py-2 bg-primary-600 text-secondary-50 rounded-sm">View All
+                </Link>
+            </div>
+        </div>
+
+        <!-- Trending Properties -->
+        <div class="max-w-7xl mx-auto p-2 mt-16">
+            <div class="flex">
+                <h2 class="text-primary-600 text-3xl font-bold flex-auto">
+                    Trending Properties
+                </h2>
+                <Link :href="route('properties.list')"
+                    class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1">View All
+                </Link>
+            </div>
+            <p class="mb-4">
+                Curated monthly, these Properties represent current market
+                trends.
+            </p>
+
+            <!-- products list -->
+            <div class="grid md:grid-cols-3 gap-4">
+                <Property v-for="item in properties.data" :key="item.id" :item="item" />
+            </div>
+            <div class="text-center my-9">
+                <Link :href="route('properties.list')" class="px-4 py-2 bg-primary-600 text-secondary-50 rounded-sm">
+                View All
+                </Link>
             </div>
         </div>
 
@@ -121,26 +126,11 @@
         <div class="max-w-7xl mx-auto p-2 my-24">
             <div class="shadow">
                 <div class="colousel-bg w-full h-64 rounded-t overflow-hidden">
-                    <carousel
-                        :items-to-show="1"
-                        :wrapAround="true"
-                        :autoplay="3000"
-                        :touchDrag="reue"
-                        :transition="1000"
-                        :pauseAutoplayOnHover="true"
-                        class="relative"
-                    >
-                        <slide
-                            v-for="plan in plans.data"
-                            :key="plan.id"
-                            class="-ntranslat-y-32"
-                        >
-                            <img
-                            v-if="plan.images.length"
-                                :src="plan.images[0]"
-                                :alt="plan.name"
-                                class="object-fill h-full w-full top-0 left-0"
-                            />
+                    <carousel :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue"
+                        :transition="1000" :pauseAutoplayOnHover="true" class="relative">
+                        <slide v-for="plan in plans.data" :key="plan.id" class="-ntranslat-y-32">
+                            <img v-if="plan.images.length" :src="plan.images[0]" :alt="plan.name"
+                                class="object-fill h-full w-full top-0 left-0" />
                         </slide>
 
                         <template #addons>
@@ -164,9 +154,7 @@
                         </p>
                     </div>
 
-                    <div
-                        class="bg-primary-700 md:bg-secondary-900 border-x border-primary-700 p-4"
-                    >
+                    <div class="bg-primary-700 md:bg-secondary-900 border-x border-primary-700 p-4">
                         <i class="fas fa-home"></i>
                         <h5 class="text-2xl font-bold flex-auto">
                             Customize Any Plan
@@ -201,64 +189,42 @@
 
         <!-- What you get -->
         <div class="max-w-7xl mx-auto p-2 mb-24">
-            <div
-                class="grid md:grid-cols-2 bg-secondary-900 shadow rounded overflow-hidden"
-            >
-                <img
-                    src="../../assets/landing_cover.jpg"
-                    alt="What you get"
-                    class="w-full"
-                />
+            <div class="grid md:grid-cols-2 bg-secondary-900 shadow rounded overflow-hidden">
+                <img src="../../assets/landing_cover.jpg" alt="What you get" class="w-full" />
                 <div class="bg-primary-700 px-4 py-7">
                     <h4 class="text-2xl font-bold flex-auto">What you get</h4>
                     <hr class="my-2" />
                     <ul class="space-y-3">
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Floor plan, Roof plan
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Sections and Elevations
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Door and window schedule
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Drainage and Plumbing plans
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Electrical drawings
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Structural drawings
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Bills of quantities - without rates
                         </li>
                         <li>
-                            <i
-                                class="fas fa-check-circle text-secondary-100"
-                            ></i>
+                            <i class="fas fa-check-circle text-secondary-100"></i>
                             Schedule of materials - without rates
                         </li>
                     </ul>
@@ -328,9 +294,7 @@
                             <li>6. 3D render of the plan</li>
                         </ul>
 
-                        <hr
-                            class="border-t border-secondary-500 my-4 md:hidden"
-                        />
+                        <hr class="border-t border-secondary-500 my-4 md:hidden" />
 
                         <ul class="space-y-3">
                             <li>
@@ -369,6 +333,7 @@ import Navbar from "@/Components/Navbar.vue";
 import Footer from "@/Components/Footer.vue";
 import ProductItem from "@/Components/ProductItem.vue";
 import { Link, Head } from "@inertiajs/vue3";
+import Property from '@/Components/Property.vue';
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
@@ -383,10 +348,12 @@ export default {
         Slide,
         Pagination,
         Navigation,
+        Property,
     },
     props: {
         plans: Object,
         new_plans: Object,
+        properties: Object,
     },
 };
 </script>

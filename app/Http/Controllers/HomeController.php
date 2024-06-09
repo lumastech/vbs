@@ -22,7 +22,8 @@ class HomeController extends Controller
         $plans = Plan::with('images')->orderBy('id', 'desc')->paginate(12);
         $new_plans = Plan::with('images')->orderBy('id', 'desc')->limit(4)->get();
 
-        $visitors = Visitor::count();
+        // properties
+        $properties = Property::with('images')->orderBy('id', "desc")->paginate(12);
         $plans_count = Plan::count();
 
 
@@ -32,6 +33,7 @@ class HomeController extends Controller
                 'canRegister' => Route::has('register'),
                 'plans' => $plans,
                 'new_plans' => $new_plans,
+                'properties' => $properties,
             ]);
     }
 

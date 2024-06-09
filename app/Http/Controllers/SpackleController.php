@@ -6,12 +6,14 @@ use App\Models\Spackle;
 use App\Models\Invoice;
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SpackleController extends Controller
 {
     public function makePayment(Request $request, $item) {
         $rules = [
-            'name' => 'required|string',
+            'fname' => 'required|string',
+            'lname' => 'required|string',
             'email' => 'required|email',
             'phone' => 'required|string'
         ];
@@ -29,8 +31,8 @@ class SpackleController extends Controller
         $invoice->amount = $plan->price;
         $invoice->currency = "ZMW";
         $invoice->transactionReference = strtoupper(str_replace('.', '', uniqid('', true)));
-        $invoice->customerFirstName = explode(' ', $request->name)[0];
-        $invoice->customerLastName = explode(' ', $request->name)[1];
+        $invoice->customerFirstName = $request->fname;
+        $invoice->customerLastName = $request->lname;
         $invoice->customerEmail = $request->email;
         $invoice->customerPhone = $request->phone;
         $invoice->customerAddr = '';
@@ -59,12 +61,17 @@ class SpackleController extends Controller
             $invoice->payment_link = $payment_process['url'];
             $invoice->status = 'created';
             $invoice->save();
-            return \back()->with(['success'=>true,'url'=>$payment_process['url']]);
+            return redirect(route('invoice.preview', $invoice));
         }
         $invoice->comment = $payment_process['error'];
         $invoice->status = 'create faild';
         $invoice->save();
 
         return \back()->withErrors(['success'=>false,'error'=>$payment_process['error']]);
+    }
+
+    function invoicePreview(Request $request, $item) {
+        $invoice = Invoice::where('id', $item)->first();
+        return Inertia::render('InvoicePreview', ['invoice'=>$invoice]);
     }
 }
