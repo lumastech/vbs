@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string("webhookUrl")->nullable();
             $table->string("payment_link")->nullable();
             $table->string("autoReturn")->nullable();
+            $table->string("comment")->nullable();
             $table->string("status", 10)->default("0");
             $table->timestamps();
         });

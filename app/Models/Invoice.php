@@ -27,6 +27,7 @@ class Invoice extends Model
         "payment_link",
         "autoReturn",
         "plan_id",
+        "comment",
         "status"
     ];
 

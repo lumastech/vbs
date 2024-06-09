@@ -17,12 +17,9 @@ class SpackleController extends Controller
         ];
 
         $request->validate($rules);
-
         $invoice = new Invoice();
-
-
-
         $plan = Plan::where('id', $item)->first();
+
         if(!$plan){
             return redirect()->back()->with("sessionmessage", ['title' => 'error', "message" => 'Plan item not found!']);
         }
@@ -60,11 +57,12 @@ class SpackleController extends Controller
         {
 
             $invoice->payment_link = $payment_process['url'];
-            $invoice->status = 'paid';
+            $invoice->status = 'created';
             $invoice->save();
             return \back()->with(['success'=>true,'url'=>$payment_process['url']]);
         }
-        $invoice->status = 'faild';
+        $invoice->comment = $payment_process['error'];
+        $invoice->status = 'create faild';
         $invoice->save();
 
         return \back()->withErrors(['success'=>false,'error'=>$payment_process['error']]);
