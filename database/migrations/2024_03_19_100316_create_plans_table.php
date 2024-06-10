@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->decimal('price', 2);
+            $table->decimal('price');
 
             $table->string('bedrooms', 4)->nullable();
             $table->string('bathrooms', 4)->nullable();
