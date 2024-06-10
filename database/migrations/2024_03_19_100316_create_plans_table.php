@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->decimal('price');
+            $table->decimal('price', 15, 8);
 
             $table->string('bedrooms', 4)->nullable();
             $table->string('bathrooms', 4)->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('style', 50)->nullable();
             $table->string('roof_finish', 50)->nullable();
 
-            $table->decimal('area', 2)->nullable();
+            $table->decimal('area', 15, 8)->nullable();
 
             $table->text('description')->nullable();
 
