@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->decimal('price', 15, 8);
+            $table->decimal('price', 15, 2);
 
             $table->string('bedrooms', 4)->nullable();
             $table->string('bathrooms', 4)->nullable();
@@ -23,25 +23,9 @@ return new class extends Migration
             $table->string('style', 50)->nullable();
             $table->string('roof_finish', 50)->nullable();
 
-            $table->decimal('area', 15, 8)->nullable();
+            $table->decimal('area', 15, 2)->nullable();
 
             $table->text('description')->nullable();
-
-            $table->string('image_1')->nullable();
-            $table->string('image_2')->nullable();
-            $table->string('image_3')->nullable();
-            $table->string('image_4')->nullable();
-            $table->string('image_5')->nullable();
-            $table->string('image_6')->nullable();
-            $table->string('image_7')->nullable();
-            $table->string('video')->nullable();
-
-            $table->string('file_1')->nullable();
-            $table->string('file_2')->nullable();
-            $table->string('file_3')->nullable();
-            $table->string('file_4')->nullable();
-            $table->string('file_5')->nullable();
-            $table->string('file_6')->nullable();
 
             $table->string('status', 20)->default('live');
             $table->timestamps();

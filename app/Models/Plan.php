@@ -20,22 +20,6 @@ class Plan extends Model
         'area',
         'description',
         'status',
-
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'image_5',
-        'image_6',
-        'image_7',
-        'video',
-
-        'file_1',
-        'file_2',
-        'file_3',
-        'file_4',
-        'file_5',
-        'file_6',
     ];
 
     public function images() {
