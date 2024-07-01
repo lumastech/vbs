@@ -27,9 +27,22 @@ class Invoice extends Model
         "payment_link",
         "autoReturn",
         "plan_id",
+        "message",
+        "status",
+
+        "feeAmount",
+        "transactionAmount",
+        "customerMobileWallet",
+        "feePercentage",
+        "signature",
+        "isError",
+        "merchantReference",
+        "signedFields",
         "comment",
-        "status"
+        "returnUrl",
+        "reference"
     ];
+
 
     public function plan(){
         return $this->belongsTo(Plan::class);

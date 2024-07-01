@@ -12,7 +12,7 @@
                                 Congratulations
                             </h3>
                             <p>
-                                You have done {{ growthPer(data.invoice_sales_last_month, data.invoice_sales_this_month)
+                                You have done {{ numeralFormat(growthPer(data.invoice_sales_last_month, data.invoice_sales_this_month), "0,0[.]00")
                                 }}% more
                                 sales this month as compared to last month.
                                 you're doing great, keep it going.
@@ -24,7 +24,7 @@
                             </h3>
                             <p>
                                 You have not done much this month. You have done
-                                {{ growthPer(data.invoice_sales_last_month, data.invoice_sales_this_month) }}% as
+                                {{ numeralFormat(growthPer(data.invoice_sales_last_month, data.invoice_sales_this_month), "0,0[.]00") }}% as
                                 compared to last
                                 month.
                             </p>
@@ -202,8 +202,7 @@
                         <p class="font-bold">
                             ZMW {{ data.invoice_sum }}
                             <span class="text-green-500">
-                                <i class="ml-2 fas fa-angle-up"></i> {{ growthPer(data.invoice_sales_last_month,
-                                data.invoice_sales_this_month)}} %</span>
+                                <i class="ml-2 fas fa-angle-up"></i> {{ numeralFormat(growthPer(data.invoice_sales_last_month, data.invoice_sales_this_month), "0,0[.]00") }} %</span>
                         </p>
                     </div>
                 </div>

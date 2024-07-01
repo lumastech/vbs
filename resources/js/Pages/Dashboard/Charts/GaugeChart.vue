@@ -37,7 +37,7 @@
     />
 
     <div>
-        <p class="text-center mb-2"> {{ growthPer(last_month, this_month) }}% Company Growth</p>
+        <p class="text-center mb-2"> {{ numeralFormat(growthPer(last_month, this_month), "0,0[.]00") }}% Company Growth</p>
         <div class="flex justify-evenly">
             <div class="flex">
                 <i

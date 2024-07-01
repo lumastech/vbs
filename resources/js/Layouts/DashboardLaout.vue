@@ -21,9 +21,9 @@
                         <i class="fa-solid fa-users w-7 mr-3"></i>
                         USERS
                     </Link>
-                    <Link href="/order" class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
+                    <Link href="/invoice" class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                         <i class="fa-solid fa-file-invoice-dollar w-7 mr-4"></i>
-                        ORDERS
+                        INVOICES
                     </Link>
                     <Link href="/plans" class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                         <i class="fa-solid fa-ticket w-7 mr-3"></i>

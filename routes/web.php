@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\HomeController;
@@ -48,6 +49,9 @@ Route::get('properties/{plan}', [HomeController::class, 'propertyshow'])->name('
 Route::get('property-list', [HomeController::class, 'properties'])->name('properties.list');
 Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
 Route::get('invoice-preview/{invoice}', [SpackleController::class, 'invoicePreview'])->name('invoice.preview');
+Route::post('invoice-inv/{invoice}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
+Route::get('invoice-inv/{ref}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
+Route::post('invoice-invst', [SpackleController::class, 'invoiceStatus'])->name('invoice.invst');
 
 
 Route::middleware([
@@ -60,6 +64,7 @@ Route::middleware([
 
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('invoice', InvoiceController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('property', PropertyController::class);
     Route::resource('image', ImageController::class);
