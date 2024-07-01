@@ -52,7 +52,7 @@ Route::get('invoice-preview/{invoice}', [SpackleController::class, 'invoicePrevi
 Route::post('invoice-inv/{invoice}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
 Route::get('invoice-inv/{ref}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
 Route::post('invoice-invst', [SpackleController::class, 'invoiceStatus'])->name('invoice.invst');
-Route::get('plan/download/{item}',[PlanController::class, 'download'])->name('plan.download');
+Route::get('plan/download/{item}',[PlanController::class, 'DownloadDetails'])->name('plan.download');
 
 
 Route::middleware([

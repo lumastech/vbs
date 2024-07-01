@@ -193,25 +193,32 @@ class PlanController extends Controller
         return Inertia::render("Plans",["plans" => $plans]);
     }
 
-    function download(Request $request, $item) {
-        $plan = Plan::where('id', $item)->first();
-        $files = File::while('plan_id', $plan->id)->get();
-        $images = Image::while('plan_id', $plan->id)->get();
-        $fileurls = [];
-        $imageurls = [];
+    function DownloadDetails(Request $request, $item) {
+        $invoice = Invoice::where('transactionReference', $txnRef)->first();
+        $images = null;
+        $files = null;
 
-        if ($files) {
-            foreach($files as $file){
-                $fileurls[] = Storage::temporaryUrl( $file->file, now()->addDays(2));
-            }
+        if($invoice){
+            $plan = Plan::where('id', $invoice->plan_id)->first();
+            $images = Image::where("ref_id", $plan->id)->where("type", "plan")->get();
+            $files = File::where("ref_id", $plan->id)->where("type", "plan")->get();
+            // $fileurls = [];
+            // $imageurls = [];
+
+            // if ($files) {
+            //     foreach($files as $file){
+            //         $fileurls[] = Storage::temporaryUrl( $file->file, now()->addDays(2));
+            //     }
+            // }
+
+            // if ($images) {
+            //     foreach($images as $image){
+            //         $imageurls[] = Storage::temporaryUrl( $image->image, now()->addDays(2));
+            //     }
+            // }
+
+            // return Inertia::render('Download', ['files'=>$fileurls, 'images'=>$imageurls]);
         }
-
-        if ($images) {
-            foreach($images as $image){
-                $imageurls[] = Storage::temporaryUrl( $image->image, now()->addDays(2));
-            }
-        }
-
-        return Inertia::render('Download', ['files'=>$fileurls, 'images'=>$imageurls]);
+        return Inertia::render('Plans/Edit', ['invoice' => $invoice, 'plan'=>$plan, "images" =>$images, "files" =>$files]);
     }
 }
