@@ -19,7 +19,7 @@ class PlanController extends Controller
     public function index()
     {
         $plans = Plan::with('images')->orderBy('id', "desc")->paginate(10);
-        return Inertia::render("Plans/Index",["plans" => $plans]); 
+        return Inertia::render("Plans/Index",["plans" => $plans]);
     }
 
     /**
@@ -211,5 +211,10 @@ class PlanController extends Controller
         $plans = Plan::with('images')->where('style', $filter)
                         ->orWhere('name', $filter)->paginate(100);
         return Inertia::render("Plans",["plans" => $plans]);
+    }
+
+    function download(Request $request, $item) {
+        $plan = Plan::where('id', $item)->first();
+        
     }
 }
