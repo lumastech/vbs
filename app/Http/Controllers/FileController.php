@@ -73,8 +73,7 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(File $file)
-    {
+    public function destroy(File $file){
         $file = File::where("id", $file->id)->first();
         if($file->delete()){
             if (Storage::exists(\str_replace('/uploads/','', $file->file))) {

@@ -139,29 +139,9 @@ class PlanController extends Controller
     public function destroy(Plan $plan){
         if(Plan::find($plan)){
             try{
-                $files = [
-                    'file_1' => $plan->image_1??'',
-                    'file_2' => $plan->image_2??'',
-                    'file_3' => $plan->image_3??'',
-                    'file_4' => $plan->image_4??'',
-                    'file_5' => $plan->image_5??'',
-                    'file_6' => $plan->image_6??'',
-                    'file_7' => $plan->image_7??'',
+                File::while('plan_id', $plan->id)->delete();
+                Image::while('plan_id', $plan->id)->delete();
 
-                    'file_8' => $plan->file_1??'',
-                    'file_9' => $plan->file_2??'',
-                    'file_10' => $plan->file_3??'',
-                    'file_11' => $plan->file_4??'',
-                    'file_12' => $plan->file_5??'',
-                    'file_13' => $plan->file_6??'',
-                ];
-
-                foreach ($files as $key => $file) {
-                    $file = \str_replace('/storage/','', $file);
-                    if ($file && Storage::exists($file)) {
-                        Storage::delete($file);
-                    }
-                }
                 $plan->delete();
                 session([
                 'message'=>[
@@ -215,6 +195,23 @@ class PlanController extends Controller
 
     function download(Request $request, $item) {
         $plan = Plan::where('id', $item)->first();
-        
+        $files = File::while('plan_id', $plan->id)->get();
+        $images = Image::while('plan_id', $plan->id)->get();
+        $fileurls = [];
+        $imageurls = [];
+
+        if ($files) {
+            foreach($files as $file){
+                $fileurls[] = Storage::temporaryUrl( $file->file, now()->addDays(2));
+            }
+        }
+
+        if ($images) {
+            foreach($images as $image){
+                $imageurls[] = Storage::temporaryUrl( $image->image, now()->addDays(2));
+            }
+        }
+
+        return Inertia::render('Download', ['files'=>$fileurls, 'images'=>$imageurls]);
     }
 }
