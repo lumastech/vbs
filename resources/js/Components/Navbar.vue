@@ -2,7 +2,7 @@
     <nav class="bg-secondary-900 text-primary-600">
         <div class="bg-secondary-800">
             <div class="flex max-w-7xl mx-auto px-2 py-1 space-x-2" >
-                <img src="../../assets/logo_white.png" alt="mfumu" class="w-16 md:w-32">
+                <img src="../../assets/logo.png" alt="mfumu" class="w-16 md:w-32">
                 <p class="flex-auto"></p>
                 <p class="text-sm text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 9729 858</p>
                 <div class="bg-secondary-300 rounded overflow-hidden">
