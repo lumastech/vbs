@@ -5,15 +5,14 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\PlanController;
-use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
-use App\Http\Controllers\SpackleController;
-use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\SavingController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +35,32 @@ Route::get('contacts', function () {
     return Inertia::render('Contacts');
 });
 
+Route::get('testing', function () {
+    return Inertia::render('Testing');
+});
+
+Route::get('savings', function () {
+    return Inertia::render('Savings/index');
+});
+
+Route::get('transactions', function () {
+    return Inertia::render('Transactions/index');
+});
+
+Route::get('loans', function () {
+    return Inertia::render('Loans/index');
+});
+
+Route::get('loans/create', [LoanController::class, 'create']);
+
+Route::get('settings', function () {
+    return Inertia::render('Settings/index');
+});
+
 Route::get('products', function () {
     return Inertia::render('Products');
 });
+
 
 Route::get('/filter/{filter}', [PlanController::class, 'filter']);
 Route::get('/searchplan/{search}', [PlanController::class, 'searchplan']);
@@ -57,7 +79,6 @@ Route::get('plan/download/{item}',[PlanController::class, 'DownloadDetails'])->n
 
 Route::middleware([
     'auth:sanctum',
-    'admin',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {

@@ -30,9 +30,6 @@ const submit = () => {
         <div class="bg-secondary-900/80 w-full h-full text-secondary-100 overflow-y-auto">
 
             <Head title="Register" />
-            <header class="bg-secondary-500">
-                <Navbar />
-            </header>
             <div class="px-4">
                 <div class="max-w-sm mx-auto px-4 py-7 md:my-24 my-7 bg-secondary-100/10  shadow backdrop-blur rounded-md">
                     <AuthenticationCardLogo class="inline mx-auto" />

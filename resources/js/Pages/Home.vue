@@ -1,367 +1,152 @@
 <template>
+    <div>
+        <!-- Header -->
+        <!-- <header class="bg-white shadow-lg">
+            <div class="container mx-auto flex justify-between items-center py-4 px-6">
+                <div class="text-2xl font-bold text-gray-800">Village Bank</div>
+                <nav class="hidden md:flex space-x-4">
+                    <a href="/features" class="text-gray-600 hover:text-gray-800">Features</a>
+                    <a href="/about" class="text-gray-600 hover:text-gray-800">About</a>
+                    <a href="/contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+                    <a href="/testing" class="text-gray-600 hover:text-gray-800">Testing</a>
+                    <a @click="closeMobileMenu" href="/" class="text-gray-600 hover:text-gray-800"></a>
+                </nav>
+                <div class="flex">
+                    <a href="/login" class="hidden md:block ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Login</a>
+                    <a href="/register" class="hidden md:block ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Join
+                        Now</a>
+                </div>
+                <-- Hamburger Icon for Mobile --
+                <div @click="toggleMobileMenu" class="md:hidden cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+            </div>
 
-    <Head title="Home" />
-    <header class="bg-secondary-500">
+            !-- Mobile Menu --
+            <div v-if="isMobileMenuOpen" class="md:hidden">
+                <nav class="flex flex-col items-center space-y-4 py-4 bg-gray-100">
+                    <a @click="closeMobileMenu" href="/features" class="text-gray-600 hover:text-gray-800">Features</a>
+                    <a @click="closeMobileMenu" href="/about" class="text-gray-600 hover:text-gray-800">About</a>
+                    <a @click="closeMobileMenu" href="/contact" class="text-gray-600 hover:text-gray-800">Contact</a>
+                    <a @click="closeMobileMenu" href="/testing" class="text-gray-600 hover:text-gray-800">Testing</a>
+                    <a @click="closeMobileMenu" href="/login"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg">Login</a>
+                         <a @click="closeMobileMenu" href="/register"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg">Join
+                        Now</a>
+                </nav>
+            </div>
+        </header> -->
         <Navbar />
 
-        <!-- dynamic colousel -->
-        <div class="colousel-bg min-h-130">
-            <carousel v-if="plans.data.length" :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue"
-                :transition="1000" :pauseAutoplayOnHover="true" class="relative">
-                <slide v-for="plan in plans.data" :key="plan.id">
-                    <img v-if="plan.images.length" :src="plan.images[0].image" :alt="plan.name"
-                        class="aspect-video md:h-130 w-full" />
-                    <div class="absolute bg-black/30 hover:bg-black/60 transition w-full h-full pt-">
-                        <div class="md:absolute md:top-1/2 md:right-1/3">
-                            <h1 class="text-xl md:text-4xl text-center text-secondary-100">
-                                Welcome To Mfumu House Plans
-                            </h1>
-                            <p class="d-none md:flex txet-sm md:text-md text-center text-white max-w-2xl mx-auto">
-                                If you are looking to Design or build your dream
-                                home, you're in the right place. Mfumu house
-                                plans offers a variety of ready-made house plans
-                                created by Zambia's best floor plan designers
-                                offering you a unique house plan at an
-                                affordable price
-                            </p>
-                        </div>
-                    </div>
-                </slide>
+        <!-- Hero Section -->
+        <section class="bg-gray-100 text-center py-20">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Empowering Communities with Village Banking</h1>
+            <p class="text-gray-600 mb-8">Join our community to save, invest, and grow together.</p>
+            <a href="/register" class="px-8 py-4 bg-blue-600 text-white rounded-lg">Get Started</a>
+        </section>
 
-                <template #addons>
-                    <navigation class="text-white" />
-                    <div class="absolute md:bottom-2 w-full">
-                        <pagination class="mx-auto" />
-                    </div>
-                </template>
-            </carousel>
-        </div>
-    </header>
-
-    <!-- MAIN SECTION -->
-    <section class="bg-secondary-800 text-secondary-10 pt-9">
-        <!-- New House Plans -->
-        <div class="max-w-7xl mx-auto p-4 bg-primary-700 rounded">
-            <h1 class="text-4xl text-center text-secondary-100">
-                Welcome To Mfumu House Plans
-            </h1>
-            <p class="text-center max-w-2xl mx-auto">
-                If you are looking to Design or build your dream home, you're in
-                the right place. Mfumu house plans offers a variety of
-                ready-made house plans created by Zambia's best floor plan
-                designers offering you a unique house plan at an affordable
-                price
-            </p>
-
-            <!-- products list -->
-            <div class="flex mt-9">
-                <h2 class="text-primary-100 text-3xl font-bold flex-auto">
-                    New House Plans
-                </h2>
-                <Link :href="route('plan.list')"
-                    class="self-center text-xs md:text-sm shrink-0 bg-secondary-800 rounded-r-full px-2 py-1">View All
-                </Link>
-            </div>
-            <p class="mb-4">
-                Explore our newest house plans added on a weekly basis.
-            </p>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem v-for="plan in new_plans" :key="plan.id" :plan="plan" />
-            </div>
-        </div>
-
-        <!-- Trending House Plans -->
-        <div class="max-w-7xl mx-auto p-2 mt-16">
-            <div class="flex">
-                <h2 class="text-primary-600 text-3xl font-bold flex-auto">
-                    Trending House Plans
-                </h2>
-                <Link :href="route('plan.list')"
-                    class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1">View All
-                </Link>
-            </div>
-            <p class="mb-4">
-                Curated monthly, these house plans represent current market
-                trends.
-            </p>
-
-            <!-- products list -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <ProductItem v-for="plan in plans.data" :key="plan.id" :plan="plan" />
-            </div>
-            <div class="text-center my-9">
-                <Link :href="route('plan.list')" class="px-4 py-2 bg-primary-600 text-secondary-50 rounded-sm">View All
-                </Link>
-            </div>
-        </div>
-
-        <!-- Trending Properties -->
-        <div class="max-w-7xl mx-auto p-2 mt-16">
-            <div class="flex">
-                <h2 class="text-primary-600 text-3xl font-bold flex-auto">
-                    Trending Properties
-                </h2>
-                <Link :href="route('properties.list')"
-                    class="self-center text-xs md:text-sm shrink-0 bg-primary-800 rounded-r-full px-2 py-1">View All
-                </Link>
-            </div>
-            <p class="mb-4">
-                Curated monthly, these Properties represent current market
-                trends.
-            </p>
-
-            <!-- products list -->
-            <div class="grid md:grid-cols-3 gap-4">
-                <Property v-for="item in properties.data" :key="item.id" :item="item" />
-            </div>
-            <div class="text-center my-9">
-                <Link :href="route('properties.list')" class="px-4 py-2 bg-primary-600 text-secondary-50 rounded-sm">
-                View All
-                </Link>
-            </div>
-        </div>
-
-        <!-- banner -->
-        <div class="max-w-7xl mx-auto p-2 my-24">
-            <div class="shadow">
-                <div class="colousel-bg w-full h-64 rounded-t overflow-hidden">
-                    <carousel :items-to-show="1" :wrapAround="true" :autoplay="3000" :touchDrag="reue"
-                        :transition="1000" :pauseAutoplayOnHover="true" class="relative">
-                        <slide v-for="plan in plans.data" :key="plan.id" class="-ntranslat-y-32">
-                            <img v-if="plan.images.length" :src="plan.images[0]" :alt="plan.name"
-                                class="object-fill h-full w-full top-0 left-0" />
-                        </slide>
-
-                        <template #addons>
-                            <navigation class="text-white" />
-                        </template>
-                    </carousel>
+        <!-- Features Section -->
+        <section id="features" class="container mx-auto py-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <img src="path/to/icon1.svg" alt="Feature 1" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Secure Savings</h3>
+                    <p class="text-gray-600">Keep your money safe with our secure savings accounts.</p>
                 </div>
-                <div class="grid md:grid-cols-3 border-b-4 border-primary-700">
-                    <div class="bg-secondary-900 p-4">
-                        <i class="fas fa-home"></i>
-                        <h5 class="text-2xl font-bold flex-auto">
-                            Customize Any Plan
-                        </h5>
-                        <p>
-                            You've found a house plan you really like, but you'd
-                            like the rooms to be oriented differently. Or
-                            perhaps you'd like to add another bedroom, an
-                            office, a garage, or remove something? Our in-house
-                            experts can customize your floor plans to meet your
-                            exact needs!
-                        </p>
-                    </div>
-
-                    <div class="bg-primary-700 md:bg-secondary-900 border-x border-primary-700 p-4">
-                        <i class="fas fa-home"></i>
-                        <h5 class="text-2xl font-bold flex-auto">
-                            Customize Any Plan
-                        </h5>
-                        <p>
-                            You've found a house plan you really like, but you'd
-                            like the rooms to be oriented differently. Or
-                            perhaps you'd like to add another bedroom, an
-                            office, a garage, or remove something? Our in-house
-                            experts can customize your floor plans to meet your
-                            exact needs!
-                        </p>
-                    </div>
-
-                    <div class="bg-secondary-900 p-4">
-                        <i class="fas fa-home"></i>
-                        <h5 class="text-2xl font-bold flex-auto">
-                            Customize Any Plan
-                        </h5>
-                        <p>
-                            You've found a house plan you really like, but you'd
-                            like the rooms to be oriented differently. Or
-                            perhaps you'd like to add another bedroom, an
-                            office, a garage, or remove something? Our in-house
-                            experts can customize your floor plans to meet your
-                            exact needs!
-                        </p>
-                    </div>
+                <div class="text-center">
+                    <img src="path/to/icon2.svg" alt="Feature 2" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Easy Loans</h3>
+                    <p class="text-gray-600">Apply for loans and get approved quickly and easily.</p>
+                </div>
+                <div class="text-center">
+                    <img src="path/to/icon3.svg" alt="Feature 3" class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Community Support</h3>
+                    <p class="text-gray-600">Join a community that supports and uplifts each other.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- What you get -->
-        <div class="max-w-7xl mx-auto p-2 mb-24">
-            <div class="grid md:grid-cols-2 bg-secondary-900 shadow rounded overflow-hidden">
-                <img src="../../assets/landing_cover.jpg" alt="What you get" class="w-full" />
-                <div class="bg-primary-700 px-4 py-7">
-                    <h4 class="text-2xl font-bold flex-auto">What you get</h4>
-                    <hr class="my-2" />
-                    <ul class="space-y-3">
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Floor plan, Roof plan
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Sections and Elevations
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Door and window schedule
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Drainage and Plumbing plans
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Electrical drawings
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Structural drawings
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Bills of quantities - without rates
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle text-secondary-100"></i>
-                            Schedule of materials - without rates
-                        </li>
-                    </ul>
-                    <p class="mt-2">
-                        <i>*Drawings Delivered in PDF and DWG Format</i>
+        <!-- About Section -->
+        <section id="about" class="bg-gray-100 py-20">
+            <div class="container mx-auto flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About Village Bank</h2>
+                    <p class="text-gray-600 mb-6">
+                        Village Bank is a community-driven platform that empowers individuals through secure savings and
+                        easy access to loans. We aim to foster a spirit of cooperation and mutual aid among our members.
                     </p>
+                    <a href="#signup" class="px-6 py-3 bg-blue-600 text-white rounded-lg">Learn More</a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="path/to/about-image.jpg" alt="About Us" class="w-full h-auto rounded-lg shadow-lg">
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- about us -->
-        <div class="colousel-bg">
-            <div class="backdrop-blur bg-secondary-900/70">
-                <div class="max-w-7xl mx-auto px-2 py-16">
-                    <h4 class="text-2xl font-bold flex-auto">
-                        Mfumu house plans
-                    </h4>
-                    <p>
-                        If you are looking to Design or build your dream home,
-                        you're in the right place. Mfumu house plans offers a
-                        variety of ready-made house plans created by Zambia's
-                        best floor plan designers offering you a unique house
-                        plan at an affordable price
-                    </p>
-
-                    <div class="grid md:grid-cols-2 gap-4 my-9">
-                        <div>
-                            <h5 class="text-2xl font-bold flex-auto">
-                                Customize any plan
-                            </h5>
-                            <p>
-                                If you have found a plan that you already like
-                                but you would like to add another bedroom,
-                                office, garage or remove a room our inhouse
-                                designers will be able to customise the plan to
-                                meet your needs.
-                            </p>
-                        </div>
-                        <div>
-                            <h5 class="text-2xl font-bold flex-auto">
-                                Develop new plan
-                            </h5>
-                            <p>
-                                If you have not found a plan that meets your
-                                requirements, you have the option of designing a
-                                house from scratch using our inhouse floor plan
-                                designers.
-                            </p>
-                        </div>
-                    </div>
-
-                    <p>
-                        After you have selected a plan that you like, you have
-                        the option of building with us. For information on our
-                        construction services, kindly click here. New house
-                        plans will be curated and uploaded monthly that reflect
-                        market trends.
-                    </p>
-
-                    <div class="grid md:grid-cols-2 gap-4 mt-4">
-                        <ul class="space-y-3">
-                            <li>1. Floor plan,Roof plan</li>
-                            <li>2. Door and window schedule</li>
-                            <li>3. Plumbing and electrical drawings</li>
-                            <li>4. Structural design</li>
-                            <li>5. Bill of quantities- without rates.</li>
-                            <li>6. 3D render of the plan</li>
-                        </ul>
-
-                        <hr class="border-t border-secondary-500 my-4 md:hidden" />
-
-                        <ul class="space-y-3">
-                            <li>
-                                <i class="fas fa-home"></i> 1 bedroom house
-                                plans
-                            </li>
-                            <li>
-                                <i class="fas fa-home"></i> 2 bedroom house
-                                plans
-                            </li>
-                            <li>
-                                <i class="fas fa-home"></i> 3 bedroom house
-                                plans
-                            </li>
-                            <li>
-                                <i class="fas fa-home"></i> 4 bedroom house
-                                plans
-                            </li>
-                            <li>
-                                <i class="fas fa-home"></i> 5 bedroom house
-                                plans
-                            </li>
-                        </ul>
-                    </div>
+        <!-- Testimonials Section -->
+        <section class="container mx-auto py-20">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">What Our Members Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-gray-600">"Village Bank has been a lifesaver. I was able to save money and take a
+                        loan for my small business."</p>
+                    <div class="text-right text-blue-600 font-semibold mt-4">- Jane Doe</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-gray-600">"The community support is amazing. I've learned so much from other
+                        members."</p>
+                    <div class="text-right text-blue-600 font-semibold mt-4">- John Smith</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- footer -->
-    <Footer />
+        <!-- CTA Section -->
+        <section id="signup" class="bg-blue-600 text-center py-20 text-white">
+            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="mb-8">Join our community and start your journey towards financial empowerment today.</p>
+            <a href="#signup" class="px-8 py-4 bg-white text-blue-600 rounded-lg">Join Now</a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto flex justify-between items-center">
+                <div>&copy; 2024 Village Bank. All rights reserved.</div>
+                <div>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 </template>
 
 <script>
-import Navbar from "@/Components/Navbar.vue";
-import Footer from "@/Components/Footer.vue";
-import ProductItem from "@/Components/ProductItem.vue";
-import { Link, Head } from "@inertiajs/vue3";
-import Property from '@/Components/Property.vue';
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-
+import Navbar from '@/Components/Navbar.vue';
 export default {
-    components: {
-        Head,
-        Link,
-        Navbar,
-        Footer,
-        ProductItem,
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
-        Property,
-    },
-    props: {
-        plans: Object,
-        new_plans: Object,
-        properties: Object,
-    },
+    name: "LandingPage",
+    components: {Navbar}
+    // data() {
+    //     return {
+    //         isMobileMenuOpen: false,
+    //     };
+    // },
+    // methods: {
+    //     toggleMobileMenu() {
+    //         this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    //     },
+    //     closeMobileMenu() {
+    //         this.isMobileMenuOpen = false;
+    //     },
+    // },
 };
 </script>
 
-<style>
-.colousel-bg {
-    background-image: url("./../../assets/landing_cover.jpg");
-    background-size: cover;
-    background-position: 50%;
-}
+<style scoped>
+/* Additional styles if necessary */
 </style>

@@ -19,21 +19,13 @@ class HomeController extends Controller
     public function home(Request $request) {
         $utility = new Utility();
         $utility->countVisitors($request);
-        $plans = Plan::with('images')->orderBy('id', 'desc')->paginate(12);
-        $new_plans = Plan::with('images')->orderBy('id', 'desc')->limit(4)->get();
 
-        // properties
-        $properties = Property::with('images')->orderBy('id', "desc")->paginate(12);
-        $plans_count = Plan::count();
 
 
         return Inertia::render('Home',
             [
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),
-                'plans' => $plans,
-                'new_plans' => $new_plans,
-                'properties' => $properties,
             ]);
     }
 

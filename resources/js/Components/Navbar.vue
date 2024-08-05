@@ -17,57 +17,8 @@
             </div>
             <div class="uppercase flex-auto hidden md:flex">
                 <Link href="/" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition"><i class="fas fa-home"></i> Home</Link>
-                <Dropdown>
-                    <template v-slot:trigger>
-                        <button class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">House Plans <i class="fas fa-angle-down"></i></button>
-                    </template>
-                    <template v-slot:content>
-                        <div class="md:w-[60rem] z-50 rounded divide-y divide-gray-100 shadow bg-gray-700">
-                            <div class="grid md:grid-cols-4 gap-4 mx-4 mx-auto">
-                                <div>
-                                    <h2 class="text-xl mb-2 pb-2 pl-2 border-b border-yellow-600">Sizes</h2>
-                                    <ul class="text-sm">
-                                        <li><Link href="/filter/1 Bedroom" class="block px-2 py-1 hover:bg-gray-600 transition-all">1 Bedroom</Link></li>
-                                        <li><Link href="/filter/2 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">2 Bedroom</Link></li>
-                                        <li><Link href="/filter/3 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">3 Bedroom</Link></li>
-                                        <li><Link href="/filter/4 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">4 Bedroom</Link></li>
-                                        <li><Link href="/filter/5 Bedrooms" class="block px-2 py-1 hover:bg-gray-600 transition-all">+5 Bedroom</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h2 class="text-xl mb-2 pb-2 border-b border-yellow-600">Styles</h2>
-                                    <ul class="text-sm">
-                                        <li><Link href="/filter/Commercial Buildinngs" class="block px-2 py-1 hover:bg-gray-600 transition-all">Commercial Buildinngs</Link></li>
-                                        <li><Link href="/filter/Apartments" class="block px-2 py-1 hover:bg-gray-600 transition-all">Apartments</Link></li>
-                                        <li><Link href="/filter/Hostels and Lodges" class="block px-2 py-1 hover:bg-gray-600 transition-all">Hostels and Lodges</Link></li>
-                                        <li><Link href="/filter/Duplex Desings" class="block px-2 py-1 hover:bg-gray-600 transition-all">Duplex Desings</Link></li>
-                                        <li><Link href="/filter/Modern House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Modern House Plans</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h2 class="text-xl mb-2 pb-2 border-b border-yellow-600">Styles</h2>
-                                    <ul class="text-sm">
-                                        <li><Link href="/filter/Small Houses" class="block px-2 py-1 hover:bg-gray-600 transition-all">Small Houses</Link></li>
-                                        <li><Link href="/filter/Beach House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Beach House Plans</Link></li>
-                                        <li><Link href="/filter/Contemporary House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Contemporary House Plans</Link></li>
-                                        <li><Link href="/filter/Meditaerranean House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Meditaerranean House Plans</Link></li>
-                                        <li><Link href="/filter/Farm House Plans" class="block px-2 py-1 hover:bg-gray-600 transition-all">Farm House Plans</Link></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h2 class="text-2xl mb-2 pb-2 border-b border-yellow-600">Our Favorite</h2>
-                                    <img src="assets/img3.jpg" alt="mfumu" class="aspect-video">
-                                </div>
-                            </div>
-                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                                <li>
-                                    <a href="downloads" class="block py-2 px-4 text-gray-100 ">Orders</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </template>
-                </Dropdown>
-                <Link href="/property-list" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">Properties</Link>
+
+                <Link href="/features" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">Features</Link>
                 <Link href="/about" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">About US</Link>
                 <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
@@ -104,8 +55,7 @@
       <div class="overflow-x-hidden h-full bg-secondary-900 text-secondary-200 transition-all duration-500 ease-in-out shadow-md w-2/3 md:w-72" :class="{'-translate-x-full': !navShow}">
         <img src="../../assets/logo_yellow.png" alt="mfumu" class="w-full bg-secondary-600 py-7">
             <Link href="/" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-home mr-4"></i> Home</Link>
-            <Link href="/plans-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>All Plans</Link>
-            <Link href="property-list" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>Properties</Link>
+            <Link href="features" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-puzzle-piece mr-4"></i>Features</Link>
             <Link href="/about" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-circle-info mr-4"></i>About US</Link>
             <Link href="/contacts" class="p-2 block hover:bg-secondary-500 hover:text-secondary-900 transition"><i class="fas w-7 fa-solid fa-address-card mr-4"></i>Contact us</Link>
             <hr class="w-2/3 mx-auto border-t border-secondary-800">
