@@ -1,3 +1,3 @@
 <template>
-    <img src="../../assets/logo_yellow.png" alt="Mfumu">
+    <img src="../../assets/logo.png" alt="Mfumu">
 </template>
