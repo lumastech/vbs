@@ -31,23 +31,23 @@ Route::get('/about', function () {
     return Inertia::render('About');
 });
 
-Route::get('contacts', function () {
+Route::get('/contacts', function () {
     return Inertia::render('Contacts');
 });
 
-Route::get('testing', function () {
+Route::get('/testing', function () {
     return Inertia::render('Testing');
 });
 
-Route::get('savings', function () {
+Route::get('/savings', function () {
     return Inertia::render('Savings/index');
 });
 
-Route::get('transactions', function () {
+Route::get('/transactions', function () {
     return Inertia::render('Transactions/index');
 });
 
-Route::get('loans', function () {
+Route::get('/loans', function () {
     return Inertia::render('Loans/index');
 });
 
