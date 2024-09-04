@@ -1,14 +1,11 @@
 <template>
     <div>
         <Navbar />
-
-        <!-- Hero Section -->
         <section class="bg-landing">
             <div class="bg-gray-800/50 text-center py-20 text-primary-500">
                 <h1 class="text-4xl font-bold mb-4">Empowering Communities with Village Banking</h1>
                 <p class="mb-8">Join our community to save, invest, and grow together.</p>
-                <a href="/register" class="px-8 py-4 bg-primary-500 hover:bg-primary-700 text-white rounded-lg">Get
-                    Started</a>
+                <a href="/register" class="px-8 py-4 bg-primary-500 hover:bg-primary-700 text-white rounded-lg">Get Started</a>
             </div>
         </section>
 

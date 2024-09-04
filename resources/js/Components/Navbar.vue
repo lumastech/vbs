@@ -4,7 +4,7 @@
             <div class="flex max-w-7xl mx-auto px-2 py-1 space-x-2" >
                 <img src="../../assets/logo.png" alt="mfumu" class="w-16 md:w-32">
                 <p class="flex-auto"></p>
-                <p class="text-sm text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 9729 858</p>
+                <p class="text-sm text-secondary-100 self-center"><i class="fas fa-phone"></i> +260 97 1234567</p>
                 <div class="bg-secondary-300 rounded overflow-hidden">
                     <input v-model="search" type="text" class="hidden md:inline h-full px-2 bg-secondary-900 p-0 focus:outline-none focus:border-0border border-0 outline-none">
                     <button @click="searchFunc" class="bg-primary-700 text-secondary-200 hover:bg-primary-800 transition md:border-l h-full px-2"><i class="fas fa-magnifying-glass"></i></button>
@@ -97,7 +97,7 @@ export default {
         };
 
     return {
-      navShow, user_agent_suport, search, searchFunc, logout
+        navShow, user_agent_suport, search, searchFunc, logout, animate
     }
   },
 
