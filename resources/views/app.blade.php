@@ -14,9 +14,13 @@
         <link rel="stylesheet" href="/fa/all.css">
         <script src="/fa/all.js"></script>
 
+
+
         <!-- Scripts -->
         @routes
-        @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+
+        <script src="resources/js/app.js"></script>
+        <script src="resources/js/Pages/{$page['component']}.vue"></script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
