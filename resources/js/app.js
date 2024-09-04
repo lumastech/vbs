@@ -10,7 +10,7 @@ import VueNumerals from "vue-numerals";
 import VueApexCharts from "vue3-apexcharts";
 import DropdownMenu from "v-dropdown-menu";
 
-const appName = import.meta.env.VITE_APP_NAME || "Mfumu";
+const appName = import.meta.env.VITE_APP_NAME || "VBS";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

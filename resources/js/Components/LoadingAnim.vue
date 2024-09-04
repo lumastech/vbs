@@ -29,7 +29,9 @@ export default {
                 type: Boolean,
                 default: false,
             },
-        }
+    },
+
+    components : {Modal}
     }
 </script>
 

@@ -1,46 +1,5 @@
 <template>
     <div>
-        <!-- Header -->
-        <!-- <header class="bg-white shadow-lg">
-            <div class="container mx-auto flex justify-between items-center py-4 px-6">
-                <div class="text-2xl font-bold text-primary-500">Village Bank</div>
-                <nav class="hidden md:flex space-x-4">
-                    <a href="/features" class="text-gray-600 hover:text-primary-500">Features</a>
-                    <a href="/about" class="text-gray-600 hover:text-primary-500">About</a>
-                    <a href="/contact" class="text-gray-600 hover:text-primary-500">Contact</a>
-                    <a href="/testing" class="text-gray-600 hover:text-primary-500">Testing</a>
-                    <a @click="closeMobileMenu" href="/" class="text-gray-600 hover:text-primary-500"></a>
-                </nav>
-                <div class="flex">
-                    <a href="/login" class="hidden md:block ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Login</a>
-                    <a href="/register" class="hidden md:block ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg">Join
-                        Now</a>
-                </div>
-                <-- Hamburger Icon for Mobile --
-                <div @click="toggleMobileMenu" class="md:hidden cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </div>
-            </div>
-
-            !-- Mobile Menu --
-            <div v-if="isMobileMenuOpen" class="md:hidden">
-                <nav class="flex flex-col items-center space-y-4 py-4 bg-gray-100">
-                    <a @click="closeMobileMenu" href="/features" class="text-gray-600 hover:text-primary-500">Features</a>
-                    <a @click="closeMobileMenu" href="/about" class="text-gray-600 hover:text-primary-500">About</a>
-                    <a @click="closeMobileMenu" href="/contact" class="text-gray-600 hover:text-primary-500">Contact</a>
-                    <a @click="closeMobileMenu" href="/testing" class="text-gray-600 hover:text-primary-500">Testing</a>
-                    <a @click="closeMobileMenu" href="/login"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg">Login</a>
-                         <a @click="closeMobileMenu" href="/register"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg">Join
-                        Now</a>
-                </nav>
-            </div>
-        </header> -->
         <Navbar />
 
         <!-- Hero Section -->
@@ -133,25 +92,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Navbar from '@/Components/Navbar.vue';
-export default {
-    name: "LandingPage",
-    components: {Navbar}
-    // data() {
-    //     return {
-    //         isMobileMenuOpen: false,
-    //     };
-    // },
-    // methods: {
-    //     toggleMobileMenu() {
-    //         this.isMobileMenuOpen = !this.isMobileMenuOpen;
-    //     },
-    //     closeMobileMenu() {
-    //         this.isMobileMenuOpen = false;
-    //     },
-    // },
-};
 </script>
 
 <style scoped>
