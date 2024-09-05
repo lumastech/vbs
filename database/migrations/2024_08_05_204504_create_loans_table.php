@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('loan_package_id');
             $table->decimal('amount', 8,2);
-            $table->decimal('interest_rate', 8,2);
+            $table->decimal('rate', 8,2);
             $table->string('term')->default('1');
             $table->string('purpose')->nullable();
             $table->string('notes')->nullable();
