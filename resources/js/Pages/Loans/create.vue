@@ -23,9 +23,12 @@
                             class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="term" class="block text-gray-700">Term (in months)</label>
+                        <label for="term" class="block text-gray-700">Select Available Packages</label>
                         <input type="number" id="term" v-model="loan.term"
                             class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required />
+                            <select name="loan_package_id">
+                                <option v-for="packag in loan_packages" :key="packag.id" :value="packag.id">Pay {{packag.rate}}%/Month for {{ packag.duration }} months</option>
+                            </select>
                     </div>
                     <div class="mb-4">
                         <label for="notes" class="block text-gray-700">Additional Notes</label>
@@ -79,6 +82,7 @@ export default {
     props: {
         errors: Object,
         loans: Object,
+        loan_packages: Object,
     },
     layout: DashboardLaout,
 

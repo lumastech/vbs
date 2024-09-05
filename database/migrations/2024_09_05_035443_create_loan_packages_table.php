@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loan_packages', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->daciml('rate', 8,2);
+            $table->decimal('rate', 8,2);
             $table->integer('duration');
             $table->text('description')->nullable();
             $table->timestamps();
