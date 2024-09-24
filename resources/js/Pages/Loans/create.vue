@@ -55,7 +55,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="loan in loans" :key="loan.id" class="border-t">
+                            <tr v-for="loan in loans.data" :key="loan.id" class="border-t">
                                 <td class="py-2">{{ loan.date }}</td>
                                 <td class="py-2">{{ loan.amount }}</td>
                                 <td class="py-2">{{ loan.status }}</td>

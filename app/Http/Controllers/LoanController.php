@@ -25,7 +25,7 @@ class LoanController extends Controller
     {
         // user with pagination 15
         $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
-        $packages = LoanPackage::orderBy('created_at', 'desc')->paginate(15);
+        $packages = LoanPackage::orderBy('created_at', 'desc');
         return Inertia::render('Loans/create', ['loans' => $loans, 'loan_packages' => $packages]);
     }
 
