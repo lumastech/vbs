@@ -14,7 +14,7 @@ class TransactionController extends Controller
     public function index()
     {
 
-        $trans = Transaction::paginate(100);
+        $trans = Transaction::orderBy('created_at', 'desc')->paginate(100);;
         return Inertia::render('Transactions/index', ['trans' => $trans]);
     }
 
