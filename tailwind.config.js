@@ -10,27 +10,61 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
         "./resources/js/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
     ],
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                body: [
+                    "Inter",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "-apple-system",
+                    "system-ui",
+                    "Segoe UI",
+                    "Roboto",
+                    "Helvetica Neue",
+                    "Arial",
+                    "Noto Sans",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
+                sans: [
+                    "Inter",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "-apple-system",
+                    "system-ui",
+                    "Segoe UI",
+                    "Roboto",
+                    "Helvetica Neue",
+                    "Arial",
+                    "Noto Sans",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
             },
             colors: {
-                // orange color shades
                 primary: {
-                    50: "#fff7f0",
-                    100: "#ffeedb",
-                    200: "#ffdcb2",
-                    300: "#ffc988",
-                    400: "#ffb65f",
-                    500: "#ffa435",
-                    600: "#e68c2f",
-                    700: "#bf7428",
-                    800: "#995b21",
-                    900: "#7d4c1d",
+                    50: "#F3FAF7",
+                    100: "#DEF7EC",
+                    200: "#BCF0DA",
+                    300: "#84E1BC",
+                    500: "#31C48D",
+                    1000: "#0E9F6E",
+                    600: "#057A55",
+                    700: "#046C4E",
+                    800: "#03543F",
+                    900: "#014737",
                 },
+
                 secondary: {
                     10: "#F4F8F9",
                     50: "#ECF1F3",
@@ -46,11 +80,11 @@ export default {
                 },
             },
             spacing: {
-                130: '38rem',
-                98: '28rem'
-            }
+                130: "38rem",
+                98: "28rem",
+            },
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography, "flowbite/plugin"],
 };

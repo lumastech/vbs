@@ -11,7 +11,7 @@ export default defineConfig({
         vue({
             template: {
                 transformAssetUrls: {
-                    base: 'vbs.lumastech.com',
+                    base: null,
                     includeAbsolute: false,
                 },
             },

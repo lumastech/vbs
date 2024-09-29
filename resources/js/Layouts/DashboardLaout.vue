@@ -9,7 +9,7 @@
                             class="rounded-full bg-white ring w-12 h-12 lg:w-24 lg:h-24 mx-auto transition-all overflow-hidden">
                             <img src="../../assets/avater.png" alt="" class="w-full h-full scale-110 rounded-full">
                         </div>
-                        <p class="mt-4 md:hidden lg:block">{{$page.props.auth.name}}</p>
+                        <p class="mt-4 md:hidden lg:block">{{ $page.props.auth.name }}</p>
                         <Link href="/logout" as="button" method="post"
                             class="block w-full place-items-center overflow-hidden px-4 py-2 rounded md:rounded-lg bg-white shadow-sm mb-1 mt-4 hover:bg-secondary-500 hover:text-white transition">
                         <i class="fa-solid fa-lock w-7 mr-4"></i>
@@ -21,10 +21,10 @@
                     <i class="fa-solid fa-home w-7 mr-3"></i>
                     DASHBOARD
                     </Link>
-                    <Link href="/profile"
+                    <Link href="/user"
                         class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                     <i class="fa-solid fa-users w-7 mr-3"></i>
-                    Profile
+                    Members
                     </Link>
                     <Link href="/savings"
                         class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">

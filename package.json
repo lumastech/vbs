@@ -19,10 +19,12 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "flowbite": "^2.5.2",
         "tw-elements": "^2.0.0",
         "v-dropdown-menu": "^2.0.4",
         "vue-numerals": "^4.0.6",
         "vue3-apexcharts": "^1.5.2",
-        "vue3-carousel": "^0.3.3"
+        "vue3-carousel": "^0.3.3",
+        "vue3-google-map": "^0.21.0"
     }
 }

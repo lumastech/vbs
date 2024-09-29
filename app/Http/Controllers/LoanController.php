@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\LoanPackage;
+use App\Http\Requests\LoanRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +15,8 @@ class LoanController extends Controller
      */
     public function index()
     {
-        //
+        $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+        return Inertia::render('Loans/index', ['loans' => $loans]);
     }
 
     /**
@@ -22,16 +25,29 @@ class LoanController extends Controller
     public function create()
     {
         // user with pagination 15
-        $loan = Loan::orderBy('created_at', 'desc')->paginate(15);
-        return Inertia::render('Loans/create', ['loan' => $loan,]);
+        $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+        $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        return Inertia::render('Loans/create', ['loans' => $loans, 'loan_packages' => $packages]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LoanRequest $request)
     {
-        //
+        $data = $request->validated();
+        if($package = LoanPackage::where('id', $data['loan_package_id'])->first()){
+
+            $data['user_id'] = \auth()->user()->id;
+            $data['rate'] = $package->rate;
+            $data['amount'] = $package->amount;
+            $data['term'] = $package->duration;
+            if(Loan::create($data)){
+                return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Your loan has been created successfully']);
+            }
+        }
+
+        return redirect()->back()->with("sessionmessage", ['title' => 'error', "message" => 'we faild to save your request at the moment']);
     }
 
     /**

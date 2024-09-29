@@ -11,6 +11,8 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\SavingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\LoanPackageController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RoleController;
 
@@ -52,18 +54,16 @@ Route::get('/loans', function () {
 });
 
 Route::get('loans/create', [LoanController::class, 'create']);
+Route::post('loan/store', [LoanController::class, 'store']);
 
-Route::get('settings', function () {
-    return Inertia::render('Settings/index');
-});
+Route::get('settings', [SettingsController::class, 'index']);
+Route::post('parckages/store', [LoanPackageController::class, 'store']);
+Route::delete('parckages/destroy/{item}', [LoanPackageController::class, 'destroy']);
+
 
 Route::get('products', function () {
     return Inertia::render('Products');
 });
-
-
-Route::get('/filter/{filter}', [PlanController::class, 'filter']);
-Route::get('/searchplan/{search}', [PlanController::class, 'searchplan']);
 
 Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
 Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
@@ -87,7 +87,7 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('order', OrderController::class);
     Route::resource('invoice', InvoiceController::class);
-    Route::resource('plans', PlanController::class);
+    Route::resource('loans', LoanController::class);
     Route::resource('property', PropertyController::class);
     Route::resource('image', ImageController::class);
     Route::resource('file', FileController::class);
