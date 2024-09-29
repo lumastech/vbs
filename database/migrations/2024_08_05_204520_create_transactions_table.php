@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-             $table->decimal('amount', 8,2);
-            $table->decimal('interest_rate', 8,2);
+            $table->decimal('amount', 8,2);
             $table->string('type');
-            $table->timestamp('date');
             $table->string('description');
             $table->string('status')->default('pending');
             $table->timestamps();

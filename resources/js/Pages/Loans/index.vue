@@ -40,41 +40,28 @@
                             <td class="py-2">{{ loan.status }}</td>
                             <td class="py-2">{{ loan.term }} months</td>
                             <td class="py-2">
-
-                                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    type="button">Action <svg class="w-2.5 h-2 ms-3" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
-                                </button>
-
-                                <!-- Dropdown menu -->
-                                <div id="dropdownDivider"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownDividerButton">
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-2">
-                                        <a href="#"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated
-                                            link</a>
-                                    </div>
-                                </div>
-
+                                <dropdown-menu :overlay="false" class="rounded overflow-hidde">
+                                    <template #trigger>
+                                        <button class="mr-2 text-sm">MENU <i class="fas fa-angle-down"></i></button>
+                                    </template>
+                                    <template #body>
+                                        <Link :href="route('loans.show', loan)"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">View
+                                        </Link>
+                                        <Link :href="route('loans.edit', loan)"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Update
+                                        </Link>
+                                        <Link v-if="loan.status != 'Approved'" :href="`loans/approve/${loan.id}/Approved`"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Approve
+                                        </Link>
+                                        <Link v-if="loan.status == 'pending'" :href="`loans/approve/${loan.id}/Rejected`"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Reject
+                                        </Link>
+                                        <Link :href="route('loans.destroy', loan)" method="delete"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Delete
+                                        </Link>
+                                    </template>
+                                </dropdown-menu>
                             </td>
                         </tr>
                     </tbody>
@@ -87,13 +74,14 @@
 <script>
 import DashboardLaout from '@/Layouts/DashboardLaout.vue';
 // import Inertia from '@inertiajs/vue3'
+import Dropdown from '@/Components/Dropdown.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
 
 export default {
     components: {
     DashboardLaout, Link, Head,
-    ConfirmationModal
+        ConfirmationModal, Dropdown
 },
     props: {
         loans: Object,

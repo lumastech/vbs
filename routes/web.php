@@ -41,17 +41,6 @@ Route::get('/testing', function () {
     return Inertia::render('Testing');
 });
 
-Route::get('/savings', function () {
-    return Inertia::render('Savings/index');
-});
-
-Route::get('/transactions', function () {
-    return Inertia::render('Transactions/index');
-});
-
-Route::get('/loans', function () {
-    return Inertia::render('Loans/index');
-});
 
 Route::get('loans/create', [LoanController::class, 'create']);
 Route::post('loan/store', [LoanController::class, 'store']);
@@ -65,16 +54,16 @@ Route::get('products', function () {
     return Inertia::render('Products');
 });
 
-Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
-Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
-Route::get('properties/{plan}', [HomeController::class, 'propertyshow'])->name('properties.show');
-Route::get('property-list', [HomeController::class, 'properties'])->name('properties.list');
-Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
-Route::get('invoice-preview/{invoice}', [SpackleController::class, 'invoicePreview'])->name('invoice.preview');
-Route::post('invoice-inv/{invoice}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
-Route::get('invoice-inv/{ref}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
-Route::post('invoice-invst', [SpackleController::class, 'invoiceStatus'])->name('invoice.invst');
-Route::get('plan/download/{item}',[PlanController::class, 'DownloadDetails'])->name('plan.download');
+// Route::get('plan/{plan}', [HomeController::class, 'planshow'])->name('plan.show');
+// Route::get('plans-list', [HomeController::class, 'plans'])->name('plan.list');
+// Route::get('properties/{plan}', [HomeController::class, 'propertyshow'])->name('properties.show');
+// Route::get('property-list', [HomeController::class, 'properties'])->name('properties.list');
+// Route::post('pay/{id}', [SpackleController::class, 'makePayment']);
+// Route::get('invoice-preview/{invoice}', [SpackleController::class, 'invoicePreview'])->name('invoice.preview');
+// Route::post('invoice-inv/{invoice}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
+// Route::get('invoice-inv/{ref}', [SpackleController::class, 'invoiceUpdate'])->name('invoice.inv');
+// Route::post('invoice-invst', [SpackleController::class, 'invoiceStatus'])->name('invoice.invst');
+// Route::get('plan/download/{item}',[PlanController::class, 'DownloadDetails'])->name('plan.download');
 
 
 Route::middleware([
@@ -85,13 +74,13 @@ Route::middleware([
     Route::get('dashboard', [DashboardController::class, "index"])->name('dashboard');
 
     Route::resource('user', UserController::class);
-    Route::resource('order', OrderController::class);
-    Route::resource('invoice', InvoiceController::class);
     Route::resource('loans', LoanController::class);
-    Route::resource('property', PropertyController::class);
+    Route::get('loans/approve/{item}/{action}', [LoanController::class, 'approve'])->name('loans.approve');
+    Route::resource('/savings', SavingController::class);
+    Route::get('savings/approve/{item}/{action}', [SavingController::class, 'approve'])->name('savings.approve');
     Route::resource('image', ImageController::class);
     Route::resource('file', FileController::class);
-    Route::resource('property-type', PropertyTypeController::class);
+    Route::resource('transactions', TransactionController::class);
 
     Route::get('/roles', function () {
         return Inertia::render('roles/index');

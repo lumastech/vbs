@@ -14,7 +14,9 @@
                 <form @submit.prevent="submitApplication" class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="mb-4">
                         <label for="term" class="block text-gray-700">Select Available Packages</label>
-                        <select @change="loan.amount = loan_packages.filter(item => item.id == loan.loan_package_id)[0].amount" v-model="loan.loan_package_id" class=" p-2 w-full border border-gray-300 rounded-lg">
+                        <select
+                            @change="loan.amount = loan_packages.filter(item => item.id == loan.loan_package_id)[0].amount"
+                            v-model="loan.loan_package_id" class=" p-2 w-full border border-gray-300 rounded-lg">
                             <option v-for="packag in loan_packages" :key="packag.id" :value="packag.id">you will get K{{
                                 packag.amount }} @ {{packag.rate}}%/Month for {{ packag.duration }} months</option>
                         </select>
@@ -50,7 +52,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="loan in loans.data" :key="loan.id" class="border-t">
-                                <td class="py-2">{{ loan.date }}</td>
+                                <td class="py-2">{{ new Date(loan.created_at).getDate() }}.{{ (new
+                                    Date(loan.created_at).getMonth()) + 1 }}.{{ new Date(loan.created_at).getFullYear() }}
+                                </td>
                                 <td class="py-2">{{ loan.amount }}</td>
                                 <td class="py-2">{{ loan.status }}</td>
                                 <td class="py-2">{{ loan.term }} months</td>

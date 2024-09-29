@@ -14,8 +14,14 @@ return new class extends Migration
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->decimal("amount", 8,2);
-            $table->timestamp('date');
+            $table->foreignId('loan_package_id');
+            $table->decimal('amount', 8,2);
+            $table->decimal('rate', 8,2);
+            $table->string('term')->default('1');
+            $table->string('purpose')->nullable();
+            $table->string('notes')->nullable();
+            $table->string('status')->default('pending');
+            $table->foreignId('approved_by')->nullable();
             $table->timestamps();
         });
     }

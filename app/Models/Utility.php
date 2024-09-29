@@ -20,4 +20,15 @@ class Utility{
             // return $th;
         }
     }
+
+    function audit($type, $amount, $description) {
+        $trans = new Transaction();
+
+        $trans->user_id = \auth()->user()->id;
+        $trans->amount = $amount;
+        $trans->type = $type;
+        $trans->description = $description;
+
+        $trans->save();
+    }
 }

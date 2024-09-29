@@ -7,9 +7,13 @@
                     <div class="text-center border-b pb-4 mb-7 border-secondary-200">
                         <div
                             class="rounded-full bg-white ring w-12 h-12 lg:w-24 lg:h-24 mx-auto transition-all overflow-hidden">
+                            <Link :href="route('profile.show')">
                             <img src="../../assets/avater.png" alt="" class="w-full h-full scale-110 rounded-full">
+                            </Link>
                         </div>
-                        <p class="mt-4 md:hidden lg:block">{{ $page.props.auth.name }}</p>
+                        <Link :href="route('profile.show')" class="mt-4 md:hidden lg:block">{{
+                        $page.props.auth.user.name }}
+                        </Link>
                         <Link href="/logout" as="button" method="post"
                             class="block w-full place-items-center overflow-hidden px-4 py-2 rounded md:rounded-lg bg-white shadow-sm mb-1 mt-4 hover:bg-secondary-500 hover:text-white transition">
                         <i class="fa-solid fa-lock w-7 mr-4"></i>
@@ -72,10 +76,10 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
-                        <p
+                        <Link :href="route('profile.show')"
                             class="rounded-full p-2 bg-secondary-50 border border-secondary-400 w-10 h-10 flex place-items-center justify-center text-secondary-500 ">
                             <i class="fa-solid fa-user"></i>
-                        </p>
+                        </Link>
                         <Link href="/logout" as="button" type="button" method="post"
                             class="rounded-md p-2 bg-secondary-50 border border-secondary-400  h-10 flex gap-2 place-items-center justify-center text-secondary-500 hover:bg-secondary-500 hover:text-white transition ">
                         <i class="fa-solid fa-sign-out"></i>

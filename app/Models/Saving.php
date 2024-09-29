@@ -10,8 +10,6 @@ class Saving extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'amount',
-        'date'
+        'user_id', 'amount', 'rate', 'term', 'loan_package_id', 'status', 'approved_by','purpose','notes'
     ];
 }

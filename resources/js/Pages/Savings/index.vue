@@ -1,81 +1,90 @@
 <template>
-    <Head title="Users" />
+
+    <Head title="Savings" />
     <div class="max-w-7xl mx-auto px-2">
         <div class="flex justify-between gap-4 mb-4 place-items-center">
-            <h2 class="text-xl font-bold">STAFFS</h2>
-            <Link :href="route('user.create')" class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
-                <i class="mr-2 fa-solid fa-plus"></i>
-                <span>Add Staff</span>
+            <h2 class="text-xl font-bold">Savings</h2>
+            <Link href="savings/create"
+                class="rounded bg-secondary-500 text-white hover:bg-secondary-600 transition border border-secondary-500 px-4 py-2">
+            <i class="mr-2 fa-solid fa-plus"></i>
+            <span>Apply</span>
             </Link>
         </div>
 
-        <div class="shadow-xs rounded bg-white/90 p-2 overflow-x-scroll">
-            <table class="w-full">
-                <thead>
-                    <tr>
-                        <th class="border-b border-gray-200 px-2 py-1"></th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Name</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Email</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Phone</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Role</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-left">Status</th>
-                        <th class="border-b border-gray-200 px-2 py-1 text-right">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-teal-500">
-                    <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-50 transition">
-                        <td class="border-b border-gray-200 px-2">
-                            <div class="rounded-full inline-block" :class="{'bg-teal-100 text-teal-500':user.role=='admin', 'bg-purple-100 text-purple-500':user.role=='user', 'bg-orange-100 text-orange-500':user.role=='staff'}">
-                                <i class="p-2 fa-solid fa-user"></i>
-                            </div>
-                        </td>
-                        <td class="border-b border-gray-200 px-2 py-1 text-left">{{ user.name }}</td>
-                        <td class="border-b border-gray-200 px-2 py-1 text-left">
-                            <a :href="`mailto:${user.email}`">{{ user.email }}</a>
-                        </td>
-                        <td class="border-b border-gray-200 px-2 py-3">{{ user.phone }}</td>
-                        <td class="border-b border-gray-200 px-2 py-3"><span class="px-2 py-1 rounded-md" :class="{'bg-teal-100 text-teal-500':user.role=='admin', 'bg-purple-100 text-purple-500':user.role=='user', 'bg-orange-100 text-orange-500':user.role=='staff'}">{{ user.role }}</span></td>
-                        <td class="border-b border-gray-200 px-2 py-3"><span class="px-2 py-1 rounded-md" :class="{'bg-teal-100 text-teal-500':user.status=='active', 'bg-red-100 text-red-500':user.status !='active'}">{{ user.status }}</span></td>
-                        <td class="border-b border-gray-200 px-2 py-3 text-right">
-                            <Link :href="route('user.edit', user.id)" class="p-2 text-sky-500">
-                                <i class="fa-solid fa-edit"></i>
-                            </Link>
-                            <Link :href="route('user.destroy', user.id)" method="delete" class="text-red-500" as="button" type="button" :onBefore="confirm" >
-                                <i class="fa-solid fa-trash-can"></i>
-                            </Link>
-
-                            <ConfirmationModal :show="0" >
-                                <template v-slot:title>
-                                    <h4>Confirm action</h4>
-                                </template>
-                                <template v-slot:content>
-                                    <p>Are you sure you want to delete this user?</p>
-                                </template>
-                                <template v-slot:footer>
-                                    <button @click="close" class="text-gray-500 hover:bg-secondary-100 px-4 rounded transition">Cancel</button>
-                                </template>
-                            </ConfirmationModal>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <section>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Your Saving Applications</h3>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="text-left py-2">Date</th>
+                            <th class="text-left py-2">Amount</th>
+                            <th class="text-left py-2">Interest Rate</th>
+                            <th class="text-left py-2">Monthly</th>
+                            <th class="text-left py-2">Total Earnings</th>
+                            <th class="text-left py-2">Status</th>
+                            <th class="text-left py-2">Term</th>
+                            <th class="text-left py-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="saving in savings.data" :key="saving.id" class="border-t">
+                            <td class="py-2">{{new Date(saving.created_at).getDate() }}.{{ (new
+                                Date(saving.created_at).getMonth())+1 }}.{{ new Date(saving.created_at).getFullYear() }}
+                            </td>
+                            <td class="py-2">{{ saving.amount }}</td>
+                            <td class="py-2">{{ saving.rate }}%</td>
+                            <td class="py-2">{{ Math.round((((saving.rate / 100) * saving.amount) +
+                                Number.parseInt(saving.amount)) / Number.parseInt(saving.term)).toFixed(2) }}</td>
+                            <td class="py-2">{{ ((saving.rate / 100) * saving.amount) + Number.parseInt(saving.amount) }}</td>
+                            <td class="py-2">{{ saving.status }}</td>
+                            <td class="py-2">{{ saving.term }} months</td>
+                            <td class="py-2">
+                                <dropdown-menu :overlay="false" class="rounded overflow-hidde">
+                                    <template #trigger>
+                                        <button class="mr-2 text-sm">MENU <i class="fas fa-angle-down"></i></button>
+                                    </template>
+                                    <template #body>
+                                        <Link :href="route('savings.show', saving)"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">View
+                                        </Link>
+                                        <Link :href="route('savings.edit', saving)"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Update
+                                        </Link>
+                                        <Link v-if="saving.status != 'Approved'" :href="`savings/approve/${saving.id}/Approved`"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Approve
+                                        </Link>
+                                        <Link v-if="saving.status == 'pending'" :href="`savings/approve/${saving.id}/Rejected`"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Reject
+                                        </Link>
+                                        <Link :href="route('savings.destroy', saving)" method="delete"
+                                            class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Delete
+                                        </Link>
+                                    </template>
+                                </dropdown-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
 import DashboardLaout from '@/Layouts/DashboardLaout.vue';
 // import Inertia from '@inertiajs/vue3'
+import Dropdown from '@/Components/Dropdown.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
 
 export default {
     components: {
     DashboardLaout, Link, Head,
-    ConfirmationModal
+        ConfirmationModal, Dropdown
 },
     props: {
-        users: Object,
+        savings: Object,
     },
     layout: DashboardLaout,
     setup() {
