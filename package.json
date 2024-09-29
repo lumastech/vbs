@@ -19,7 +19,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "flowbite": "^2.5.1",
+        "flowbite": "^2.5.2",
         "tw-elements": "^2.0.0",
         "v-dropdown-menu": "^2.0.4",
         "vue-numerals": "^4.0.6",
