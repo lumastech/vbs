@@ -15,7 +15,8 @@ class LoanController extends Controller
      */
     public function index()
     {
-
+        $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+        return Inertia::render('Loans/index', ['loans' => $loans]);
     }
 
     /**
@@ -25,7 +26,7 @@ class LoanController extends Controller
     {
         // user with pagination 15
         $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
-        $packages = LoanPackage::orderBy('created_at', 'desc');
+        $packages = LoanPackage::orderBy('amount', 'desc')->get();
         return Inertia::render('Loans/create', ['loans' => $loans, 'loan_packages' => $packages]);
     }
 
@@ -37,8 +38,9 @@ class LoanController extends Controller
         $data = $request->validated();
         if($package = LoanPackage::where('id', $data['loan_package_id'])->first()){
 
-            $data['user_id'] = auth()->user()->id;
+            $data['user_id'] = \auth()->user()->id;
             $data['rate'] = $package->rate;
+            $data['amount'] = $package->amount;
             $data['term'] = $package->duration;
             if(Loan::create($data)){
                 return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Your loan has been created successfully']);

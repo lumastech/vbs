@@ -21,10 +21,10 @@
                     <i class="fa-solid fa-home w-7 mr-3"></i>
                     DASHBOARD
                     </Link>
-                    <Link href="/profile"
+                    <Link href="/user"
                         class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">
                     <i class="fa-solid fa-users w-7 mr-3"></i>
-                    Profile
+                    Members
                     </Link>
                     <Link href="/savings"
                         class="flex line-clamp-1 place-items-center overflow-hidden px-4 py-2 rounded hover:bg-secondary-200 hover:text-secondary-800 transition">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->decimal('rate', 8,2);
+            $table->decimal('amount', 8,2);
             $table->integer('duration');
             $table->text('description')->nullable();
             $table->timestamps();

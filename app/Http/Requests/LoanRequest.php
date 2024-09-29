@@ -11,7 +11,7 @@ class LoanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,8 @@ class LoanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'loan_package_id' => 'required|string',
-            'amount' => 'required|numeric',
+            'loan_package_id' => 'required|numeric',
+            'amount' => 'nullable|numeric',
             'purpose' => 'required|string',
             'notes' => 'nullable|string'
         ];

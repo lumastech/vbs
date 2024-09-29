@@ -13,27 +13,21 @@
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Apply for a Loan</h3>
                 <form @submit.prevent="submitApplication" class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="mb-4">
+                        <label for="term" class="block text-gray-700">Select Available Packages</label>
+                        <select @change="loan.amount = loan_packages.filter(item => item.id == loan.loan_package_id)[0].amount" v-model="loan.loan_package_id" class=" p-2 w-full border border-gray-300 rounded-lg">
+                            <option v-for="packag in loan_packages" :key="packag.id" :value="packag.id">you will get K{{
+                                packag.amount }} @ {{packag.rate}}%/Month for {{ packag.duration }} months</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
                         <label for="amount" class="block text-gray-700">Loan Amount</label>
-                        <input type="number" id="amount" v-model="loan.amount"
-                            class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required />
+                        <input type="number" id="amount" v-model="loan.amount" placeholder="Select package above"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-lg" disabled />
                     </div>
                     <div class="mb-4">
                         <label for="purpose" class="block text-gray-700">Purpose</label>
                         <textarea id="purpose" v-model="loan.purpose"
                             class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="term" class="block text-gray-700">Select Available Packages</label>
-                        <input type="number" id="term" v-model="loan.term"
-                            class="mt-1 p-2 w-full border border-gray-300 rounded-lg" required />
-                            <select name="loan_package_id">
-                                <option v-for="packag in loan_packages" :key="packag.id" :value="packag.id">Pay {{packag.rate}}%/Month for {{ packag.duration }} months</option>
-                            </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="notes" class="block text-gray-700">Additional Notes</label>
-                        <textarea id="notes" v-model="loan.notes"
-                            class="mt-1 p-2 w-full border border-gray-300 rounded-lg"></textarea>
                     </div>
                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Submit
                         Application</button>
@@ -91,13 +85,13 @@ export default {
             amount: null,
             purpose: '',
             term: null,
-            notes: '',
+            loan_package_id: '',
         });
 
-        const submit = () => {
-            form.post('/loans/store', {
+        const submitApplication = () => {
+            loan.post('/loan/store', {
                 onSuccess: (data) => {
-                    form.reset()
+                    loan.reset()
                     console.log(data)
                     alert("Loan Created successfully")
                 }
@@ -106,7 +100,7 @@ export default {
 
         return {
             loan,
-            submit,
+            submitApplication,
         };
     },
 };

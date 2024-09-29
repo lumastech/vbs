@@ -30,7 +30,7 @@ class LoanPackageController extends Controller
     public function store(LoanPackageRequest $request)
     {
         if(LoanPackage::create($request->validated())){
-            
+            return \back();
         }
     }
 
@@ -61,8 +61,10 @@ class LoanPackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LoanPackage $loanPackage)
+    public function destroy($loanPackage)
     {
-        //
+        // dd($loanPackage);
+        LoanPackage::where('id', $loanPackage)->first()->delete();
+        return \back();
     }
 }

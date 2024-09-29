@@ -24,6 +24,7 @@ class LoanPackageRequest extends FormRequest
         return [
             'name'=> 'required|string',
             'rate'=> 'required|numeric',
+            'amount'=> 'required|numeric',
             'duration'=> 'required|numeric',
             'description'=> 'nullable|string',
         ];

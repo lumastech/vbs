@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->string('notes')->nullable();
             $table->string('status')->default('pending');
-            $table->foreignId('approved_by');
+            $table->foreignId('approved_by')->nullable();
             $table->timestamps();
         });
     }

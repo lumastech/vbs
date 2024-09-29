@@ -23,10 +23,10 @@
                 <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
             <div class="uppercase">
-                <div v-if="$page.props.auth" class="inline">
+                <div v-if="$page.props.auth.user" class="inline">
                     <dropdown-menu :overlay="false" class="rounded overflow-hidde">
                         <template #trigger>
-                            <button class="mr-2">DASHBOARD  <i class="fas fa-angle-down"></i></button>
+                            <button class="mr-2">DASHBOARD <i class="fas fa-angle-down"></i></button>
                         </template>
                         <template #body>
                             <Link href="/dashboard" class="block w-full hover:bg-secondary-200 text-sm p-2 transition">dashboard</Link>

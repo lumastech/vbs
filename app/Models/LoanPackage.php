@@ -9,6 +9,6 @@ class LoanPackage extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'name', 'rate', 'duration', 'description'
+        'name', 'rate', 'amount', 'duration', 'description'
     ];
 }
