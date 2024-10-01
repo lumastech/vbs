@@ -16,7 +16,12 @@ class SavingController extends Controller
      */
     public function index()
     {
-        $savings = Saving::orderBy('created_at', 'desc')->paginate(15);
+        $user = \auth()->user();
+        if ($user->role == 'admin') {
+            $savings = Saving::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15);
+        } else {
+            $savings = Saving::orderBy('created_at', 'desc')->paginate(15);
+        }
         return Inertia::render('Savings/index', ['savings' => $savings]);
     }
 
@@ -25,9 +30,15 @@ class SavingController extends Controller
      */
     public function create()
     {
+        $user = \auth()->user();
         // user with pagination 15
-        $savings = Saving::orderBy('created_at', 'desc')->paginate(15);
-        $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        if ($user->role == 'admin') {
+            $savings = Saving::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15);
+            $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        } else {
+            $savings = Saving::orderBy('created_at', 'desc')->paginate(15);
+            $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        }
         return Inertia::render('Savings/create', ['savings' => $savings, 'saving_packages' => $packages]);
     }
 

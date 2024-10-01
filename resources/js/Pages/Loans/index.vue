@@ -48,16 +48,18 @@
                                         <Link :href="route('loans.show', loan)"
                                             class="block w-full hover:bg-secondary-200 text-sm p-2 transition">View
                                         </Link>
-                                        <Link :href="route('loans.edit', loan)"
+                                        <Link :href="route('loans.edit', loan)" v-if="loan.status == 'pending' || $page.props.auth.user.role == 'admin'"
                                             class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Update
                                         </Link>
-                                        <Link v-if="loan.status != 'Approved'" :href="`loans/approve/${loan.id}/Approved`"
+                                        <Link v-if="loan.status != 'Approved' && $page.props.auth.user.role == 'admin'"
+                                            :href="`loans/approve/${loan.id}/Approved`"
                                             class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Approve
                                         </Link>
-                                        <Link v-if="loan.status == 'pending'" :href="`loans/approve/${loan.id}/Rejected`"
+                                        <Link v-if="loan.status == 'pending' && $page.props.auth.user.role == 'admin'"
+                                            :href="`loans/approve/${loan.id}/Rejected`"
                                             class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Reject
                                         </Link>
-                                        <Link :href="route('loans.destroy', loan)" method="delete"
+                                        <Link :href="route('loans.destroy', loan)" method="delete" v-if="$page.props.auth.user.role == 'admin'"
                                             class="block w-full hover:bg-secondary-200 text-sm p-2 transition">Delete
                                         </Link>
                                     </template>

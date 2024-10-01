@@ -16,7 +16,13 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+        // current get current user id
+        $user = \auth()->user();
+        if ($user->role == 'admin') {
+            $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+        } else{
+            $loans = Loan::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15);
+        }
         return Inertia::render('Loans/index', ['loans' => $loans]);
     }
 
@@ -24,10 +30,15 @@ class LoanController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
-
+        $user = \auth()->user();
         // user with pagination 15
-        $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
-        $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        if ($user->role == 'admin') {
+            $loans = Loan::orderBy('created_at', 'desc')->paginate(15);
+            $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        } else {
+            $loans = Loan::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15);
+            $packages = LoanPackage::orderBy('amount', 'desc')->get();
+        }
 
         return Inertia::render('Loans/create', ['loans' => $loans, 'loan_packages' => $packages]);
     }

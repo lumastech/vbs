@@ -14,20 +14,39 @@ use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index() {
-        // user with pagination 15
-        $users = User::orderBy('created_at', 'desc')->paginate(15);
-        $trans = Transaction::orderBy('created_at', 'desc')->paginate(15);
-        $totalSavings = Saving::sum('amount');
-        $totalLoans = Loan::sum('amount');
-        $trans_count = Transaction::count();
+        $user = \auth()->user();
 
-        // return inertia view
-        return Inertia::render('Dashboard/Dashboard', [
-            'users' => $users,
-            'trans' => $trans,
-            'totalSavings' => $totalSavings,
-            'totalLoans' => $totalLoans,
-            'trans_count' => $trans_count,
-        ]);
+        // user with pagination 15
+        if ($user->role == 'admin') {
+            $users = User::orderBy('created_at', 'desc')->paginate(15);
+            $trans = Transaction::orderBy('created_at', 'desc')->paginate(15);
+            $totalSavings = Saving::sum('amount');
+            $totalLoans = Loan::sum('amount');
+            $trans_count = Transaction::count();
+
+            // return inertia view
+            return Inertia::render('Dashboard/Dashboard', [
+                'users' => $users,
+                'trans' => $trans,
+                'totalSavings' => $totalSavings,
+                'totalLoans' => $totalLoans,
+                'trans_count' => $trans_count,
+            ]);
+        } else{
+            $users = User::orderBy('created_at', 'desc')->paginate(15);
+            $trans = Transaction::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15);
+            $totalSavings = Saving::where('user_id', $user->id)->sum('amount');
+            $totalLoans = Loan::where('user_id', $user->id)->sum('amount');
+            $trans_count = Transaction::where('user_id', $user->id)->count();
+
+            // return inertia view
+            return Inertia::render('Dashboard/Dashboard', [
+                'users' => null,
+                'trans' => $trans,
+                'totalSavings' => $totalSavings,
+                'totalLoans' => $totalLoans,
+                'trans_count' => $trans_count,
+            ]);
+        }
     }
 }
