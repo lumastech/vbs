@@ -31,4 +31,47 @@ class Utility{
 
         $trans->save();
     }
+
+    public function pawapay($route, $method= 'POST', $orderId, $payoutId,  $amount, $isp, $recipient, $customerId, $description= 'Subscription' ) {
+        $payoutData = [
+            "payoutId" => $payoutId,
+            "amount" => $amount,
+            "currency" => "ZMW",
+            "country" => "ZMB",
+            "correspondent" => $isp,
+            "recipient" => [
+                "type" => "MSISDN",
+                "address" => [
+                    "value" => $recipient
+                ]
+            ],
+            "customerTimestamp" => date('Y-m-d\TH:i:s\Z'),
+            "statementDescription" => $description,
+            "metadata" => [
+                [
+                    "fieldName" => "orderId",
+                    "fieldValue" => $orderId
+                ],
+                [
+                    "fieldName" => "customerId",
+                    "fieldValue" => $customerId,
+                    "isPII" => true
+                ]
+            ]
+        ];
+        return [
+            CURLOPT_URL => "https://api.sandbox.pawapay.io/".$route,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => $method,
+            CURLOPT_POSTFIELDS => json_encode($payoutData),
+            CURLOPT_HTTPHEADER => [
+                "Authorization: Bearer ".\env("PAWAPAY_KEY"),
+                "Content-Type: application/json"
+            ],
+        ];
+    }
 }

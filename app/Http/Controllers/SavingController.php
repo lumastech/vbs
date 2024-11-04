@@ -54,10 +54,14 @@ class SavingController extends Controller
             $data['rate'] = $package->rate;
             $data['amount'] = $package->amount;
             $data['term'] = $package->duration;
-            if(Saving::create($data)){
+            $saving = Saving::create($data);
+            if($saving){
+                $util = new Utility();
                 $n = \auth()->user()->name;
                 $util = new Utility();
                 $util->audit('Savings', $data['amount'], $n.' has applied for a savinges ('. $package->name . ') @ ' . $package->rate . '% for '.$package->duration .' Months.' );
+                $curl = curl_init();
+                curl_setopt_array($curl, $util->pawapay('deposits', 'POST', $saving->id, '');
                 return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Your saving has been created successfully']);
             }
         }
