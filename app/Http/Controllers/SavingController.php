@@ -49,7 +49,9 @@ class SavingController extends Controller
     {
         $data = $request->validated();
         if($package = LoanPackage::where('id', $data['loan_package_id'])->first()){
-
+            $description = \env('APP_NAME') . $package->name;
+            $phone = \auth()->user()->phone;
+            $isp = 'aitel';
             $data['user_id'] = \auth()->user()->id;
             $data['rate'] = $package->rate;
             $data['amount'] = $package->amount;
@@ -61,7 +63,7 @@ class SavingController extends Controller
                 $util = new Utility();
                 $util->audit('Savings', $data['amount'], $n.' has applied for a savinges ('. $package->name . ') @ ' . $package->rate . '% for '.$package->duration .' Months.' );
                 $curl = curl_init();
-                curl_setopt_array($curl, $util->pawapay('deposits', 'POST', $saving->id, '');
+                curl_setopt_array($curl, $util->pawapay('deposits', 'POST', $saving->id, '', $saving->amount, $isp, $phone, $description));
                 return redirect()->back()->with("sessionmessage", ['title' => 'success', "message" => 'Your saving has been created successfully']);
             }
         }
