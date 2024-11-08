@@ -17,9 +17,6 @@
             </div>
             <div class="uppercase flex-auto hidden md:flex">
                 <Link href="/" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition"><i class="fas fa-home"></i> Home</Link>
-
-                <Link href="/features" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">Features</Link>
-                <Link href="/about" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">About US</Link>
                 <Link href="contacts" class="p-2 inline-block hover:bg-primary-900 hover:text-secondary-200 transition">contact us</Link>
             </div>
             <div class="uppercase">
