@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->softDeletes();
+            $table->string('route');
+            $table->enum('method', ['POST', 'GET', 'PUT', 'DELETE'])->default('POST');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('payout_id');
+            $table->decimal('amount', 15, 2);
+            $table->string('isp');
+            $table->string('recipient');
+            $table->string('customer_id');
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

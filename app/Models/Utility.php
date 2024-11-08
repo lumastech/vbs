@@ -32,9 +32,9 @@ class Utility{
         $trans->save();
     }
 
-    public function pawapay($route, $method= 'POST', $orderId, $payoutId,  $amount, $isp, $recipient, $customerId, $description= 'Subscription' ) {
+    public function pawapay($route, $method = 'POST', $orderId, $depositId,  $amount, $isp, $recipient, $customerId, $description= 'Subscription' ) {
         $payoutData = [
-            "payoutId" => $payoutId,
+            "depositId" => $depositId,
             "amount" => $amount,
             "currency" => "ZMW",
             "country" => "ZMB",
