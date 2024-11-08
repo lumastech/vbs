@@ -69,6 +69,7 @@ class SavingController extends Controller
                 $err = curl_error($curl);
                 if(json_decode($response)['status'] = 'ACCEPTED'){
                     $msg = 'Your saving has been created successfully';
+                    $msg = $response;
                 }elseif($err){
                     $msg = json_decode($err)['errorMessage'];
                 }
